@@ -2,7 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="senditstyle.css" type="text/css">
+  <link rel="stylesheet" href="send_it_style.css" type="text/css">
+  <script src="send_it_script.js"></script>
   <title>SendIT - Parcels</title>
  </head>
 <body>
@@ -17,11 +18,11 @@
 	</div>
 	
 	<div class="flex-container-parcels">
-		<div class="parcel-options" style="flex-grow: 3">
-			<h4>Create a parcel delivery</h4>
-			<h4>My parcel deliveries</h4>
+		<div class="parcel-options" style="flex-grow: 2">
+			<button class="button_left">Create a parcel delivery</button>
+			<button class="button_left">My parcel deliveries</button>
 		</div>
-		<div class="parcel-details" style="flex-grow: 7">
+		<div class="parcel-details" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
 			<div>
 				<h4>Parcel name/id:</h4>
@@ -32,14 +33,14 @@
 				<p>My location</p>
 				<h4>Destination:</h4>
 				<p>My destination</p>
-				<p class="button">Change destination</p>
+				<button class="button_right" onclick="changeDest()">Change destination</button>
 				<h4>Status:</h4>
 				<p>Parcel status</p>
 				<h4>Price:</h4>
 				<p>shs xxxx</p>
 				<h4>Description:</h4>
 				<p>Parcel sent by me on dd/mm/yy</p>
-				<p class="button">Cancel order</p>
+				<button class="button_right" onclick="cancelOrder()">Cancel order</button>
 			</div>
 			
 			<br>
