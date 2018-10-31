@@ -1,23 +1,114 @@
+:root {
+    --main-light-color: #eee;
+	--main-dark-color: #003366; 
+}
+
+body {
+	margin: 10px;
+	font-family: Helvetica;
+}
 
 nav{
- background: #000;
- height: 40px;
- padding-bottom: 10px;
+ background: var(--main-dark-color);
+ height: 20px;
+ padding-bottom: 20px;
  text-decoration: none;
  }
 
 nav a {
  text-decoration: none;	
- font-family: Trebuchet;
- color: #089606;
+ font-family: Helvetica, Arial, sans-serif;
+ color: #fff;
  display: block;
  float: left;
- margin: 10px;
- padding: 5px;
+ margin-left: 40px;
+ padding: 10px;
+}
+
+a:hover {
+	color: #add8e6;
 }
 
 .header img{
-   height: 500px;
+   height: 100%;
    width: 100%;
 }
 
+.form {
+	margin-left: auto;
+	margin-right:auto;
+	width: 50%;
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+}
+
+.form td, input {
+   padding: 10px;
+}
+
+.form h1, p {
+  margin: 10px;
+  padding: 10px;
+  align: center;
+}
+
+.button {
+    background-color: var(--main-dark-color);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+form {
+	margin: 10px;
+	padding: 10px;
+}
+
+table tr td {
+	height: 20px;
+	width: 60px;
+	text-align center;
+	margin: 10px;
+}
+
+.flex-container-parcels {
+	display: flex;
+	fllex-direction: row;
+	justify-content: center;
+	align-items: stretch;
+	margin: 10px;
+	padding: 20px;
+	width: 90%
+}
+
+.parcel-options {
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-left: 20px;
+	margin: 10px;
+}
+
+.parcel-details {
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-left: 20px;
+	margin: 10px;
+}
+
+.profile-image {
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-left: 20px;
+	margin: 10px;
+}
+
+.profile-details {
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-left: 20px;
+	margin: 10px;
+}
