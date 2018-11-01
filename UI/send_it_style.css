@@ -71,7 +71,7 @@ a:hover {
     text-align: center;
     text-decoration: none;
     display: block;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .form-table {
@@ -81,13 +81,12 @@ a:hover {
 }
 
 table tr td {
-	height: 20px;
-	width: 60px;
+	
 	text-align center;
 }
 
 .colon {
-	width: 10px;
+	width: 5px;
 }
 
 .flex-container-parcels {
@@ -108,9 +107,45 @@ table tr td {
 	margin: 10px;
 }
 
+.parcel-table {
+	border: 1px solid var(--main-dark-color);
+	border-collapse: collapse;
+	margin: 20px 15px;
+	padding: 10px;
+}
+
+.parcel-table th {
+	border: 1px solid var(--main-dark-color);
+	background-color: var(--main-semi-color);
+	margin: 20px 15px;
+	padding: 10px;
+}
+
+.parcel-table td {
+	border: 1px solid var(--main-dark-color);
+	background-color: var(--main-light-color);
+	margin: 20px 15px;
+	padding: 10px;
+}
+
+.parcel-form {
+	margin-top: 20px;
+	width: 60%;
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-bottom: 20px;
+}
+
+.parcel-form-table {
+	margin-left: 10px;
+	padding: 10px;
+}
+
+
 #parcel-details {
 	background-color: var(--main-light-color);
 	border-radius: 20px;
+	padding-top: 30px;
 	padding-left: 20px;
 	margin: 10px;
 }
@@ -143,9 +178,10 @@ table tr td {
 	background-color: var(--main-dark-color);
     border: none;
     color: white;
+	margin: 5px 20px;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 14px;
 }
