@@ -19,28 +19,52 @@
 	
 	<div class="flex-container-parcels">
 		<div class="parcel-options" style="flex-grow: 2">
-			<button class="button_left">Create a parcel delivery</button>
-			<button class="button_left">My parcel deliveries</button>
-		</div>
-		<div class="parcel-details" style="flex-grow: 8">
+			<p class="clickable-left" onclick="createDelivery()">Create a parcel delivery</p>
+			<p class="clickable-left" onclick="viewDeliveries()">My parcel deliveries</p>
+		</div>	
+		<div id="parcel-details" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
 			<div>
-				<h4>Parcel name/id:</h4>
-				<p>Parcel</p>
-				<h4>Description:</h4>
+				<h4>Parcel id:</h4>
+				<p>Parcel 12345</p>
+				<h4>Date:</h4>
+				<p>Parcel sent by me on dd/mm/yy</p>
+				<h4>Details:</h4>
 				<p>Parcel sent by me on dd/mm/yy</p>
 				<h4>Pickup location:</h4>
 				<p>My location</p>
 				<h4>Destination:</h4>
 				<p>My destination</p>
-				<button class="button_right" onclick="changeDest()">Change destination</button>
+				<button class="button-right" onclick="changeDestination()">Change destination</button>
 				<h4>Status:</h4>
 				<p>Parcel status</p>
 				<h4>Price:</h4>
 				<p>shs xxxx</p>
-				<h4>Description:</h4>
-				<p>Parcel sent by me on dd/mm/yy</p>
-				<button class="button_right" onclick="cancelOrder()">Cancel order</button>
+				<button class="button-right" onclick="cancelOrder()">Cancel order</button>
+				
+				<h3>Create a parcel delivery order</h3>
+				<div class="form">
+					<form action="index.html" method="post" target="_self"> 
+						<table class="form-table">
+							<tr> 
+								<td>Details</td> 
+								<td class="colon">:</td> 
+								<td> <textarea name="parcel_details" rows="4"> </textarea> </td> 
+							</tr>  
+							<tr> 
+								<td>Pickup location</td> 
+								<td class="colon">:</td> 
+								<td> <textarea name=parcel_pickup" rows="4"> </textarea> </td> 
+							</tr>  
+							<tr> 
+								<td>Destination</td> 
+								<td class="colon">:</td> 
+								<td> <textarea name="parcel_destination" rows="4"> </textarea> </td> 
+							</tr>
+						</table>
+						<input name="submit_button" type="submit" value="Create" class="submit-button">
+					</form>
+				
 			</div>
 			
 			<br>

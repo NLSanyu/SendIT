@@ -1,6 +1,6 @@
 :root {
     --main-light-color: #eee;
-	--main-semi-color: #aaa;
+	--main-semi-color: #ccc;
 	--main-dark-color: #003366; 
 }
 
@@ -30,17 +30,23 @@ a:hover {
 	color: #add8e6;
 }
 
+.nav-right {
+	float: right;
+}
+
 .header img{
    height: 100%;
    width: 100%;
 }
 
 .form {
+	margin-top: 20px;
 	margin-left: auto;
 	margin-right:auto;
 	width: 50%;
 	background-color: var(--main-light-color);
 	border-radius: 20px;
+	padding-bottom: 20px;
 }
 
 .form td, input {
@@ -48,24 +54,29 @@ a:hover {
 }
 
 .form h1, p {
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
   align: center;
+  padding-top: 15px;
+  padding-left: 20px;
 }
 
-.submit_button {
+.submit-button {
     background-color: var(--main-dark-color);
     border: none;
     color: white;
+	margin-left: auto;
+	margin-right: auto;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: block;
     font-size: 16px;
 }
 
-form {
-	margin: 10px;
+.form-table {
+	margin-left: auto;
+	margin-right: auto;
 	padding: 10px;
 }
 
@@ -73,7 +84,10 @@ table tr td {
 	height: 20px;
 	width: 60px;
 	text-align center;
-	margin: 10px;
+}
+
+.colon {
+	width: 10px;
 }
 
 .flex-container-parcels {
@@ -87,14 +101,14 @@ table tr td {
 }
 
 .parcel-options {
-	background-color: var(--main-dark-color);
+	background-color: var(--main-semi-color);
 	border-radius: 20px;
 	padding-left: 20px;
 	padding-top: 15px;
 	margin: 10px;
 }
 
-.parcel-details {
+#parcel-details {
 	background-color: var(--main-light-color);
 	border-radius: 20px;
 	padding-left: 20px;
@@ -125,19 +139,7 @@ table tr td {
 	margin: 10px;
 }
 
-.button_left {
-	background-color: var(--main-light-color);
-    border: none;
-    color: black;
-    padding: 15px 32px;
-	margin: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: block;
-    font-size: 16px;
-}
-
-.button_right {
+.button-right {
 	background-color: var(--main-dark-color);
     border: none;
     color: white;
