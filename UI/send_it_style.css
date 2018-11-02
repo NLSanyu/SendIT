@@ -16,7 +16,7 @@ nav{
  text-decoration: none;
  }
 
-nav a {
+nav > a {
  text-decoration: none;	
  font-family: Helvetica, Arial, sans-serif;
  color: #fff;
@@ -32,6 +32,17 @@ a:hover {
 
 .nav-right {
 	float: right;
+}
+
+#sendit {
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom: 0px;
+	padding: 15px;
+	color: var(--main-dark-color);
+    font-size: 25px;
+	text-align: center;
+	background-color: var(--main-light-color);
 }
 
 .header img{
@@ -107,6 +118,14 @@ table tr td {
 	margin: 10px;
 }
 
+.parcel-details {
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-top: 10px;
+	padding-left: 20px;
+	margin: 10px;
+}
+
 .parcel-table {
 	border: 1px solid var(--main-dark-color);
 	border-collapse: collapse;
@@ -139,15 +158,6 @@ table tr td {
 .parcel-form-table {
 	margin-left: 10px;
 	padding: 10px;
-}
-
-
-#parcel-details {
-	background-color: var(--main-light-color);
-	border-radius: 20px;
-	padding-top: 30px;
-	padding-left: 20px;
-	margin: 10px;
 }
 
 .flex-container-profile {

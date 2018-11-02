@@ -9,7 +9,8 @@
 <body>
 
 	<div class=header>
-		<nav>
+		<p id="sendit">SendIT</p>
+    	<nav>
 			<a href="index.html">Home</a>
 			<a href="profile.html">Profile</a>
 			<a href="parcels.html">Parcels</a>
@@ -19,10 +20,9 @@
 	
 	<div class="flex-container-parcels">
 		<div class="parcel-options" style="flex-grow: 2">
-			<p onclick="createDelivery()">Create a parcel delivery</p>
-			<p onclick="viewDeliveries()">My parcel deliveries</p>
+			<h3>My parcel deliveries</h3>
 		</div>	
-		<div id="parcel-details" style="flex-grow: 8">
+		<div class="parcel-details" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
 			<div>
 				<h3>Parcel details</h3>
@@ -50,44 +50,8 @@
 				
 				<button class="button-right" onclick="changeDestination()">Change destination</button>
 				<button class="button-right" onclick="cancelOrder()">Cancel order</button>
-				<br>
-				<hr>
-				
-				<h3>Create a parcel delivery order</h3>
-				<div class="parcel-form">
-					<form action="index.html" method="post" target="_self"> 
-						<table class="parcel-form-table">
-							<tr> 
-								<td>Details</td> 
-								<td class="colon">:</td> 
-								<td> <textarea name="parcel_details" rows="4"> </textarea> </td> 
-							</tr>  
-							<tr> 
-								<td>Pickup location</td> 
-								<td class="colon">:</td> 
-								<td> <textarea name=parcel_pickup" rows="4"> </textarea> </td> 
-							</tr>  
-							<tr> 
-								<td>Destination</td> 
-								<td class="colon">:</td> 
-								<td> <textarea name="parcel_destination" rows="4"> </textarea> </td> 
-							</tr>
-						</table>
-						<input name="submit_button" type="submit" value="Create" class="button-right">
-					</form>
 				
 			</div>
-			
-			<br>
-			<br>
-			
-			<ul>
-				<li>My parcel delivery 1
-				<li>My parcel delivery 2
-				<li>My parcel delivery 3
-				<li>My parcel delivery 4
-				<li>My parcel delivery 5
-			</ul>
 		</div>
 	</div>
 	  
