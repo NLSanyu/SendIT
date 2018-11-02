@@ -6,7 +6,8 @@
 
 body {
 	margin: 10px;
-	font-family: Helvetica;
+	font-family: Helvetica, Arial, sans-serif;;
+	background-image: url("tiny-squares.png");
 }
 
 nav{
@@ -18,12 +19,20 @@ nav{
 
 nav > a {
  text-decoration: none;	
- font-family: Helvetica, Arial, sans-serif;
- color: #fff;
+ color: white;
  display: block;
  float: left;
  margin-left: 40px;
  padding: 10px;
+}
+
+ul li {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+	 color: black;
 }
 
 a:hover {
@@ -43,11 +52,32 @@ a:hover {
     font-size: 25px;
 	text-align: center;
 	background-color: var(--main-light-color);
+	font-weight: bold;
+}
+
+.flex-home-content {
+	display: flex;
+	fllex-direction: row;
+	justify-content: center;
+	align-items: stretch;
+	width: 100%
 }
 
 .header img{
    height: 100%;
    width: 100%;
+}
+
+.home-tagline {
+	background-color: var(--main-dark-color);
+	color: white;
+	padding: 50px 20px;
+	font-size: 16px;
+}
+
+.tagline {
+	margin: 15px;
+	padding: 10px;
 }
 
 .form {
@@ -112,7 +142,7 @@ table tr td {
 
 .parcel-options {
 	background-color: var(--main-semi-color);
-	border-radius: 20px;
+	border-radius: 15px;
 	padding-left: 20px;
 	padding-top: 15px;
 	margin: 10px;
@@ -120,9 +150,8 @@ table tr td {
 
 .parcel-details {
 	background-color: var(--main-light-color);
-	border-radius: 20px;
-	padding-top: 10px;
-	padding-left: 20px;
+	border-radius: 15px;
+	padding: 10px 20px;
 	margin: 10px;
 }
 
@@ -134,14 +163,12 @@ table tr td {
 }
 
 .parcel-table th {
-	border: 1px solid var(--main-dark-color);
 	background-color: var(--main-semi-color);
 	margin: 20px 15px;
 	padding: 10px;
 }
 
 .parcel-table td {
-	border: 1px solid var(--main-dark-color);
 	background-color: var(--main-light-color);
 	margin: 20px 15px;
 	padding: 10px;
@@ -151,7 +178,7 @@ table tr td {
 	margin-top: 20px;
 	width: 60%;
 	background-color: var(--main-light-color);
-	border-radius: 20px;
+	border-radius: 15px;
 	padding-bottom: 20px;
 }
 
@@ -172,7 +199,7 @@ table tr td {
 
 .profile-image {
 	background-color: var(--main-semi-color);
-	border-radius: 20px;
+	border-radius: 15px;
 	padding-left: 20px;
 	margin: 10px;
 }
@@ -194,4 +221,22 @@ table tr td {
     text-decoration: none;
     display: block;
     font-size: 14px;
+}
+
+.sidenav {
+	position: fixed;
+    height: 100%; 
+    width: 180px;
+    background-color: var(--main-dark-color);
+	z-index: 1; 
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
 }
