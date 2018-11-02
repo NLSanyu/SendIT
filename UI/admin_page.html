@@ -9,10 +9,40 @@
 <body>
 	<p id="sendit">SendIT - Admin</p>
 	<div class="sidenav">
-		<p onclick="">Users</p>
-		<p onclick="">Parcels</p>
+		<p onclick="adminViewUsers()">Users</p>
+		<p onclick=" adminViewParcels()">Parcels</p>
 		<p onclick="">Sign Out</p>
 	</div>	  
+	
+	<div class="admin-parcels">
+			<!-- either parcel creation or list of parcels -->
+			<div>
+				<h3>Parcel details</h3>
+				<table class="parcel-table">
+					<tr>
+						<th>Parcel id</th>
+						<th>Date created</th>
+						<th>Pickup location</th>
+						<th>Destination</th></th>
+						<th>Details</th>
+						<th>Price</th>
+						<th>Status</th>
+					</tr>
+					<tr>
+						<td>parcel123</td>
+						<td>dd/mm/yy</td>
+						<td>My location</td>
+						<td id="dest">Destination</td>
+						<td>Details</td>
+						<td>shs xxx</td>
+						<td>Status</td>	
+					</tr>
+				
+				</table>
+				<button id="button-dest" class="button-right" onclick="changeDestination()">Change destination</button>
+				<button id="button-status" class="button-right" onclick="changeDestination()">Change status</button>				
+			</div>
+	
 </body>
 
 </html>
