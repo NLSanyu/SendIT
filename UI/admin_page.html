@@ -17,7 +17,7 @@
 	<div class="admin-parcels">
 			<!-- either parcel creation or list of parcels -->
 			<div>
-				<h3>Parcel details</h3>
+				<h3>Parcels</h3>
 				<table class="parcel-table">
 					<tr>
 						<th>Parcel id</th>
@@ -37,10 +37,32 @@
 						<td>shs xxx</td>
 						<td>Status</td>	
 					</tr>
-				
 				</table>
 				<button id="button-dest" class="button-right" onclick="changeDestination()">Change destination</button>
-				<button id="button-status" class="button-right" onclick="changeDestination()">Change status</button>				
+				<button id="button-status" class="button-right" onclick="changeStatus()">Change status</button>	
+
+				<table class="parcel-table">
+					<tr>
+						<th>Parcel id</th>
+						<th>Date created</th>
+						<th>Pickup location</th>
+						<th>Destination</th></th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Status</th>
+					</tr>
+					<tr>
+						<td>parcel456</td>
+						<td>dd/mm/yy</td>
+						<td>My location</td>
+						<td id="dest">Destination</td>
+						<td>Description</td>
+						<td>shs xxx</td>
+						<td>Status</td>	
+					</tr>
+				</table>
+				<button id="button-dest" class="button-right" onclick="changeDestination()">Change destination</button>
+				<button id="button-status" class="button-right" onclick="changeStatus()">Change status</button>	
 			</div>
 	
 </body>
