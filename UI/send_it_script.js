@@ -1,21 +1,7 @@
-var dest, signedIn=false
-var sign = "Sign In"
-
-function changeDestination(){
-	document.getElementById('dest').innerHTML = '<form> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_dest" value="Confirm" id="submit-dest"> </form>';
-	//dest.class="submit-button";
-}
-
-function changeStatus(){
-	document.getElementById('dest').innerHTML = '<form> <textarea name="parcel_details" rows="3"> </textarea>';
-	dest = document.getElementById('button-dest');
-	dest.innerHTML = '<input type="submit" name="new_dest" value="Confirm destination change" class="submit-button"> </form>';
-	//dest.class="submit-button";
-}
+var d, dest, signedIn;
 
 function signIn(){
 	signedIn = true;
-	alert("Hey")
 }
 
 function signOut(){
@@ -29,6 +15,17 @@ function showSignInOrOut(){
 	}
 	else {
 		el.innerHTML = "Sign In";
+	}
+}
+
+function changeDestination(){
+	d = document.getElementById('st');
+	if (d.innerHTML != "Delivered"){
+		dest = document.getElementById('dest');
+		dest.innerHTML = '<form> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_dest" value="Confirm" id="submit-dest"> </form>';
+	}
+	else{
+		alert("Parcel already delivered");
 	}
 }
 

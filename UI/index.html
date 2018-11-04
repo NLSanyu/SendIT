@@ -6,12 +6,13 @@
   <script src="send_it_script.js"></script>
   <title>SendIT - Home</title>
  </head>
-<body onload="showSignInOrOut()">
+<body onpageshow="showSignInOrOut()">
 	<div class=header>
+		<script> showSignInOrOut() </script>
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
-			<a href="profile.html">Profile</a>
+			<!-- <a href="profile.html">Profile</a> -->
 			<a id="sign" href="sign_in.html">Sign In</a>
 		</nav>
  
