@@ -13,10 +13,6 @@ function changeStatus(){
 	//dest.class="submit-button";
 }
 
-function changeIcon(x){
-	x.classList.toggle("fas-fa-pen");
-}
-
 function signIn(){
 	signedIn = true;
 	alert("Hey")
@@ -40,12 +36,13 @@ function cancelOrder(){
 	alert("Order cancelled");
 }
 
-function adminViewUsers(){
-	document.getElementById('parcel-details').innerHTML = '<p>SendIT Users</p>';
+function changePresentLocation(){
+	document.getElementById('pres-location').innerHTML = '<form name="change_pres_location"> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_pres_location" value="Confirm" id="submit-dest"> </form>';
 }
 
-function adminViewParcels(){
-	document.getElementById('parcel-details').innerHTML = '<p>Parcel order deliveries</p>';
+function changeStatus(){
+	document.getElementById('status').innerHTML = '<form name="change_status"> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_status" value="Confirm" id="submit-dest"> </form>';
 }
+
 
 

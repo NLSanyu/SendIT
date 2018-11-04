@@ -72,13 +72,13 @@ a:hover {
 .home-tagline {
 	background-color: var(--main-dark-color);
 	color: white;
-	padding: 50px 20px;
+	padding: 80px 20px 50px 20px;
 	font-size: 16px;
 }
 
 .tagline {
 	margin: 15px;
-	padding: 50px 20px;
+	padding: 0px 20px 60px 20px;
 }
 
 .create-account a {
@@ -108,6 +108,10 @@ a:hover {
   padding-left: 20px;
 }
 
+i {
+	color: var(--main-dark-color);
+}
+
 .submit-button {
     background-color: var(--main-dark-color);
     border: none;
@@ -132,7 +136,7 @@ table tr td {
 }
 
 #cancel-btn {
-	border: 1px solid black;
+	border: 1px solid var(--main-semi-color);
 }
 
 .colon {
@@ -165,7 +169,7 @@ table tr td {
 }
 
 .parcel-table {
-	border: 1px solid var(--main-dark-color);
+	border: 1px solid var(--main-semi-color);
 	border-collapse: collapse;
 	margin: 30px 15px;
 	padding: 10px;
@@ -274,6 +278,14 @@ table tr td {
 }
 
 .sidenav p {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    display: block;
+}
+
+.sidenav a {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
