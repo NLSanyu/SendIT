@@ -6,13 +6,13 @@
   <script src="send_it_script.js"></script>
   <title>SendIT - Home</title>
  </head>
-<body>
+<body onload="showSignInOrOut()">
 	<div class=header>
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
 			<a href="profile.html">Profile</a>
-			<a href="sign_in.html">Sign In</a>
+			<a id="sign" href="sign_in.html">Sign In</a>
 		</nav>
  
 		<div class="flex-home-content">
@@ -31,9 +31,7 @@
 		</div>
 	
 	</div>
-	
-	<!-- <script>showTaglines();</script> -->
-  
+	  
 </body>
 
 </html>
