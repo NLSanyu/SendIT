@@ -128,8 +128,11 @@ a:hover {
 }
 
 table tr td {
-	
 	text-align center;
+}
+
+#cancel-btn {
+	border: 1px solid black;
 }
 
 .colon {
@@ -164,7 +167,7 @@ table tr td {
 .parcel-table {
 	border: 1px solid var(--main-dark-color);
 	border-collapse: collapse;
-	margin: 20px 15px;
+	margin: 30px 15px;
 	padding: 10px;
 }
 
