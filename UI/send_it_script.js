@@ -2,9 +2,7 @@ var dest, signedIn=false
 var sign = "Sign In"
 
 function changeDestination(){
-	document.getElementById('dest').innerHTML = '<form> <textarea name="parcel_details" rows="2"> </textarea>';
-	dest = document.getElementById('button-dest');
-	dest.innerHTML = '<input type="submit" name="new_dest" value="Confirm destination change" class="submit-button"> </form>';
+	document.getElementById('dest').innerHTML = '<form> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_dest" value="Confirm" id="submit-dest"> </form>';
 	//dest.class="submit-button";
 }
 
@@ -15,8 +13,8 @@ function changeStatus(){
 	//dest.class="submit-button";
 }
 
-function changeIcon(){
-	x.classList.toggle("fa-edit");
+function changeIcon(x){
+	x.classList.toggle("fas-fa-pen");
 }
 
 function signIn(){
