@@ -8,16 +8,6 @@ function signOut(){
 	signedIn = false;
 }
 
-function showSignInOrOut(){
-	var el = document.getElementById('sign'); 
-	if(signedIn == true){
-		el.innerHTML = "Sign Out";
-	}
-	else {
-		el.innerHTML = "Sign In";
-	}
-}
-
 function changeDestination(){
 	d = document.getElementById('st');
 	if (d.innerHTML != "Delivered"){
