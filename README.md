@@ -5,7 +5,7 @@ SendIT is a courier service that helps users deliver parcels to different destin
 
 ## Getting Started
 
-Clone the repository, edit the code in any text editor, and run it on any modern web browser
+These instructions will get you a copy of the project up and running on your local machine
 
 
 ### Prerequisites
