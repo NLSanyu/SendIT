@@ -33,5 +33,3 @@ Deployable on any web server
 
 ## Authors
 
-* **Lydia Sanyu Naggayi** 
-
