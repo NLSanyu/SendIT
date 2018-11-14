@@ -11,17 +11,19 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 A modern web browser
 
-```
-Google Chrome
-Mozilla Firefox
-Opera
-Internet Explorer
-```
 
+## Installation and Deployment
 
-## Deployment
-
-Deployable on any web server
+Copy the link for cloning this repository from the "Clone or download button"
+Create a folder on your computer
+Open the terminal or git bash
+Enter these commands:
+  $ cd YourFolder
+  $ git clone <the clone link you copied>
+Open YourFolder
+Navigate to UI/templates/user/index.html
+Open it in a text editor
+Click on Run and choose a web browser
 
 
 ## Built With
@@ -34,3 +36,4 @@ Deployable on any web server
 ## Authors
 
 * **Lydia Sanyu Naggayi** 
+
