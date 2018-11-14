@@ -13,8 +13,8 @@ A modern web browser
 
 
 ## Installation and Deployment
-
-Copy the link for cloning this repository form the "Clone or download button"
+```
+Copy the link for cloning this repository from the "Clone or download button"
 Create a folder on your computer
 Open the terminal or git bash
 Enter these commands:
@@ -24,6 +24,7 @@ Open YourFolder
 Navigate to UI/templates/user/index.html
 Open it in a text editor
 Click on Run and choose a web browser
+```
 
 
 ## Built With
