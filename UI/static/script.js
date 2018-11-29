@@ -1,35 +1,26 @@
-var d, dest, signedIn;
+function signUp(){
+	postRequest('http://127.0.0.1:5000/api/v1/auth/signup', {username: 'Lydia', email: 'lydia@gmail.com', password: '123456789'})
+    .then(data => console.log(data))
+    .catch(error => console.error(error))
+}
+
+function postRequest(url, data) {
+  return fetch(url, {
+    credentials: 'same-origin', 
+    method: 'POST', 
+	mode: 'cors',
+    body: JSON.stringify(data),
+    headers: new Headers({
+      'Content-Type': 'application/json'
+    }),
+  });
+  .then(response => response.json())
+}
+
 
 function signIn(){
-	signedIn = true;
 }
 
-function signOut(){
-	signedIn = false;
-}
-
-function changeDestination(){
-	d = document.getElementById('st');
-	if (d.innerHTML != "Delivered"){
-		dest = document.getElementById('dest');
-		dest.innerHTML = '<form> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_dest" value="Confirm" id="submit-dest"> </form>';
-	}
-	else{
-		alert("Parcel already delivered");
-	}
-}
-
-function cancelOrder(){
-	alert("Order cancelled");
-}
-
-function changePresentLocation(){
-	document.getElementById('pres-location').innerHTML = '<form name="change_pres_location"> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_pres_location" value="Confirm" id="submit-dest"> </form>';
-}
-
-function changeStatus(){
-	document.getElementById('status').innerHTML = '<form name="change_status"> <textarea name="parcel_details" rows="2"> </textarea> <input type="submit" name="new_status" value="Confirm" id="submit-dest"> </form>';
-}
 
 
 
