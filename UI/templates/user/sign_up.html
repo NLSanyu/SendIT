@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
   <script src="../../static/script.js"></script>
   <title>SendIT - Sign Up</title>
- </head>
+</head>
 <body>
 
 	<div class=header>
@@ -18,7 +18,7 @@
 	
 	<div class="form">
 		<h1>Sign Up</h1>
-		<form name="sign_up_form" action="profile.html" target="_self"> 
+		<form name="sign_up_form"> 
 			<table class="form-table">
 				<tr> 
 					<td>Username</td> 
@@ -36,8 +36,10 @@
 					<td> <input name="password" type="password" required> </td> 
 				</tr>
 			</table>
+			<button type="button" class="submit-button" id="sign_up_btn" onclick="alert("Alert")">Sign Up</button>
 			
-			<input name="submit_button" type="submit" value="Sign Up" class="submit-button">
+			<!-- <input name="submit_button" type="submit" value="Sign Up" class="submit-button" onclick="signUp()"> -->
+			
 
 			
 		</form>
