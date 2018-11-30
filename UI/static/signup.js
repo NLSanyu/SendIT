@@ -12,7 +12,10 @@ function signUp(){
     body: JSON.stringify({username: username, email: email, phone_number: phoneNumber, password: password})
   })
   .then((res) => res.json())
-  .then((data) => console.log(data))
+  .then((data) => {
+    console.log(data);
+    alert(data['message']);
+  })
   .catch((err) => console.log(err)) 
 
 }

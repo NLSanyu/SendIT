@@ -30,6 +30,7 @@ function getParcels(){
     })
     .then((res) => res.json())
     .then((data) => {
+        parcels = data['data'];
         let output = `
             <tr>
                 <th>Description</th>
@@ -39,7 +40,7 @@ function getParcels(){
                 <th>Status</th>
                 <th>Cancel</th>
             </tr>`;
-        data['data'].forEach(function(parcel){
+        parcels.forEach(function(parcel){
             output += `
                 <tr>
                     <td>${parcel.description}</td>
