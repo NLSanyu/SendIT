@@ -30,7 +30,16 @@ function getParcels(){
     })
     .then((res) => res.json())
     .then((data) => {
-        let output = "";
+        let output = `
+            <tr>
+                <th>Description</th>
+                <th>Pickup location</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Cancel</th>
+            </tr>
+        `;
         data.forEach(function(parcel){
             output += `
                 <tr>
@@ -41,7 +50,8 @@ function getParcels(){
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times"></i></td>
                 </tr>
-            `
+            `;
+            document.getElementById('parcels_output').innerHTML = output;
         })
     })
     .catch((err) => console.log(err)) 
