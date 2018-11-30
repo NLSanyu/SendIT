@@ -19,7 +19,7 @@ function logIn(){
     console.log(data['message']);
     if(token){
       localStorage.setItem("access_token", token);
-      window.location.replace("../../templates/user/profile.html");
+      //window.location.replace("../../templates/user/profile.html");
     }
     
   })
