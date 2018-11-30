@@ -1,3 +1,5 @@
+var token;
+
 function logIn(){
   let username = document.getElementById("uname2").value;
   let password = document.getElementById("password2").value;
@@ -10,9 +12,22 @@ function logIn(){
     body: JSON.stringify({username: username, password: password})
   })
   .then((res) => res.json())
-  .then((data) => console.log(data))
+  .then(function(data){
+    console.log(data);
+    token = data['access_token'];
+    console.log(token);
+    if(token){
+      window.location.href("../../templates/user/profile.html");
+    }
+    
+  })
 
 }
 
+function decodeToken(token){
+	var playload = JSON.parse(atob(token.split('.')[1]));
+    console.log(playload);
+    
+};
 
 
