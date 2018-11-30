@@ -15,13 +15,13 @@ function logIn(){
   .then(function(data){
     console.log(data);
     token = data['access_token'];
-    console.log(token);
+    console.log(data['message']);
     if(token){
-      window.location.href("../../templates/user/profile.html");
+      window.location.replace("../../templates/user/profile.html");
     }
     
   })
-
+  .catch((err) => console.log(err)) 
 }
 
 function decodeToken(token){
