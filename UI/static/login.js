@@ -15,8 +15,10 @@ function logIn(){
   .then(function(data){
     console.log(data);
     token = data['access_token'];
+    console.log(token);
     console.log(data['message']);
     if(token){
+      localStorage.setItem("access_token", token);
       window.location.replace("../../templates/user/profile.html");
     }
     
