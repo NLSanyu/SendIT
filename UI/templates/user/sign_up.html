@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
-  <script src="../../static/script.js"></script>
+  <script src="../../static/signup.js"></script>
   <title>SendIT - Sign Up</title>
 </head>
 <body>
@@ -18,34 +18,32 @@
 	
 	<div class="form">
 		<h1>Sign Up</h1>
-		<form name="sign_up_form"> 
+		<form name="sign_up_form" id="sign_up_form"> 
 			<table class="form-table">
 				<tr> 
 					<td>Username</td> 
 					<td class="colon">:</td> 
-					<td> <input name="username" type="text" required> </td> 
+					<td> <input name="username" id="uname1" type="text" required> </td> 
 				</tr>  
 				<tr> 
 					<td>Email</td> 
 					<td class="colon">:</td> 
-					<td> <input name="email" type="text" required> </td> 
+					<td> <input name="email" id="email1" type="text" required> </td> 
 				</tr>  
 				<tr> 
 					<td>Phone number</td> 
 					<td class="colon">:</td> 
-					<td> <input name="phone_number" type="text"> </td> 
+					<td> <input name="phone_number" id="phone1" type="text"> </td> 
 				</tr>  
 				<tr> 
 					<td>Password</td> 
 					<td class="colon">:</td> 
-					<td> <input name="password" type="password" required> </td> 
+					<td> <input name="password" id="password1" type="password" required> </td> 
 				</tr>
 			</table>
-			<button type="button" class="submit-button" id="sign_up_btn" onclick="signUp()">Sign Up</button>
+			<button type="button" class="submit-button" id="sign_up_btn" onclick="signUp()">Sign Up</button> 
 			
-			<!-- <input name="submit_button" type="submit" value="Sign Up" class="submit-button" onclick="signUp()"> -->
-			
-
+			<!--<input name="submit_button" type="submit" id="sign_up_button" value="Sign Up" class="submit-button" onsubmit="signUp()"> -->
 			
 		</form>
 	</div>
