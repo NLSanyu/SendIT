@@ -38,9 +38,8 @@ function getParcels(){
                 <th>Price</th>
                 <th>Status</th>
                 <th>Cancel</th>
-            </tr>
-        `;
-        data.forEach(function(parcel){
+            </tr>`;
+        data['data'].forEach(function(parcel){
             output += `
                 <tr>
                     <td>${parcel.description}</td>
@@ -51,8 +50,8 @@ function getParcels(){
                     <td><i class="fas fa-times"></i></td>
                 </tr>
             `;
-            document.getElementById('parcels_output').innerHTML = output;
         })
+        document.getElementById('parcels_output').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
