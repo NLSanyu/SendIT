@@ -1,0 +1,18 @@
+function logIn(){
+  let username = document.getElementById("uname2").value;
+  let password = document.getElementById("password2").value;
+
+  fetch('http://127.0.0.1:5000/api/v1/auth/login', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    }, 
+    body: JSON.stringify({username: username, password: password})
+  })
+  .then((res) => res.json())
+  .then((data) => console.log(data))
+
+}
+
+
+

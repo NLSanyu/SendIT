@@ -3,7 +3,6 @@ function signUp(){
   let email = document.getElementById("email1").value;
   let phoneNumber = document.getElementById("phone1").value;
   let password = document.getElementById("password1").value;
-  console.log(78);
 
   fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
     method: 'POST',
