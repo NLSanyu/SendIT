@@ -39,6 +39,7 @@ function getUserParcels(){
         //check if data['data'] exists or is defined
         let output = `
             <tr>
+                <th>Date created</th>
                 <th>Description</th>
                 <th>Pickup location</th>
                 <th>Destination</th>
@@ -49,6 +50,7 @@ function getUserParcels(){
         parcels.forEach(function(parcel){
             output += `
                 <tr>
+                    <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
                     <td contenteditable="true">${parcel.destination}</td>
