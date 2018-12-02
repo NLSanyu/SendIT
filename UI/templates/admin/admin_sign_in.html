@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
-  <script src="../../static/script.js"></script>
+  <script src="../../static/login.js"></script>
   <title>SendIT - Administrator Sign In</title>
  </head>
 <body>
@@ -11,22 +11,23 @@
 	<p id="sendit">SendIT</p>
 	<div class="form">
 		<h1>Administrator Sign In</h1>
-		<form action="admin_page.html" class="form" target="_self" onsubmit="signIn()"> 
+		<form name="admin_sign_in"> 
 			<table class="form_table">
 				<tr> 
 					<td>Name</td></td> 
 					<td class="colon">:</td> 
-					<td> <input name="email" type="text" required> </td> 
+					<td> <input name="name" type="text" id="uname2" required> </td> 
 				</tr>  
 				<tr> 
 					<td>Password</td> 
 					<td class="colon">:</td> 
-					<td> <input name="password" type="password" required> </td> 
+					<td> <input name="password" type="password" id="password2" required> </td> 
 				</tr> 
 			</table>
 			
-			<input name="submit_button" type="submit" value="Sign In" class="button-right" onclick="openAdminPage()">
-					
+			<!-- <input name="submit_button" type="submit" value="Sign In" class="button-right" onclick="openAdminPage()"> -->
+			<button type="button" class="submit-button" id="adm_log_in_btn" onclick="logIn()">Log In</button> 
+
 		</form>
   
 </body>

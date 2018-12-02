@@ -21,6 +21,9 @@ function createParcel(){
 function getUserParcels(){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
+    //decode token here to get user and include it in the url
+    //decoded_token = decodeToken(access_token);
+
     fetch('http://127.0.0.1:5000/api/v1/users/1/parcels', {
       method: 'GET',
       headers: {
@@ -61,7 +64,10 @@ function getUserParcels(){
 }
 
 
+function decodeToken(token){
+	var playload = JSON.parse(atob(token.split('.')[1]));
+    console.log(playload);
+    
+};
 
 
-
-//'Authorization': `Bearer ${localStorage.getItem("access_token")}`

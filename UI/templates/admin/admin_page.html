@@ -7,18 +7,19 @@
   <script src="../../static/admin.js"></script>
   <title>SendIT - Admin</title>
 </head>
-<body onload="getAllParcels()">
+<body>
 	<p id="sendit">SendIT - Admin</p>
 	<div class="sidenav">
-		<p onclick=" adminViewParcels()">Parcels</p>
-		<a href="admin_sign_in.html" onclick="signOut">Sign Out</a>
+		<p onclick=" getAllParcels()">Parcels</p>
+		<p onclick="getAllUsers()">Users</p>
+		<p onclick="signOut">Sign Out</p>
 	</div>	  
 	
 	<div class="admin-parcels" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
 			<div>
 				<h3>Parcels</h3>
-				<table class="parcel-table">
+				<table class="parcel-table" id="parcels_output">
 					<!--
 					<tr>
 						<th>Parcel id</th>
