@@ -84,7 +84,6 @@ function getAllUsers(){
                     <td>${user.orders}</td>
                     <td>${user.delivered}</td>
                     <td>${user.in_transit}</td>
-                    <td><i class="fas fa-times"></i></td>
                 </tr>
             `;
         })
