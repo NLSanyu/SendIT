@@ -53,16 +53,24 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true">${parcel.destination}</td>
+                    <td contenteditable="true" oninput="changeDest()">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
-                    <td><i class="fas fa-times"></i></td>
+                    <td><i class="fas fa-times" onclick="cancelParcel()"></i></td>
                 </tr>
             `;
         })
         document.getElementById('parcels_output').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
+}
+
+function changeDest(){
+    alert("Change destination");
+}
+
+function cancelParcel(){
+    alert("Cancel");
 }
 
 
