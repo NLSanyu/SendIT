@@ -3,11 +3,10 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
-  <script src="../../static/parcels.js"></script>
-  <script src="../../static/users.js"></script>
+  <script src="../../static/profile.js"></script>
   <title>SendIT - Profile</title>
  </head>
-<body>
+<body onload="getUserInfo()">
 
 	<div class=header>
 		<p id="sendit">SendIT</p>
@@ -24,10 +23,11 @@
 			<h3>Lydia Sanyu</h3>
 			<h3>Kampala</h3>
 			<br> <br>
-			<button type="button" class="button-right" onclick="getUserParcels()"></button>
+			<button type="button" class="button-right" onclick="getUserParcels()">My parcels</button>
+			<button type="button" class="button-right"><a href="create_parcel.html">Create a parcel delivery order</a></button>
 			<h3>Orders:</h3>
-			<h5>Delivered: 2</h5>
-			<h5>In transit: 1</h5>
+			<h5>Delivered: 0</h5>
+			<h5>In transit: 0</h5>
 		</div>
 		<div class="profile-details" style="flex-grow: 8">
 			<h3>Parcel delivery orders</h4>

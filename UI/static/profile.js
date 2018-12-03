@@ -101,6 +101,17 @@ function cancelParcel(){
     .catch((err) => console.log(err)) 
 }
 
+function getUserInfo(){
+    user_info = localStorage.getItem("user_info");
+    //username = document.getElementById("uname");
+    document.getElementById("uname").innerHTML = user_info.username;
+    email = document.getElementById("email");
+    phoneNumber = document.getElementById("phone_numbner");
+    orders = document.getElementById("orders");
+    delivered = document.getElementById("delivered");
+    inTransit = document.getElementById("in_transit");
+}
+
 
 function decodeToken(token){
 	var playload = JSON.parse(atob(token.split('.')[1]));

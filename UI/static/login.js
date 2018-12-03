@@ -15,11 +15,12 @@ function logIn(){
   .then(function(data){
     console.log(data);
     token = data['access_token'];
-    console.log(token);
-    console.log(data['message']);
+    console.log(data['user_info']);
+    user_info = data['user_info'];
     alert(data['message']);
     if(token){
       localStorage.setItem("access_token", token);
+      localStorage.setItem("user_info", user_info);
       //window.location.replace("../../templates/user/profile.html");
     }
     
