@@ -172,6 +172,7 @@ table tr td {
 	border: 1px solid var(--main-dark-color);
 	border-collapse: collapse;
 	padding: 10px;
+	margin-bottom: 10px;
 }
 
 .parcel-table th {

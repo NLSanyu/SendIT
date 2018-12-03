@@ -76,7 +76,7 @@ function createParcelForm(){
     form_string = `
 	<div class="create-parcel-form">
 		<form name="create_parcel_form" class="form"> 
-			<table class="parcel-form-table" margin-bottom="10px">
+			<table class="parcel-form-table">
 				<tr> 
 					<td>Description</td> 
 					<td class="colon">:</td> 
