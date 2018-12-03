@@ -228,7 +228,7 @@ table tr td {
 }
 
 .profile-details {
-	background-color: var(--main-light-color);
+	/*background-color: var(--main-light-color);*/
 	border-radius: 10px;
 	padding-left: 20px;
 	margin: 10px;

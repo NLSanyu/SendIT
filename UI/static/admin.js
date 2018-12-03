@@ -60,7 +60,7 @@ function getAllUsers(){
     .then((data) => {
         console.log(data);
         console.log(data['message'])
-        parcels = data['data'];
+        users = data['data'];
         //check if data['data'] exists or is defined
         let output = `
             <tr>
@@ -73,7 +73,7 @@ function getAllUsers(){
                 <th>Delivered</th>
                 <th>In transit</th>
             </tr>`;
-        parcels.forEach(function(user){
+        users.forEach(function(user){
             output += `
                 <tr>
                     <td>${user.user_id}</td>
@@ -96,4 +96,3 @@ function getAllUsers(){
 
 
 
-//'Authorization': `Bearer ${localStorage.getItem("access_token")}`
