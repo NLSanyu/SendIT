@@ -171,8 +171,6 @@ table tr td {
 .parcel-table {
 	border: 1px solid var(--main-dark-color);
 	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
 	padding: 10px;
 }
 

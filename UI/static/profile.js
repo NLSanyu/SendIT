@@ -1,5 +1,5 @@
 auth = `Bearer ` + localStorage.getItem("access_token");
-click1 = 0; click2 = 0;
+click2 = 0;
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -26,7 +26,7 @@ function getUserParcels(){
     //decode token here to get user and include it in the url
     //decoded_token = decodeToken(access_token);
 
-    fetch('http://127.0.0.1:5000/api/v1/users/1/parcels', {
+    fetch('http://127.0.0.1:5000/api/v1/users/2/parcels', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -39,7 +39,7 @@ function getUserParcels(){
         console.log(data['message'])
         parcels = data['data'];
         //check if data['data'] exists or is defined
-        let output = ` <p>Parcels</p>
+        let output = ` 
             <tr>
                 <th>Date created</th>
                 <th>Description</th>
@@ -62,7 +62,7 @@ function getUserParcels(){
                 </tr>
             `;
         })
-        document.getElementById('parcels_drop_down').innerHTML = output;
+        document.getElementById('parcels_dd').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
@@ -73,10 +73,10 @@ function createParcelForm(){
         return 0;
     }
 
-    form_string = `<h3 class="parcel-form">Create a parcel delivery order</h3>
+    form_string = `
 	<div class="create-parcel-form">
 		<form name="create_parcel_form" class="form"> 
-			<table class="parcel-form-table">
+			<table class="parcel-form-table" margin-bottom="10px">
 				<tr> 
 					<td>Description</td> 
 					<td class="colon">:</td> 
