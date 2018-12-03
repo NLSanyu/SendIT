@@ -1,4 +1,5 @@
 auth = `Bearer ` + localStorage.getItem("access_token");
+click1 = 0; click2 = 0;
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -67,6 +68,11 @@ function getUserParcels(){
 }
 
 function createParcelForm(){
+    click2 += 1;
+    if(click2 > 1){
+        return 0;
+    }
+
     form_string = `<h3 class="parcel-form">Create a parcel delivery order</h3>
 	<div class="create-parcel-form">
 		<form name="create_parcel_form" class="form"> 

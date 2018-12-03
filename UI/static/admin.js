@@ -34,10 +34,10 @@ function getAllParcels(){
                     <td>${parcel.description}</td>
                     <td>${parcel.date_created}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true">${parcel.present_location}</td>
+                    <td contenteditable="true" id="present_location">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
-                    <td contenteditable="true">${parcel.status}</td>
+                    <td contenteditable="true" id="status">${parcel.status}</td>
                 </tr>
             `;
         })
@@ -88,6 +88,42 @@ function getAllUsers(){
             `;
         })
         document.getElementById('parcels_output').innerHTML = output;
+    })
+    .catch((err) => console.log(err)) 
+}
+
+function changeStatus(){
+    let st = document.getElementById('status').value;
+    fetch('http://127.0.0.1:5000/api/v1/parcels/1/status', {
+        method: 'PUT',
+        headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+        }, 
+        body: JSON.stringify({status: st})
+    })
+    .then((res) => res.json())
+    .then(function(data){
+        console.log(data);
+        alert(data['message']);   
+    })
+    .catch((err) => console.log(err)) 
+}
+
+function changePresentLocation(){
+    let presentLocation = document.getElementById('present_location').value;
+    fetch('http://127.0.0.1:5000/api/v1/parcels/1/presentLocation', {
+        method: 'PUT',
+        headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+        }, 
+        body: JSON.stringify({present_location: presentLocation})
+    })
+    .then((res) => res.json())
+    .then(function(data){
+        console.log(data);
+        alert(data['message']);   
     })
     .catch((err) => console.log(err)) 
 }
