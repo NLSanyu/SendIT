@@ -143,6 +143,14 @@ table tr td {
 	width: 5px;
 }
 
+.create-parcel-form {
+	margin-top: 20px;
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding-bottom: 20px;
+}
+
+
 .parcel-title {
 	background-color: var(--main-semi-color);
 	border-radius: 5px;

@@ -66,7 +66,37 @@ function getUserParcels(){
     .catch((err) => console.log(err)) 
 }
 
-function createParcel(){
+function createParcelForm(){
+    form_string = `<h3 class="parcel-form">Create a parcel delivery order</h3>
+	<div class="create-parcel-form">
+		<form name="create_parcel_form" class="form"> 
+			<table class="parcel-form-table">
+				<tr> 
+					<td>Description</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_desc" rows="3" id="desc"> </textarea> </td> 
+				</tr>  
+				<tr> 
+					<td>Pickup location</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_pickup" rows="3" id="pickup"> </textarea> </td> 
+				</tr>  
+				<tr> 
+					<td>Destination</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
+				</tr>
+			</table>
+			<!-- <input name="submit_button" type="submit" value="Create" class="button-right" onclick="createParcel()"> -->
+			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
+
+		</form>
+    </div>`;
+    
+    var div = document.createElement("div");
+    div.innerHTML = form_string;
+    var el = document.getElementById('profile-details');
+    el.appendChild(div);
 
 }
 
