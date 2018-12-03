@@ -148,7 +148,7 @@ table tr td {
 	border-radius: 5px;
 	padding: 10px 20px;
 	text-align: center;
-	width: 50%;
+	width: 100%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -221,10 +221,10 @@ table tr td {
 
 .profile-image {
 	background-color: var(--main-semi-color);
-	border-radius: 15px;
+	border-radius: 10px;
 	padding-top: 30px;
 	padding-left: 20px;
-	margin: 10px;
+	margin: 5px;
 }
 
 .profile-details {
@@ -242,14 +242,6 @@ table tr td {
 	margin: 5px 5px 20px 5px;
 }
 
-h4 > a {
-	color: white;
-}
-
-h4 > a:hover {
-	color: var(--main-light-color);
-}
-
 .profile-details h5 {
 	display: inline-block;
 	background-color: var(--main-semi-color);
@@ -259,6 +251,26 @@ h4 > a:hover {
 
 .profile-details a:hover {
 	color: var(--main-dark-color);
+}
+
+.profile-details button {
+	background-color: var(--main-semi-color);
+	padding: 6px 8px 6px 16px;
+    font-size: 16px;
+    color: black;
+	margin-bottom: 10px;
+	border-radius: 3px;
+    display: block;
+	width: 400px;
+	font-weight: bold;
+}
+
+h4 > a {
+	color: white;
+}
+
+h4 > a:hover {
+	color: var(--main-light-color);
 }
 
 .button-right {
@@ -288,7 +300,6 @@ h4 > a:hover {
 
 .sidenav p {
     padding: 6px 8px 6px 16px;
-    text-decoration: none;
     font-size: 20px;
     color: white;
     display: block;

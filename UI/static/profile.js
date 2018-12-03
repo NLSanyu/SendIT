@@ -23,7 +23,7 @@ function getUserParcels(){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
     //decode token here to get user and include it in the url
-    decoded_token = decodeToken(access_token);
+    //decoded_token = decodeToken(access_token);
 
     fetch('http://127.0.0.1:5000/api/v1/users/1/parcels', {
       method: 'GET',
@@ -38,7 +38,7 @@ function getUserParcels(){
         console.log(data['message'])
         parcels = data['data'];
         //check if data['data'] exists or is defined
-        let output = `
+        let output = ` <p>Parcels</p>
             <tr>
                 <th>Date created</th>
                 <th>Description</th>
@@ -61,9 +61,13 @@ function getUserParcels(){
                 </tr>
             `;
         })
-        document.getElementById('parcels_output').innerHTML = output;
+        document.getElementById('parcels_drop_down').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
+}
+
+function createParcel(){
+
 }
 
 function changeDest(){

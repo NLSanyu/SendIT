@@ -24,18 +24,19 @@
 			<h3 id="email">Email</h3>
 			<h3 id="phone_number">Phone number</h3>
 			<br> <br>
-			<button type="button" class="button-right" onclick="getUserParcels()">My parcels</button>
-			<button type="button" class="button-right"><a href="create_parcel.html">Create a parcel delivery order</a></button>
 			<h3>Orders:</h3>
 			<h5 id="orders">All orders: 0</h5>
 			<h5 id="delivered">Delivered: 0</h5>
 			<h5 id="in_transit">In transit: 0</h5>
 		</div>
-		<div class="profile-details" style="flex-grow: 8">
-			<h3>Parcel delivery orders</h4>
+		<div class="profile-details" style="flex-grow: 8" id="profile-details">
+			<!--
 			<h4><a href="create_parcel.html">Create parcel delivery order</a></h4>
 			<h4><a href="parcels.html">All parcel delivery orders</a></h4>
-			<br>
+			-->
+			<button type="button" onclick="getUserParcels()">My parcel delivery orders</button>
+			<table class="parcel-table" id="parcels_dd"></table>
+			<button type="button" onclick="createParcelForm()">Create a parcel delivery order</button>
 			
 		</div>
 		
