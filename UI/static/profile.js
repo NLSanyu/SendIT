@@ -53,7 +53,7 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="dest" oninput="changeDest()">${parcel.destination}</td>
+                    <td contenteditable="true" id="dest" oninput="changeDest(${parcel.parcel_id})">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
@@ -107,9 +107,9 @@ function createParcelForm(){
 
 }
 
-function changeDest(){
+function changeDest(parcel_id){
     let dest = document.getElementById("dest").value;
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + dest + '/destination';
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
         headers: {
