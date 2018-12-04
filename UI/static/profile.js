@@ -1,6 +1,6 @@
-auth = `Bearer ` + localStorage.getItem("access_token");
-click2 = 0;
+var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
+var click2 = 0;
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -48,6 +48,7 @@ function getUserParcels(){
                 <th>Cancel</th>
             </tr>`;
         parcels.forEach(function(parcel){
+            parcelCount++;
             output += `
                 <tr>
                     <td>${parcel.date_created}</td>
