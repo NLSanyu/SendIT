@@ -147,9 +147,12 @@ function showUserInfo(){
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
-    document.getElementById("orders").innerHTML = user.orders;
-    document.getElementById("delivered").innerHTML = user.delivered;
-    document.getElementById("in_transit").innerHTML = user.in_transit;
+    let orders = user.orders == null ? 0 : user.orders; 
+    document.getElementById("orders").innerHTML = "All orders: " + orders;
+    let delivered = user.delivered == null ? 0 : user.delivered; 
+    document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
+    let inTransit = user.in_transit == null ? 0 : user.in_transit; 
+    document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
 }
 
 
