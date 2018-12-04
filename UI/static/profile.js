@@ -121,7 +121,8 @@ function changeDest(parcel_id){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);   
+        alert(data['message']);  
+        getUserParcels(); 
     })
     .catch((err) => console.log(err)) 
 }
@@ -139,7 +140,8 @@ function cancelParcel(parcel_id){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);   
+        alert(data['message']);
+        getUserParcels();   
     })
     .catch((err) => console.log(err)) 
 }
