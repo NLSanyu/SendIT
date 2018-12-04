@@ -34,10 +34,10 @@ function getAllParcels(){
                     <td>${parcel.description}</td>
                     <td>${parcel.date_created}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="present_location">${parcel.present_location}</td>
+                    <td contenteditable="true" id="present_location" onclick="changePresentLocation(${parcel.parcel_id})">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
-                    <td contenteditable="true" id="status">${parcel.status}</td>
+                    <td contenteditable="true" id="status" onclick="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
                 </tr>
             `;
         })
@@ -92,9 +92,10 @@ function getAllUsers(){
     .catch((err) => console.log(err)) 
 }
 
-function changeStatus(){
+function changeStatus(parcel_id){
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
     let st = document.getElementById('status').value;
-    fetch('http://127.0.0.1:5000/api/v1/parcels/1/status', {
+    fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
@@ -110,9 +111,10 @@ function changeStatus(){
     .catch((err) => console.log(err)) 
 }
 
-function changePresentLocation(){
+function changePresentLocation(parcel_id){
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/presentLocation';
     let presentLocation = document.getElementById('present_location').value;
-    fetch('http://127.0.0.1:5000/api/v1/parcels/1/presentLocation', {
+    fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
