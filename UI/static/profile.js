@@ -143,9 +143,10 @@ function cancelParcel(){
 
 function getUserInfo(){
     user_info = localStorage.getItem("user_info");
+    var user = JSON.parse(localStorage.getItem('user_info'));
     //username = document.getElementById("uname");
-    document.getElementById("uname").innerHTML = user_info['username'];
-    document.getElementById("email").innerHTML = user_info.email;
+    document.getElementById("uname").innerHTML = user.username;
+    document.getElementById("email").innerHTML = user;
     document.getElementById("phone_number").innerHTML = user_info['phone_number'];
     document.getElementById("orders").innerHTML = user_info['orders'];
     document.getElementById("delivered").innerHTML = user_info['delivered'];
