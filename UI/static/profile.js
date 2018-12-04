@@ -1,5 +1,6 @@
 auth = `Bearer ` + localStorage.getItem("access_token");
 click2 = 0;
+var user = JSON.parse(localStorage.getItem('user_info'));
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -141,9 +142,7 @@ function cancelParcel(){
     .catch((err) => console.log(err)) 
 }
 
-function getUserInfo(){
-    var user = JSON.parse(localStorage.getItem('user_info'));
-    //username = document.getElementById("uname");
+function showUserInfo(){
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
