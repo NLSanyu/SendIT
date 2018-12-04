@@ -37,7 +37,6 @@ function getUserParcels(){
         console.log(data);
         console.log(data['message'])
         parcels = data['data'];
-        //check if data['data'] exists or is defined
         let output = ` 
             <tr>
                 <th>Date created</th>
@@ -97,6 +96,9 @@ function createParcelForm(){
 
 		</form>
     </div>`;
+
+    // let formDiv = document.getElementById('parcel-form-div');
+    // formDiv.style.display = "block";
     
     var div = document.createElement("div");
     div.innerHTML = form_string;
@@ -125,6 +127,7 @@ function changeDest(){
 
 
 function cancelParcel(){
+    //let url = 'http://127.0.0.1:5000/api/v1/users/' + user_id + '/parcels';
     fetch('http://127.0.0.1:5000/api/v1/parcels/1/cancel', {
         method: 'PUT',
         headers: {
