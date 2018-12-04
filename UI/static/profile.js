@@ -48,7 +48,6 @@ function getUserParcels(){
                 <th>Cancel</th>
             </tr>`;
         parcels.forEach(function(parcel){
-            parcelCount++;
             output += `
                 <tr>
                     <td>${parcel.date_created}</td>
@@ -57,7 +56,7 @@ function getUserParcels(){
                     <td contenteditable="true" id="dest" oninput="changeDest()">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
-                    <td><i class="fas fa-times" onclick="cancelParcel()"></i></td>
+                    <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
                 </tr>
             `;
         })
@@ -110,7 +109,8 @@ function createParcelForm(){
 
 function changeDest(){
     let dest = document.getElementById("dest").value;
-    fetch('http://127.0.0.1:5000/api/v1/parcels/1/destination', {
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + dest + '/destination';
+    fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
@@ -127,9 +127,9 @@ function changeDest(){
 }
 
 
-function cancelParcel(){
-    //let url = 'http://127.0.0.1:5000/api/v1/users/' + user_id + '/parcels';
-    fetch('http://127.0.0.1:5000/api/v1/parcels/1/cancel', {
+function cancelParcel(parcel_id){
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/cancel';
+    fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
