@@ -145,10 +145,10 @@ table tr td {
 }
 
 .parcel-table th {
-	border-left: 1px solid var(--main-semi-color);
-	border-right: 1px solid var(--main-semi-color);
-	color: white;
-	background-color: var(--main-dark-color);
+	border-left: 1px solid var(--main-dark-color);
+	border-right: 1px solid var(--main-dark-color);
+	color: black;
+	background-color: var(--main-semi-color);
 	align: center;
 	margin: 20px 15px;
 	padding: 10px;
