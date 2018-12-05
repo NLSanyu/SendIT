@@ -20,7 +20,7 @@ function logIn(){
     if(token){
       localStorage.setItem("access_token", token);
       localStorage.setItem("user_info", JSON.stringify(user_info));
-      //window.location.replace("../../templates/user/profile.html");
+      window.location.replace("../../templates/user/profile.html");
     }
     
   })
