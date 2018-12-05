@@ -58,11 +58,11 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td id="dest">${parcel.destination}<i class="fas fa-edit onclick="editDest(${parcel.parcel_id})"></i></td>
+                    <td id="dest">${parcel.destination}   <i class="far fa-edit onclick="editDest(${parcel.parcel_id})"></i></td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                </tr>
+                </tr> 
             `;
         })
         output += `</table>`;
@@ -92,7 +92,6 @@ function createParcelForm(){
 					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
 				</tr>
 			</table>
-			<!-- <input name="submit_button" type="submit" value="Create" class="button-right" onclick="createParcel()"> -->
 			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
 
 		</form>
@@ -103,8 +102,10 @@ function createParcelForm(){
 }
 
 function editDest(parcel_id){
+    alert(parcel_id);
     let dest = document.getElementById("dest");
     dest.setAttribute("contenteditable", true);
+    dest.style.borderBottom = "1px solid red";
 
 }
 

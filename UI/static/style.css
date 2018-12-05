@@ -126,7 +126,7 @@ table tr td {
 .create-parcel-form {
 	margin-top: 20px;
 	background-color: var(--main-light-color);
-	border-radius: 20px;
+	border-radius: 5px;
 	padding-bottom: 20px;
 }
 
@@ -138,15 +138,14 @@ table tr td {
 }
 
 .parcel-table {
-	border: 1px solid var(--main-dark-color);
+	/*border: 1px solid var(--main-dark-color);*/
 	border-collapse: collapse;
 	padding: 10px;
 	margin-bottom: 10px;
 }
 
 .parcel-table th {
-	border-left: 1px solid var(--main-dark-color);
-	border-right: 1px solid var(--main-dark-color);
+	border-bottom: 1px solid var(--main-dark-color);
 	color: black;
 	background-color: var(--main-semi-color);
 	align: center;
@@ -155,8 +154,7 @@ table tr td {
 }
 
 .parcel-table td {
-	border-left: 1px solid var(--main-dark-color);
-	border-right: 1px solid var(--main-dark-color);
+	border-bottom: 1px solid var(--main-semi-color);
 	background-color: var(--main-light-color);
 	align: center;
 	margin: 20px 15px;
@@ -285,6 +283,18 @@ h4 > a:hover {
     font-size: 20px;
     color: white;
     display: block;
+}
+
+#sendit-admin {
+	color: black;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom: 10px;
+	padding: 15px;
+    font-size: 25px;
+	text-align: center;
+	background-color: var(--main-light-color);
+	font-weight: bold;
 }
 
 .admin-parcels {
