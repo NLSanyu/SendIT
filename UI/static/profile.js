@@ -37,7 +37,11 @@ function getUserParcels(){
         console.log(data);
         console.log(data['message'])
         if(data['message'] === 'no parcels for this user'){
-            document.getElementById('parcels-dd').innerHTML = "<p>This user has no parcels yet</p>";
+            document.getElementById('parcels-dd').innerHTML = "<br><p>This user has no parcels yet</p>";
+            return 0;
+        }
+        if(data['msg'] === 'Token has expired'){
+            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
         parcels = data['data'];
@@ -59,11 +63,11 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td id="dest">${parcel.destination}   <i class="far fa-edit onclick="editDest(${parcel.parcel_id})"></i></td>
+                    <td id="dest">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                    <td>Edit</td>
+                    <td class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</td>
                 </tr> 
             `;
         })
@@ -74,7 +78,7 @@ function getUserParcels(){
 }
 
 function createParcelForm(){
-    form_string = `
+    formString = `
 	<div class="create-parcel-form">
 		<form name="create_parcel_form" class="form"> 
 			<table class="parcel-form-table">
@@ -99,16 +103,13 @@ function createParcelForm(){
 		</form>
     </div>`;
 
-    document.getElementById('parcels-dd').innerHTML = form_string;
+    document.getElementById('parcels-dd').innerHTML = formString;
 
 }
 
-function editDest(parcel_id){
-    alert(parcel_id);
-    let dest = document.getElementById("dest");
-    dest.setAttribute("contenteditable", true);
-    dest.style.borderBottom = "1px solid red";
-
+function showOneParcel(parcel_dest){
+    parcelString = `<p>${parcel_dest}</p>`;
+    document.getElementById('parcels-dd').innerHTML = parcelString;
 }
 
 function changeDest(parcel_id){

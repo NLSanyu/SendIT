@@ -172,6 +172,11 @@ table tr td {
 	padding: 10px;
 }
 
+.edit {
+	color: var(--main-dark-color);
+	text-decoration: underline;
+}
+
 #submit-dest {
 	background-color: var(--main-dark-color);
 	margin-left:auto;
