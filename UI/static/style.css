@@ -151,6 +151,7 @@ table tr td {
 	align: center;
 	margin: 20px 15px;
 	padding: 10px;
+	text-align: center;
 }
 
 .parcel-table td {
@@ -159,6 +160,7 @@ table tr td {
 	align: center;
 	margin: 20px 15px;
 	padding: 10px;
+	text-align: center;
 }
 
 .parcel-form {

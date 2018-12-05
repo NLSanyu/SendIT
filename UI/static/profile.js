@@ -51,6 +51,7 @@ function getUserParcels(){
                 <th>Price</th>
                 <th>Status</th>
                 <th>Cancel</th>
+                <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
             output += `
@@ -62,6 +63,7 @@ function getUserParcels(){
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
+                    <td>Edit</td>
                 </tr> 
             `;
         })

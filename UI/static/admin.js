@@ -52,6 +52,7 @@ function getAllParcels(){
                 <th>Destination</th>
                 <th>Price</th>
                 <th>Status</th>
+                <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
             output += `
@@ -65,6 +66,7 @@ function getAllParcels(){
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td contenteditable="true" id="status" onclick="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
+                    <td>Edit</td>
                 </tr>
             `;
         })
