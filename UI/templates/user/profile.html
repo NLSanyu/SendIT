@@ -3,42 +3,42 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
-  <script src="../../static/script.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+  <script src="../../static/profile.js"></script>
   <title>SendIT - Profile</title>
  </head>
-<body>
-
-	<div class=header>
+<body onload="showUserInfo()">
+	<script>checkIfLoggedIn();</script>
+	<div class="header">
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
-			<a href="sign_in.html">Sign Out</a>
+			<a href="sign_in.html" onclick="logOut()">Log Out</a>
 		</nav>	
 	</div>
-	
-	<h3 class="parcel-title">Profile</h3>
 
 	<div class="flex-container-profile">
-		<div class="profile-image" style="flex-grow: 2">
-			<h3>Lydia Sanyu</h3>
-			<h3>Kampala</h3>
-		</div>
-		<div class="profile-details" style="flex-grow: 8">
-			<h3>Parcel delivery orders</h4>
-			<h4><a href="create_parcel.html">Create parcel delivery order</a></h4>
-			<h4><a href="parcels.html">All parcel delivery orders</a></h4>
+			<div class="profile-image" style="flex-grow: 2">
+			<h3 class="profile-title">Profile</h3>
+			<h4 id="uname">Username</h4>
+			<h4 id="email">Email</h4>
+			<h4 id="phone_number">Phone number</h4>
 			<br>
-			<h3>Frequent locations</h3>
-			<h5>Kampala Road</h5>
-			<h5>Jinja Road</h5>
-			<h5>Bukoto Street</h5>
-			<br>
-			<h3>Orders</h3>
-			<h5>Delivered: 2</h5>
-			<h5>In transit: 1</h5>
+			<h3>Orders:</h3>
+			<h5 id="orders">All orders: 0</h5>
+			<h5 id="delivered">Delivered: 0</h5>
+			<h5 id="in_transit">In transit: 0</h5>
 		</div>
-		
+		<div class="profile-details" style="flex-grow: 8" id="profile-details">
+			<button class="profile-button" onclick="getUserParcels()">My parcel delivery orders</button>
+			<!--<table class="parcel-table"></table>-->
+			<button class="profile-button" id="create_parcel_btn" onclick="createParcelForm()">Create a parcel delivery order</button>	
+			<br>
+			<div id="parcels-dd"><div>
+		</div>
+			
 	</div>
+	
   
 </body>
 
