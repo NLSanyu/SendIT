@@ -35,7 +35,6 @@ function getUserParcels(){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-        console.log(data['message'])
         if(data['message'] === 'no parcels for this user'){
             document.getElementById('parcels-dd').innerHTML = "<br><p>This user has no parcels yet</p>";
             return 0;
@@ -72,6 +71,45 @@ function getUserParcels(){
             `;
         })
         output += `</table>`;
+        document.getElementById('parcels-dd').innerHTML = output;
+    })
+    .catch((err) => console.log(err)) 
+}
+
+function getOneParcel(parcel_id){
+    auth = `Bearer ` + localStorage.getItem("access_token");
+    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        if(data['message'] === 'parcel non-existent'){
+            document.getElementById('parcels-dd').innerHTML = "<br><p>This parcel does not exist</p>";
+            return 0;
+        }
+        if(data['msg'] === 'Token has expired'){
+            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
+            return 0;
+        }
+        parcel = data['data'];
+        parcel.forEach(function(parcel){
+            output += `
+                    <p>${parcel.date_created}</p>
+                    <p>${parcel.description}</p>
+                    <p>${parcel.pickup_location}</p>
+                    <p id="dest">${parcel.destination}</p>
+                    <p>${parcel.price}</p>
+                    <p>${parcel.status}</p>
+                    <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
+                    <p class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</p> 
+            `;
+        })
         document.getElementById('parcels-dd').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
