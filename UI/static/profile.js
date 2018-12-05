@@ -72,11 +72,6 @@ function getUserParcels(){
 }
 
 function createParcelForm(){
-    click2 += 1;
-    if(click2 > 1){
-        return 0;
-    }
-
     form_string = `
 	<div class="create-parcel-form">
 		<form name="create_parcel_form" class="form"> 
