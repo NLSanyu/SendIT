@@ -36,8 +36,13 @@ function getUserParcels(){
     .then((data) => {
         console.log(data);
         console.log(data['message'])
+        if(data['message'] === 'no parcels for this user'){
+            document.getElementById('parcels-dd').innerHTML = "<p>This user has no parcels yet</p>";
+            return 0;
+        }
         parcels = data['data'];
-        let output = ` 
+        let output = `
+            <table class="parcel-table">
             <tr>
                 <th>Date created</th>
                 <th>Description</th>
@@ -60,7 +65,8 @@ function getUserParcels(){
                 </tr>
             `;
         })
-        document.getElementById('parcels_dd').innerHTML = output;
+        output += `</table>`;
+        document.getElementById('parcels-dd').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
@@ -100,10 +106,12 @@ function createParcelForm(){
     // let formDiv = document.getElementById('parcel-form-div');
     // formDiv.style.display = "block";
     
-    var div = document.createElement("div");
-    div.innerHTML = form_string;
-    var el = document.getElementById('profile-details');
-    el.appendChild(div);
+    // var div = document.createElement("div");
+    // div.innerHTML = form_string;
+    // var el = document.getElementById('profile-details');
+    // el.appendChild(div);
+
+    document.getElementById('parcels-dd').innerHTML = form_string;
 
 }
 

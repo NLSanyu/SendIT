@@ -13,34 +13,32 @@
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
-			<a href="sign_in.html">Sign Out</a>
+			<a href="sign_in.html">Log Out</a>
 		</nav>	
 	</div>
-	
-	<h3 class="parcel-title">Profile</h3>
 
 	<div class="flex-container-profile">
-		<div class="profile-image" style="flex-grow: 2">
-			<h3 id="uname">Username</h3>
-			<h3 id="email">Email</h3>
-			<h3 id="phone_number">Phone number</h3>
-			<br> <br>
+			<div class="profile-image" style="flex-grow: 2">
+			<h3 class="profile-title">Profile</h3>
+			<h4 id="uname">Username</h4>
+			<h4 id="email">Email</h4>
+			<h4 id="phone_number">Phone number</h4>
+			<br>
 			<h3>Orders:</h3>
 			<h5 id="orders">All orders: 0</h5>
 			<h5 id="delivered">Delivered: 0</h5>
 			<h5 id="in_transit">In transit: 0</h5>
 		</div>
 		<div class="profile-details" style="flex-grow: 8" id="profile-details">
-			<!--
-			<h4><a href="create_parcel.html">Create parcel delivery order</a></h4>
-			<h4><a href="parcels.html">All parcel delivery orders</a></h4>
-			-->
-			<button type="button" onclick="getUserParcels()">My parcel delivery orders</button>
-			<table class="parcel-table" id="parcels_dd"></table>
-			<button type="button" id="create_parcel_btn" onclick="createParcelForm()">Create a parcel delivery order</button>	
+			<button type="button" class="profile-button" onclick="getUserParcels()">My parcel delivery orders</button>
+			<!--<table class="parcel-table"></table>-->
+			<button type="button" class="profile-button" id="create_parcel_btn" onclick="createParcelForm()">Create a parcel delivery order</button>	
+			<br>
+			<div id="parcels-dd"><div>
 		</div>
-		
+			
 	</div>
+	
   
 </body>
 
