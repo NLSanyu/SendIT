@@ -58,7 +58,7 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="dest" onclick="changeDest(${parcel.parcel_id})">${parcel.destination}</td>
+                    <td id="dest">${parcel.destination}<i class="fas fa-edit onclick="editDest(${parcel.parcel_id})"></i></td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
@@ -99,6 +99,12 @@ function createParcelForm(){
     </div>`;
 
     document.getElementById('parcels-dd').innerHTML = form_string;
+
+}
+
+function editDest(parcel_id){
+    let dest = document.getElementById("dest");
+    dest.setAttribute("contenteditable", true);
 
 }
 
