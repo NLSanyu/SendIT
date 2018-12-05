@@ -150,6 +150,10 @@ function cancelParcel(parcel_id){
 }
 
 function showUserInfo(){
+    token = localStorage.getItem("acess_token");
+    if(token == null || token == undefined){
+
+    }
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
@@ -159,6 +163,19 @@ function showUserInfo(){
     document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
     let inTransit = user.in_transit == null ? 0 : user.in_transit; 
     document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
+}
+
+function checkIfLoggedIn(){
+    if(localStorage.getItem("access_token") == null){
+        alert("Not logged in");
+        return 0;
+    }
+}
+
+function logOut(){
+    localStorage.removeItem("access_token");
+    alert("Logged out");
+    window.location.replace("../../templates/user/index.html");
 }
 
 
