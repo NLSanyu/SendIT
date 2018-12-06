@@ -1,6 +1,6 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
-var click2 = 0;
+var specific_parcel;
 var counter = {orders: 0, delivered: 0, in_transit: 0};
 
 function createParcel(){
@@ -22,35 +22,6 @@ function createParcel(){
   
 }
 
-function createParcelForm(){
-    formString = `
-	<div class="create-parcel-form">
-		<form name="create_parcel_form" class="form"> 
-			<table class="parcel-form-table">
-				<tr> 
-					<td>Description</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_desc" rows="3" id="desc"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Pickup location</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_pickup" rows="3" id="pickup"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Destination</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
-				</tr>
-			</table>
-			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
-
-		</form>
-    </div>`;
-
-    document.getElementById('create-parcel-div').innerHTML = formString;
-
-}
 
 function getUserParcels(){
     auth = `Bearer ` + localStorage.getItem("access_token");
@@ -123,6 +94,7 @@ function storeParcelId(parcel_id){
 }
 
 function getOneParcel(){
+    alert("abc");
     parcel_id = localStorage.getItem("parcel_id");
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
@@ -145,18 +117,19 @@ function getOneParcel(){
             return 0;
         }
         parcel = data['data'];
-        parcel.forEach(function(parcel){
-            output += `
-                    <p>${parcel.date_created}</p>
-                    <p>${parcel.description}</p>
-                    <p>${parcel.pickup_location}</p>
-                    <p id="dest">${parcel.destination}</p>
-                    <p>${parcel.price}</p>
-                    <p>${parcel.status}</p>
-                    <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
-                    <p class="edit" onclick="showOneParcel()">Edit</p> 
-            `;
-        })
+        output = `
+            <div class="parcel-details">
+            <p>${parcel.date_created}</p>
+            <p>${parcel.description}</p>
+            <p>${parcel.pickup_location}</p>
+            <p id="dest">${parcel.destination}</p>
+            <p>${parcel.price}</p>
+            <p>${parcel.status}</p>
+            <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
+            <p class="edit" onclick="showOneParcel()">Edit</p> 
+            <div>
+        `;
+        
         document.getElementById('one-parcel-details').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
