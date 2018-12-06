@@ -67,25 +67,35 @@ a:hover {
 	 color: var(--main-dark-color);
 }
 
-.form {
+.auth {
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right:auto;
+	width: 50%;
 	background-color: var(--main-light-color);
 	border-radius: 20px;
-	padding-bottom: 20px;
+	padding: 20px;
 }
 
-.form td, input {
+.auth td, input {
    padding: 10px;
 }
 
-.form h1, p {
+.auth h1, p {
   margin: 5px;
   padding: 5px;
   align: center;
   padding-top: 15px;
   padding-left: 20px;
+}
+
+.create {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right:auto;
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding: 20px;
 }
 
 i {
@@ -98,7 +108,7 @@ i {
     color: white;
 	margin-left: auto;
 	margin-right: auto;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: block;
