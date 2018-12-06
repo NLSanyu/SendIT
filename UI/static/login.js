@@ -16,7 +16,11 @@ function logIn(){
     console.log(data);
     token = data['access_token'];
     user_info = data['user_info'];
-    alert(data['message']);
+    let msg = data['message'];
+    if(msg != "user logged in succesfully"){
+      alert("message");
+      return 0;
+    };
     if(token){
       localStorage.setItem("access_token", token);
       localStorage.setItem("user_info", JSON.stringify(user_info));
