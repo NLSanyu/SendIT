@@ -97,7 +97,7 @@ function getUserParcels(){
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                    <td class="edit" onclick="changeDest(${parcel.parcel_id})">Edit</td>
+                    <td class="edit" onclick="storeParcelId(${parcel.parcel_id})">View</td>
                 </tr> 
             `;
             counter['orders'] += 1;
@@ -116,7 +116,14 @@ function getUserParcels(){
     .catch((err) => console.log(err)) 
 }
 
-function getOneParcel(parcel_id){
+function storeParcelId(parcel_id){
+    localStorage.setItem("parcel_id", parcel_id);
+    //window.location.replace("../../templates/user/parcel.html");
+    window.location.href = "../../templates/user/parcel.html";
+}
+
+function getOneParcel(){
+    parcel_id = localStorage.getItem("parcel_id");
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
     fetch(url, {
@@ -147,10 +154,10 @@ function getOneParcel(parcel_id){
                     <p>${parcel.price}</p>
                     <p>${parcel.status}</p>
                     <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
-                    <p class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</p> 
+                    <p class="edit" onclick="showOneParcel()">Edit</p> 
             `;
         })
-        document.getElementById('flex-parcel-table').innerHTML = output;
+        document.getElementById('one-parcel-details').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
@@ -235,34 +242,7 @@ function decodeToken(token){
 };
 
 
-function showParcelForm(){
-    // Get the modal
-    var modal = document.getElementById('myModal');
 
-    // Get the button that opens the modal
-    var btn = document.getElementById("create-parcel-btn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
 
-    modal.style.display = "block";
-
-    // When the user clicks on the button, open the modal 
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-}
 
