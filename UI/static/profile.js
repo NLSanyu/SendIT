@@ -47,7 +47,7 @@ function createParcelForm(){
 		</form>
     </div>`;
 
-    document.getElementById('parcels-dd').innerHTML = formString;
+    document.getElementById('create-parcel-div').innerHTML = formString;
 
 }
 
@@ -66,11 +66,11 @@ function getUserParcels(){
     .then((data) => {
         console.log(data);
         if(data['message'] === 'no parcels for this user'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>This user has no parcels yet</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>This user has no parcels yet</p>";
             return 0;
         }
         if(data['msg'] === 'Token has expired'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
         parcels = data['data'];
@@ -101,7 +101,7 @@ function getUserParcels(){
             `;
         })
         output += `</table>`;
-        document.getElementById('parcels-dd').innerHTML = output;
+        document.getElementById('parcels-div').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
@@ -120,11 +120,11 @@ function getOneParcel(parcel_id){
     .then((data) => {
         console.log(data);
         if(data['message'] === 'parcel non-existent'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>This parcel does not exist</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>This parcel does not exist</p>";
             return 0;
         }
         if(data['msg'] === 'Token has expired'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
         parcel = data['data'];
@@ -140,7 +140,7 @@ function getOneParcel(parcel_id){
                     <p class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</p> 
             `;
         })
-        document.getElementById('parcels-dd').innerHTML = output;
+        document.getElementById('flex-parcel-table').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
@@ -200,6 +200,8 @@ function showUserInfo(){
     document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
     let inTransit = user.in_transit == null ? 0 : user.in_transit; 
     document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
+
+    getUserParcels();
 }
 
 function checkIfLoggedIn(){
@@ -222,4 +224,35 @@ function decodeToken(token){
     
 };
 
+
+function showParcelForm(){
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("create-parcel-btn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    modal.style.display = "block";
+
+    // When the user clicks on the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+}
 

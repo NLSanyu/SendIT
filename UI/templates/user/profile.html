@@ -18,7 +18,7 @@
 	</div>
 
 	<div class="flex-container-profile">
-			<div class="profile-image" style="flex-grow: 2">
+		<div class="profile-details" style="flex-grow: 2">
 			<h3 class="profile-title">Profile</h3>
 			<h5 id="uname">Username</h5>
 			<h5 id="email">Email</h5>
@@ -29,15 +29,43 @@
 			<h5 id="delivered">Delivered: 0</h5>
 			<h5 id="in_transit">In transit: 0</h5>
 		</div>
-		<div class="profile-details" style="flex-grow: 8" id="profile-details">
-			<button class="profile-button" onclick="getUserParcels()">My parcel delivery orders</button>
-			<!--<table class="parcel-table"></table>-->
-			<button class="profile-button" id="create_parcel_btn" onclick="createParcelForm()">Create a parcel delivery order</button>	
-			<br>
-			<div id="parcels-dd"><div>
-		</div>
+		
+		<div class="parcels-details" style="flex-grow: 8">
+			<div>
+				<h3>Create a new parcel delivery order</h3>
+				<form name="create_parcel_form" class="form"> 
+						<table class="parcel-form-table">
+							<tr> 
+								<td>Description</td> 
+								<td>Pickup location</td> 
+								<td colspan="2">Destination</td> 
+							</tr>  
+							<tr>
+								<td> <textarea name="parcel_desc" rows="2" id="desc"> </textarea> </td> 							
+								<td> <textarea name="parcel_pickup" rows="2" id="pickup"> </textarea> </td>
+								<td> <textarea name="parcel_destination" rows="2" id="dest"> </textarea> </td> 
+								<td>
+									<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
+								</td>
+							</tr>
+						</table>
+						
+					</form>
+			</div>
+			<h3>My parcel delivery orders</h3>
+			<div class="parcels-details" id="parcels-div">
+	
+			</div>
 			
+		</div>
+		
 	</div>
+	
+
+
+		
+
+		
 	
   
 </body>

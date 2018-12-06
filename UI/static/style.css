@@ -71,7 +71,6 @@ a:hover {
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right:auto;
-	width: 50%;
 	background-color: var(--main-light-color);
 	border-radius: 20px;
 	padding-bottom: 20px;
@@ -206,17 +205,23 @@ table tr td {
 	margin-right: auto;
 }
 
-.profile-image {
+.profile-details {
 	background-color: var(--main-light-color);
 	padding-top: 30px;
 	padding-left: 20px;
 	margin: 5px;
 }
 
-.profile-details {
+.parcels-details{
 	padding-left: 10px;
 	padding-right: 10px;
-	margin: 5px 10px 10px 10px;
+	margin: 5px 2px 0px 2px;
+}
+
+.create-parcel {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 5px 2px 10px 2px;
 }
 
 .profile-button {
@@ -310,3 +315,4 @@ h4 > a:hover {
     margin-left: 180px; 
     padding: 0px 10px;
 }
+
