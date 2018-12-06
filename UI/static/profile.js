@@ -1,6 +1,7 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
 var click2 = 0;
+var counter = {orders: 0, delivered: 0, in_transit: 0};
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -99,9 +100,18 @@ function getUserParcels(){
                     <td class="edit" onclick="changeDest(${parcel.parcel_id})">Edit</td>
                 </tr> 
             `;
+            counter['orders'] += 1;
+            switch(parcel.status){
+                case "Delivered": counter['delivered'] += 1;
+                case "In transit": counter['in_transit'] += 1;
+            }
         })
         output += `</table>`;
         document.getElementById('parcels-div').innerHTML = output;
+        document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
+        document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
+        document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
+
     })
     .catch((err) => console.log(err)) 
 }
@@ -194,12 +204,12 @@ function showUserInfo(){
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
-    let orders = user.orders == null ? 0 : user.orders; 
-    document.getElementById("orders").innerHTML = "All orders: " + orders;
-    let delivered = user.delivered == null ? 0 : user.delivered; 
-    document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
-    let inTransit = user.in_transit == null ? 0 : user.in_transit; 
-    document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
+    // let orders = user.orders == null ? 0 : user.orders; 
+    // document.getElementById("orders").innerHTML = "All orders: " + orders;
+    // let delivered = user.delivered == null ? 0 : user.delivered; 
+    // document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
+    // let inTransit = user.in_transit == null ? 0 : user.in_transit; 
+    // document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
 
     getUserParcels();
 }
