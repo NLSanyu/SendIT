@@ -267,6 +267,18 @@ h4 > a:hover {
     font-size: 14px;
 }
 
+#sendit-admin {
+	color: white;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom: 10px;
+	padding: 15px;
+    font-size: 25px;
+	text-align: center;
+	background-color: var(--main-dark-color);
+	font-weight: bold;
+}
+
 .sidenav {
 	position: fixed;
     height: 100%; 
@@ -290,18 +302,6 @@ h4 > a:hover {
     font-size: 20px;
     color: white;
     display: block;
-}
-
-#sendit-admin {
-	color: black;
-	margin-left: auto;
-	margin-right:auto;
-	margin-bottom: 10px;
-	padding: 15px;
-    font-size: 25px;
-	text-align: center;
-	background-color: var(--main-light-color);
-	font-weight: bold;
 }
 
 .admin-parcels {
