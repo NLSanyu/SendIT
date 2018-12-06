@@ -21,6 +21,36 @@ function createParcel(){
   
 }
 
+function createParcelForm(){
+    formString = `
+	<div class="create-parcel-form">
+		<form name="create_parcel_form" class="form"> 
+			<table class="parcel-form-table">
+				<tr> 
+					<td>Description</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_desc" rows="3" id="desc"> </textarea> </td> 
+				</tr>  
+				<tr> 
+					<td>Pickup location</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_pickup" rows="3" id="pickup"> </textarea> </td> 
+				</tr>  
+				<tr> 
+					<td>Destination</td> 
+					<td class="colon">:</td> 
+					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
+				</tr>
+			</table>
+			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
+
+		</form>
+    </div>`;
+
+    document.getElementById('parcels-dd').innerHTML = formString;
+
+}
+
 function getUserParcels(){
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
@@ -66,7 +96,7 @@ function getUserParcels(){
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                    <td class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</td>
+                    <td class="edit" onclick="changeDest(${parcel.parcel_id})">Edit</td>
                 </tr> 
             `;
         })
@@ -115,43 +145,10 @@ function getOneParcel(parcel_id){
     .catch((err) => console.log(err)) 
 }
 
-function createParcelForm(){
-    formString = `
-	<div class="create-parcel-form">
-		<form name="create_parcel_form" class="form"> 
-			<table class="parcel-form-table">
-				<tr> 
-					<td>Description</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_desc" rows="3" id="desc"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Pickup location</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_pickup" rows="3" id="pickup"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Destination</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
-				</tr>
-			</table>
-			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
-
-		</form>
-    </div>`;
-
-    document.getElementById('parcels-dd').innerHTML = formString;
-
-}
-
-function showOneParcel(parcel_dest){
-    parcelString = `<p>${parcel_dest}</p>`;
-    document.getElementById('parcels-dd').innerHTML = parcelString;
-}
 
 function changeDest(parcel_id){
-    let dest = document.getElementById("dest").value;
+    let dest = prompt("Enter a new destination");
+    //let dest = document.getElementById("dest").value;
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
