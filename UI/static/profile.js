@@ -66,11 +66,12 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td id="dest${parcel.parcel_id}" contenteditable="true" onblur="changeDest(${parcel.parcel_id})">${parcel.destination}</td>
+                    <td contenteditable="true"
+                    onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
                     <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                    <td class="edit" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
+                    <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
                 </tr> 
             `;
 
@@ -92,14 +93,8 @@ function getUserParcels(){
     .catch((err) => console.log(err)) 
 }
 
-function storeParcelId(parcel_id){
-    localStorage.setItem("parcel_id", parcel_id);
-    //window.location.replace("../../templates/user/parcel.html");
-    window.location.href = "../../templates/user/parcel.html";
-}
-
-function getOneParcel(){
-    parcel_id = localStorage.getItem("parcel_id");
+function getOneParcel(parcel_id){
+    alert("Get one parcel");
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
     fetch(url, {
@@ -122,41 +117,36 @@ function getOneParcel(){
         }
         parcel = data['data'];
         console.log(parcel);
-        parcel.forEach(function(p){
-            output += `
-            <div class="parcel-details">
-            <p>${p.date_created}</p>
-            <p>${p.description}</p>
-            <p>${p.pickup_location}</p>
-            <p id="dest">${p.destination}</p>
-            <p>${p.price}</p>
-            <p>${p.status}</p>
-            <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
-            <div>`;
-
-        })
-        // output = `
+        // parcel.forEach(function(p){
+        //     output += `
         //     <div class="parcel-details">
-        //     <p>${parcel.date_created}</p>
-        //     <p>${parcel.description}</p>
-        //     <p>${parcel.pickup_location}</p>
-        //     <p id="dest">${parcel.destination}</p>
-        //     <p>${parcel.price}</p>
-        //     <p>${parcel.status}</p>
-        //     <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
+        //     <p>${p.date_created}</p>
+        //     <p>${p.description}</p>
+        //     <p>${p.pickup_location}</p>
+        //     <p>${p.destination}</p>
+        //     <p>${p.price}</p>
+        //     <p>${p.status}</p>
         //     <div>`;
+
+        // })
+
+        output = `
+            <div class="parcel-details">
+            <p>${parcel.date_created}</p>
+            <p>${parcel.description}</p>
+            <p>${parcel.pickup_location}</p>
+            <p>${parcel.destination}</p>
+            <p>${parcel.price}</p>
+            <p>${parcel.status}</p>
+            <div>`;
         
-        document.getElementById('one-parcel-details').innerHTML = output;
+        document.getElementById('pop-up-info').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
 
 
-function changeDest(parcel_id){
-    let d = "dest" + parcel_id;
-    let dest = document.getElementById(d).value;
-    console.log(d)
-    console.log(dest);
+function changeDest(parcel_id,val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
@@ -164,7 +154,7 @@ function changeDest(parcel_id){
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({destination: dest})
+        body: JSON.stringify({destination: val})
     })
     .then((res) => res.json())
     .then(function(data){
@@ -225,8 +215,9 @@ function logOut(){
 }
 
 //Function To Display Popup
-function showParcelPopUp() {
+function showParcelPopUp(parcel_id) {
     document.getElementById('parcel-pop-up').style.display = "block";
+    getOneParcel(parcel_id);
 }
 
 //Function to Hide Popup

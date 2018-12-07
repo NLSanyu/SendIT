@@ -1,5 +1,5 @@
 :root {
-    --main-light-color: #f1f1f1;
+    --main-light-color: #eee;
 	--main-semi-color: #ddd;
 	--main-semi-dark-color: #bbb;
 	--main-dark-color: #003366;
@@ -170,8 +170,7 @@ div#pop-up-info {
 position: absolute;
 left: 50%;
 top: 17%;
-margin-left: -202px;
-font-family:'Raleway',sans-serif
+margin-left: -200px;
 }
 
 .parcel-details {
@@ -216,7 +215,7 @@ font-family:'Raleway',sans-serif
 	padding: 10px;
 }
 
-.edit {
+.view {
 	color: var(--main-dark-color);
 	text-decoration: underline;
 }

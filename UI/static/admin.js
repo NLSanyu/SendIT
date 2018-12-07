@@ -62,10 +62,12 @@ function getAllParcels(){
                     <td>${parcel.description}</td>
                     <td>${parcel.date_created}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="present_location" onblur="changePresentLocation(${parcel.parcel_id})">${parcel.present_location}</td>
+                    <td contenteditable="true"
+                    onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
-                    <td contenteditable="true" id="status${parcel.parcel_id}" onblur="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
+                    <td contenteditable="true" 
+                    onblur="changeStatus(${parcel.parcel_id}, event.target.innerText)">${parcel.status}</td>
                     <td class="edit">Edit</td>
                 </tr>
             `;
@@ -121,17 +123,16 @@ function getAllUsers(){
     .catch((err) => console.log(err)) 
 }
 
-function changeStatus(parcel_id){
+function changeStatus(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
-    let st = document.getElementById("status"+parcel_id).value;
-    console.log("status"+parcel_id);
+    //let st = document.getElementById("status"+parcel_id).value;
     fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({status: st})
+        body: JSON.stringify({status: val})
     })
     .then((res) => res.json())
     .then(function(data){
@@ -141,16 +142,16 @@ function changeStatus(parcel_id){
     .catch((err) => console.log(err)) 
 }
 
-function changePresentLocation(parcel_id){
+function changePresentLocation(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/presentLocation';
-    let presentLocation = document.getElementById('present_location').value;
+    //let presentLocation = document.getElementById('present_location').value;
     fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({present_location: presentLocation})
+        body: JSON.stringify({present_location: val})
     })
     .then((res) => res.json())
     .then(function(data){
