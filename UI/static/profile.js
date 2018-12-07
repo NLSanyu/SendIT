@@ -94,7 +94,6 @@ function getUserParcels(){
 }
 
 function getOneParcel(parcel_id){
-    alert("Get one parcel");
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
     fetch(url, {
@@ -115,29 +114,16 @@ function getOneParcel(parcel_id){
             document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
-        parcel = data['data'];
-        console.log(parcel);
-        // parcel.forEach(function(p){
-        //     output += `
-        //     <div class="parcel-details">
-        //     <p>${p.date_created}</p>
-        //     <p>${p.description}</p>
-        //     <p>${p.pickup_location}</p>
-        //     <p>${p.destination}</p>
-        //     <p>${p.price}</p>
-        //     <p>${p.status}</p>
-        //     <div>`;
-
-        // })
+        parcel = data['data'][0];
 
         output = `
             <div class="parcel-details">
-            <p>${parcel.date_created}</p>
-            <p>${parcel.description}</p>
-            <p>${parcel.pickup_location}</p>
-            <p>${parcel.destination}</p>
-            <p>${parcel.price}</p>
-            <p>${parcel.status}</p>
+            <p>Date created: ${parcel.date_created}</p>
+            <p>Description: ${parcel.description}</p>
+            <p>Pickup location: ${parcel.pickup_location}</p>
+            <p>Destination: ${parcel.destination}</p>
+            <p>Price: ....${parcel.price}</p>
+            <p>Status: ${parcel.status}</p>
             <div>`;
         
         document.getElementById('pop-up-info').innerHTML = output;
