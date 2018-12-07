@@ -20,7 +20,8 @@ function createParcel(){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-        showModal(data['message']);
+        let info = `<br> ${data['message']} <br>`;
+        showModal(info);
     })
     .catch((err) => console.log(err)) 
   
