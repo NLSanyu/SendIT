@@ -1,5 +1,5 @@
 :root {
-    --main-light-color: #eee;
+    --main-light-color: #f1f1f1;
 	--main-semi-color: #ddd;
 	--main-semi-dark-color: #bbb;
 	--main-dark-color: #003366;
@@ -240,7 +240,7 @@ font-family:'Raleway',sans-serif
 	padding-top: 30px;
 	padding-left: 20px;
 	margin: 5px;
-	margin-left: 20px;
+	margin-left: 5px;
 }
 
 .parcels-details{
