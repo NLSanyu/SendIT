@@ -240,12 +240,13 @@ font-family:'Raleway',sans-serif
 	padding-top: 30px;
 	padding-left: 20px;
 	margin: 5px;
+	margin-left: 20px;
 }
 
 .parcels-details{
 	padding-left: 10px;
 	padding-right: 10px;
-	margin: 5px 2px 0px 2px;
+	margin: 5px 2px 0px 20px;
 }
 
 .create-parcel {

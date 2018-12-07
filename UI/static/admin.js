@@ -62,10 +62,10 @@ function getAllParcels(){
                     <td>${parcel.description}</td>
                     <td>${parcel.date_created}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="present_location" onclick="changePresentLocation(${parcel.parcel_id})">${parcel.present_location}</td>
+                    <td contenteditable="true" id="present_location" onblur="changePresentLocation(${parcel.parcel_id})">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
-                    <td contenteditable="true" id="status" onclick="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
+                    <td contenteditable="true" id="status${parcel.parcel_id}" onblur="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
                     <td class="edit">Edit</td>
                 </tr>
             `;
@@ -123,7 +123,8 @@ function getAllUsers(){
 
 function changeStatus(parcel_id){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
-    let st = document.getElementById('status').value;
+    let st = document.getElementById("status"+parcel_id).value;
+    console.log("status"+parcel_id);
     fetch(url, {
         method: 'PUT',
         headers: {
