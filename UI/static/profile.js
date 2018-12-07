@@ -155,6 +155,8 @@ function getOneParcel(){
 function changeDest(parcel_id){
     let d = "dest" + parcel_id;
     let dest = document.getElementById(d).value;
+    console.log(d)
+    console.log(dest);
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
