@@ -24,6 +24,7 @@ function createParcel(){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
+        getUserParcels();
     })
     .catch((err) => console.log(err)) 
   
