@@ -16,7 +16,12 @@ function logIn(){
     console.log(data);
     token = data['access_token'];
     user_info = data['user_info'];
-    alert(data['message']);
+    let msg = data['message'];
+    if(msg != "user logged in succesfully"){
+      let info = `${data['message']}`;
+      showModal(info);
+      return 0;
+    };
     if(token){
       localStorage.setItem("access_token", token);
       localStorage.setItem("user_info", JSON.stringify(user_info));
@@ -27,10 +32,27 @@ function logIn(){
   .catch((err) => console.log(err)) 
 }
 
-function decodeToken(token){
-	var playload = JSON.parse(atob(token.split('.')[1]));
-    console.log(playload);
-    
-};
+function showModal(info){
+  let modal = document.getElementById('myModal');
+  let modalBody = document.getElementById('modal-body');
+  modal.style.display = "block";
+  modalBody.innerHTML = info;
+
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+      if (event.target == modal) {
+      modal.style.display = "none";
+      }
+  }
+}
 
 

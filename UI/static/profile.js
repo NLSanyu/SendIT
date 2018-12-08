@@ -1,6 +1,10 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
-var click2 = 0;
+var specific_parcel;
+var counter = {orders: 0, delivered: 0, in_transit: 0};
+var showParcels = 0;
+
+window.setTimeout(showGuide, 3000);
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -16,12 +20,18 @@ function createParcel(){
       body: JSON.stringify({description: description, pickup_location: pickupLocation, destination: destination})
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+        console.log(data);
+        let info = `${data['message']}`;
+        showModal(info);
+    })
     .catch((err) => console.log(err)) 
   
 }
 
+
 function getUserParcels(){
+    showParcels += 1;
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
     let url = 'http://127.0.0.1:5000/api/v1/users/' + user_id + '/parcels';
@@ -36,11 +46,11 @@ function getUserParcels(){
     .then((data) => {
         console.log(data);
         if(data['message'] === 'no parcels for this user'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>This user has no parcels yet</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>This user has no parcels yet</p>";
             return 0;
         }
         if(data['msg'] === 'Token has expired'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
         parcels = data['data'];
@@ -50,10 +60,9 @@ function getUserParcels(){
                 <th>Date created</th>
                 <th>Description</th>
                 <th>Pickup location</th>
-                <th>Destination</th>
+                <th>Destination <i class="fas fa-edit"></th>
                 <th>Price</th>
                 <th>Status</th>
-                <th>Cancel</th>
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
@@ -62,16 +71,28 @@ function getUserParcels(){
                     <td>${parcel.date_created}</td>
                     <td>${parcel.description}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td id="dest">${parcel.destination}</td>
+                    <td contenteditable="true"
+                    onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
-                    <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
-                    <td class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</td>
+                    <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
                 </tr> 
             `;
+
+            if(showParcels <= 1){
+                counter['orders'] += 1;
+                switch(parcel.status){
+                    case "Delivered": counter['delivered'] += 1;
+                    case "In transit": counter['in_transit'] += 1;
+                }
+            }
         })
         output += `</table>`;
-        document.getElementById('parcels-dd').innerHTML = output;
+        document.getElementById('parcels-div').innerHTML = output;
+        document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
+        document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
+        document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
+
     })
     .catch((err) => console.log(err)) 
 }
@@ -90,68 +111,33 @@ function getOneParcel(parcel_id){
     .then((data) => {
         console.log(data);
         if(data['message'] === 'parcel non-existent'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>This parcel does not exist</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>This parcel does not exist</p>";
             return 0;
         }
         if(data['msg'] === 'Token has expired'){
-            document.getElementById('parcels-dd').innerHTML = "<br><p>Token expired</p>";
+            document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
             return 0;
         }
-        parcel = data['data'];
-        parcel.forEach(function(parcel){
-            output += `
-                    <p>${parcel.date_created}</p>
-                    <p>${parcel.description}</p>
-                    <p>${parcel.pickup_location}</p>
-                    <p id="dest">${parcel.destination}</p>
-                    <p>${parcel.price}</p>
-                    <p>${parcel.status}</p>
-                    <p><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></p>
-                    <p class="edit" onclick="showOneParcel(${parcel.parcel_destination})">Edit</p> 
-            `;
-        })
-        document.getElementById('parcels-dd').innerHTML = output;
+        parcel = data['data'][0];
+
+        output = `
+            <div class="parcel-details">
+            <p><strong>Date created </strong>: ${parcel.date_created}</p>
+            <p><strong>Description</strong>: ${parcel.description}</p>
+            <p><strong>Pickup location</strong>: ${parcel.pickup_location}</p>
+            <p><strong>Destination</strong>: ${parcel.destination}</p>
+            <p><strong>Price</strong>: ....${parcel.price}</p>
+            <p><strong>Status</strong>: ${parcel.status}</p>
+            <button class="submit-button" id="cancel-btn" onclick="cancelParcel(${parcel.parcel_id})">Cancel parcel</button> 
+            <div>`;
+        
+        document.getElementById('pop-up-info').innerHTML = output;
     })
     .catch((err) => console.log(err)) 
 }
 
-function createParcelForm(){
-    formString = `
-	<div class="create-parcel-form">
-		<form name="create_parcel_form" class="form"> 
-			<table class="parcel-form-table">
-				<tr> 
-					<td>Description</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_desc" rows="3" id="desc"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Pickup location</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_pickup" rows="3" id="pickup"> </textarea> </td> 
-				</tr>  
-				<tr> 
-					<td>Destination</td> 
-					<td class="colon">:</td> 
-					<td> <textarea name="parcel_destination" rows="3" id="dest"> </textarea> </td> 
-				</tr>
-			</table>
-			<button type="button" class="submit-button" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
 
-		</form>
-    </div>`;
-
-    document.getElementById('parcels-dd').innerHTML = formString;
-
-}
-
-function showOneParcel(parcel_dest){
-    parcelString = `<p>${parcel_dest}</p>`;
-    document.getElementById('parcels-dd').innerHTML = parcelString;
-}
-
-function changeDest(parcel_id){
-    let dest = document.getElementById("dest").value;
+function changeDest(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
@@ -159,12 +145,13 @@ function changeDest(parcel_id){
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({destination: dest})
+        body: JSON.stringify({destination: val})
     })
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);  
+        let info = `${data['message']}`;
+        showModal(info);
         getUserParcels(); 
     })
     .catch((err) => console.log(err)) 
@@ -183,7 +170,8 @@ function cancelParcel(parcel_id){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);
+        let info = `${data['message']}`;
+        showModal(info);
         getUserParcels();   
     })
     .catch((err) => console.log(err)) 
@@ -191,38 +179,64 @@ function cancelParcel(parcel_id){
 
 function showUserInfo(){
     token = localStorage.getItem("acess_token");
-    if(token == null || token == undefined){
-
-    }
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
-    let orders = user.orders == null ? 0 : user.orders; 
-    document.getElementById("orders").innerHTML = "All orders: " + orders;
-    let delivered = user.delivered == null ? 0 : user.delivered; 
-    document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
-    let inTransit = user.in_transit == null ? 0 : user.in_transit; 
-    document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
+    getUserParcels();
 }
 
 function checkIfLoggedIn(){
     if(localStorage.getItem("access_token") == null){
-        alert("Not logged in");
+        let info = `Not logged in`;
+        showModal(info);
         return 0;
     }
 }
 
 function logOut(){
     localStorage.removeItem("access_token");
-    alert("Logged out");
-    window.location.replace("../../templates/user/index.html");
+    let info = `Logging out`;
+    showModal(info);
+    window.location.replace("../../templates/user/login.html");
+}
+
+function showParcelPopUp(parcel_id) {
+    document.getElementById('parcel-pop-up').style.display = "block";
+    getOneParcel(parcel_id);
+}
+
+function hideParcelPopUp(){
+document.getElementById('parcel-pop-up').style.display = "none";
+}
+
+function showGuide() {
+    let info = `Parcel columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
+    showModal(info);
+}
+
+function showModal(info){
+    let modal = document.getElementById('myModal');
+    let modalBody = document.getElementById('modal-body');
+    modal.style.display = "block";
+    modalBody.innerHTML = info;
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+  
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
 }
 
 
-function decodeToken(token){
-	var playload = JSON.parse(atob(token.split('.')[1]));
-    console.log(playload);
-    
-};
+
+
+
+
 
 

@@ -12,11 +12,11 @@
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
-			<a href="sign_in.html">Sign In</a>
+			<a href="sign_in.html">Log In</a>
 		</nav>	
 	</div>
 	
-	<div class="form">
+	<div class="auth">
 		<h1>Sign Up</h1>
 		<form name="sign_up_form" id="sign_up_form"> 
 			<table class="form-table">
@@ -39,6 +39,11 @@
 					<td>Password</td> 
 					<td class="colon">:</td> 
 					<td> <input name="password" id="password1" type="password" required> </td> 
+				</tr>
+				<tr> 
+					<td>Confirm password</td> 
+					<td class="colon">:</td> 
+					<td> <input name="password" id="confirm-password1" type="password" required> </td> 
 				</tr>
 			</table>
 			<button type="button" class="submit-button" id="sign_up_btn" onclick="signUp()">Sign Up</button> 

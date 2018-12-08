@@ -1,6 +1,7 @@
 :root {
     --main-light-color: #eee;
-	--main-semi-color: #ccc;
+	--main-semi-color: #ddd;
+	--main-semi-dark-color: #bbb;
 	--main-dark-color: #003366;
     --light-blue-color: #add8e6;	
 }
@@ -44,6 +45,18 @@ a:hover {
 	float: right;
 }
 
+#search-box {
+	display: inline;
+	width: 140px;
+	border-radius: 5px;
+	margin: 8px 4px 4px 4px;
+	padding: 2px;
+}
+
+#search-icon {
+	display: inline;
+}
+
 #sendit {
 	color: black;
 	margin-left: auto;
@@ -57,8 +70,23 @@ a:hover {
 }
 
 .header img{
-   height: 50%;
    width: 100%;
+   height: 500px;
+}
+
+.home-image {
+	height: 50%;
+	margin: 0px;
+}
+
+.home-info {
+	background-color: var(--main-dark-color);
+	color: white;
+	margin-top: 0px;
+}
+
+.info-title {
+	text-align: center;
 }
 
 .create-account a {
@@ -66,26 +94,35 @@ a:hover {
 	 color: var(--main-dark-color);
 }
 
-.form {
+.auth {
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right:auto;
 	width: 50%;
 	background-color: var(--main-light-color);
 	border-radius: 20px;
-	padding-bottom: 20px;
+	padding: 20px;
 }
 
-.form td, input {
+.auth td, input {
    padding: 10px;
 }
 
-.form h1, p {
+.auth h1, p {
   margin: 5px;
   padding: 5px;
   align: center;
   padding-top: 15px;
   padding-left: 20px;
+}
+
+.create {
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right:auto;
+	background-color: var(--main-light-color);
+	border-radius: 20px;
+	padding: 20px;
 }
 
 i {
@@ -98,7 +135,7 @@ i {
     color: white;
 	margin-left: auto;
 	margin-right: auto;
-    padding: 15px 32px;
+    padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     display: block;
@@ -130,6 +167,27 @@ table tr td {
 	padding-bottom: 20px;
 }
 
+#parcel-pop-up {
+width: 100%;
+height: 100%;
+opacity: .98;
+top: 0;
+left: 0;
+display: none;
+position: fixed;
+background-color: #ccc;
+overflow: auto
+}
+
+div#pop-up-info {
+position: absolute;
+left: 40%;
+top: 17%;
+/*margin-left: -150px;*/
+margin-left: auto;
+margin-right: auto;
+}
+
 .parcel-details {
 	background-color: var(--main-light-color);
 	border-radius: 5px;
@@ -150,7 +208,7 @@ table tr td {
 	background-color: var(--main-semi-color);
 	align: center;
 	margin: 20px 15px;
-	padding: 10px;
+	padding: 10px 20px 10px 20px;
 	text-align: center;
 }
 
@@ -159,7 +217,7 @@ table tr td {
 	background-color: var(--main-light-color);
 	align: center;
 	margin: 20px 15px;
-	padding: 10px;
+	padding: 10px 20px 10px 20px;
 	text-align: center;
 }
 
@@ -172,7 +230,7 @@ table tr td {
 	padding: 10px;
 }
 
-.edit {
+.view {
 	color: var(--main-dark-color);
 	text-decoration: underline;
 }
@@ -205,17 +263,24 @@ table tr td {
 	margin-right: auto;
 }
 
-.profile-image {
+.profile-details {
 	background-color: var(--main-light-color);
 	padding-top: 30px;
 	padding-left: 20px;
 	margin: 5px;
+	margin-left: 5px;
 }
 
-.profile-details {
+.parcels-details{
 	padding-left: 10px;
 	padding-right: 10px;
-	margin: 5px 10px 10px 10px;
+	margin: 5px 2px 0px 20px;
+}
+
+.create-parcel {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 5px 2px 10px 2px;
 }
 
 .profile-button {
@@ -267,11 +332,24 @@ h4 > a:hover {
     font-size: 14px;
 }
 
+#sendit-admin {
+	color: black;
+	margin-left: auto;
+	margin-right:auto;
+	margin-bottom: 10px;
+	padding: 15px;
+    font-size: 25px;
+	text-align: center;
+	background-color: var(--main-semi-dark-color);
+	border-radius: 10px;
+	font-weight: bold;
+}
+
 .sidenav {
 	position: fixed;
     height: 100%; 
     width: 180px;
-    background-color: var(--main-dark-color);
+    background-color: var(--main-semi-dark-color);
 	z-index: 1; 
     overflow-x: hidden;
     padding-top: 20px;
@@ -280,8 +358,10 @@ h4 > a:hover {
 .sidenav p {
     padding: 6px 8px 6px 16px;
     font-size: 20px;
-    color: white;
+    color: black;
+	font-weight: bold;
     display: block;
+	box-shadow: 2px 2px 2px var(--main-semi-color);
 }
 
 .sidenav a {
@@ -292,19 +372,68 @@ h4 > a:hover {
     display: block;
 }
 
-#sendit-admin {
-	color: black;
-	margin-left: auto;
-	margin-right:auto;
-	margin-bottom: 10px;
-	padding: 15px;
-    font-size: 25px;
-	text-align: center;
-	background-color: var(--main-light-color);
-	font-weight: bold;
-}
-
 .admin-parcels {
     margin-left: 180px; 
     padding: 0px 10px;
 }
+
+
+.modal {
+  display: none; 
+  position: fixed;
+  margin: auto;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+
+.close {
+  color: var(--main-semi-dark-color);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 2px 16px;
+  background-color: var(--main-semi-dark-color);
+  color: white;
+}
+
+.modal-body {
+	padding: 2px 16px;
+	text-align: center;
+}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: var(--main-semi-dark-color);
+  color: white;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 100px;
+  padding: 0;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+

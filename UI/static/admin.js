@@ -14,7 +14,6 @@ function logIn(){
       console.log(data);
       token = data['access_token'];
       user_info = data['user_info'];
-      alert(data['message']);
       if(token){
         localStorage.setItem("access_token", token);
         localStorage.setItem("user_info", JSON.stringify(user_info));
@@ -48,10 +47,10 @@ function getAllParcels(){
                 <th>Description</th>
                 <th>Date created</th>
                 <th>Pickup location</th>
-                <th>Present location</th>
+                <th>Present location <i class="fas fa-edit"></i></th>
                 <th>Destination</th>
                 <th>Price</th>
-                <th>Status</th>
+                <th>Status <i class="fas fa-edit"></i></th>
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
@@ -62,11 +61,12 @@ function getAllParcels(){
                     <td>${parcel.description}</td>
                     <td>${parcel.date_created}</td>
                     <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true" id="present_location" onclick="changePresentLocation(${parcel.parcel_id})">${parcel.present_location}</td>
+                    <td contenteditable="true"
+                    onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
                     <td>${parcel.price}</td>
-                    <td contenteditable="true" id="status" onclick="changeStatus(${parcel.parcel_id})">${parcel.status}</td>
-                    <td class="edit">Edit</td>
+                    <td contenteditable="true" 
+                    onblur="changeStatus(${parcel.parcel_id}, event.target.innerText)">${parcel.status}</td>
                 </tr>
             `;
         })
@@ -121,43 +121,74 @@ function getAllUsers(){
     .catch((err) => console.log(err)) 
 }
 
-function changeStatus(parcel_id){
+function changeStatus(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
-    let st = document.getElementById('status').value;
     fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({status: st})
+        body: JSON.stringify({status: val})
     })
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);   
+        let info = `${data['message']}`;
+        showModal(info);
+        getAllParcels(); 
     })
     .catch((err) => console.log(err)) 
 }
 
-function changePresentLocation(parcel_id){
+function changePresentLocation(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/presentLocation';
-    let presentLocation = document.getElementById('present_location').value;
     fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({present_location: presentLocation})
+        body: JSON.stringify({location: val})
     })
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);   
+        let info = `${data['message']}`;
+        showModal(info);
+        getAllParcels();   
     })
     .catch((err) => console.log(err)) 
 }
+
+function logOut(){
+    localStorage.removeItem("access_token");
+    let info = `Logging out`;
+    showModal(info);
+    window.location.replace("../../templates/admin/admin_sign_in.html");
+}
+
+function showModal(info){
+    let modal = document.getElementById('myModal');
+    let modalBody = document.getElementById('modal-body');
+    modal.style.display = "block";
+    modalBody.innerHTML = info;
+
+    var span = document.getElementsByClassName("close")[0];
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+  
+    window.onclick = function(event) {
+        if (event.target == modal) {
+        modal.style.display = "none";
+        }
+    }
+}
+
+
+
 
 
 
