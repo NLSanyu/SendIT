@@ -341,6 +341,7 @@ h4 > a:hover {
     font-size: 25px;
 	text-align: center;
 	background-color: var(--main-semi-dark-color);
+	border-radius: 10px;
 	font-weight: bold;
 }
 
@@ -360,6 +361,7 @@ h4 > a:hover {
     color: black;
 	font-weight: bold;
     display: block;
+	box-shadow: 2px 2px 2px var(--main-semi-color);
 }
 
 .sidenav a {
