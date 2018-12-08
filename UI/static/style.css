@@ -45,6 +45,16 @@ a:hover {
 	float: right;
 }
 
+#search-box {
+	display: inline;
+	border-radius: 5px;
+	margin: 5px;
+}
+
+#search-icon {
+	display: inline;
+}
+
 #sendit {
 	color: black;
 	margin-left: auto;
@@ -419,7 +429,24 @@ h4 > a:hover {
   border: 1px solid #888;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-  animation-name: animatetop;
-  animation-duration: 0.4s
 }
+
+[contenteditable]:after {
+    width: 8px;
+    height: 8px;
+
+    display: inline-block;
+
+    content: ' ';
+}
+
+[contenteditable]:hover:after {
+    content: url( {{ "images/icons8-edit-50.png" }} );
+}
+
+[contenteditable]:focus:after {
+    width: 0;
+    content: '';
+}
+
 

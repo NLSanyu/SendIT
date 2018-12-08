@@ -47,10 +47,10 @@ function getAllParcels(){
                 <th>Description</th>
                 <th>Date created</th>
                 <th>Pickup location</th>
-                <th>Present location</th>
+                <th>Present location <i class="fas fa-edit"></i></th>
                 <th>Destination</th>
                 <th>Price</th>
-                <th>Status</th>
+                <th>Status <i class="fas fa-edit"></i></th>
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
@@ -166,6 +166,11 @@ function logOut(){
     let info = `Logging out`;
     showModal(info);
     window.location.replace("../../templates/admin/admin_sign_in.html");
+}
+
+function showGuide() {
+    let info = `Parcel fields with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
+    showModal(info);
 }
 
 function showModal(info){

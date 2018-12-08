@@ -4,6 +4,8 @@ var specific_parcel;
 var counter = {orders: 0, delivered: 0, in_transit: 0};
 var showParcels = 0;
 
+window.setTimeout(showGuide, 3000);
+
 function createParcel(){
     let description = document.getElementById("desc").value;
     let pickupLocation = document.getElementById("pickup").value;
@@ -58,7 +60,7 @@ function getUserParcels(){
                 <th>Date created</th>
                 <th>Description</th>
                 <th>Pickup location</th>
-                <th>Destination</th>
+                <th>Destination <i class="fas fa-edit"></th>
                 <th>Price</th>
                 <th>Status</th>
                 <th></th>
@@ -205,6 +207,11 @@ function showParcelPopUp(parcel_id) {
 
 function hideParcelPopUp(){
 document.getElementById('parcel-pop-up').style.display = "none";
+}
+
+function showGuide() {
+    let info = `Parcel fields with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
+    showModal(info);
 }
 
 function showModal(info){
