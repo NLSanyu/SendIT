@@ -47,8 +47,10 @@ a:hover {
 
 #search-box {
 	display: inline;
+	width: 140px;
 	border-radius: 5px;
-	margin: 5px;
+	margin: 8px 4px 4px 4px;
+	padding: 2px;
 }
 
 #search-icon {
@@ -431,22 +433,5 @@ h4 > a:hover {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
-[contenteditable]:after {
-    width: 8px;
-    height: 8px;
-
-    display: inline-block;
-
-    content: ' ';
-}
-
-[contenteditable]:hover:after {
-    content: url( {{ "images/icons8-edit-50.png" }} );
-}
-
-[contenteditable]:focus:after {
-    width: 0;
-    content: '';
-}
 
 

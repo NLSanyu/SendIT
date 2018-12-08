@@ -210,7 +210,7 @@ document.getElementById('parcel-pop-up').style.display = "none";
 }
 
 function showGuide() {
-    let info = `Parcel fields with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
+    let info = `Parcel columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
     showModal(info);
 }
 
