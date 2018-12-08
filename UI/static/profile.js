@@ -20,7 +20,7 @@ function createParcel(){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-        let info = `<br> ${data['message']} <br>`;
+        let info = `${data['message']}`;
         showModal(info);
     })
     .catch((err) => console.log(err)) 
@@ -149,7 +149,7 @@ function changeDest(parcel_id,val){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        let info = `<br> ${data['message']} <br>`;
+        let info = `${data['message']}`;
         showModal(info);
         getUserParcels(); 
     })
@@ -169,7 +169,7 @@ function cancelParcel(parcel_id){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        let info = `<br> ${data['message']} <br>`;
+        let info = `${data['message']}`;
         showModal(info);
         getUserParcels();   
     })
@@ -179,18 +179,12 @@ function cancelParcel(parcel_id){
 function showUserInfo(){
     token = localStorage.getItem("acess_token");
     if(token == null || token == undefined){
-        //no user info
+        let info = `<br> Unauthorized <br>`;
+        showModal(info);
     }
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
-    // let orders = user.orders == null ? 0 : user.orders; 
-    // document.getElementById("orders").innerHTML = "All orders: " + orders;
-    // let delivered = user.delivered == null ? 0 : user.delivered; 
-    // document.getElementById("delivered").innerHTML = "Delivered: " + delivered;
-    // let inTransit = user.in_transit == null ? 0 : user.in_transit; 
-    // document.getElementById("in_transit").innerHTML = "In transit: " + inTransit;
-
     getUserParcels();
 }
 
@@ -218,29 +212,18 @@ function hideParcelPopUp(){
 document.getElementById('parcel-pop-up').style.display = "none";
 }
 
-
-function decodeToken(token){
-	var playload = JSON.parse(atob(token.split('.')[1]));
-    console.log(playload);
-    
-};
-
 function showModal(info){
     let modal = document.getElementById('myModal');
     let modalBody = document.getElementById('modal-body');
     modal.style.display = "block";
     modalBody.innerHTML = info;
 
-
-    // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
     }
   
-    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
         modal.style.display = "none";

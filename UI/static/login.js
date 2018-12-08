@@ -18,7 +18,7 @@ function logIn(){
     user_info = data['user_info'];
     let msg = data['message'];
     if(msg != "user logged in succesfully"){
-      let info = `<br> ${data['message']} <br>`;
+      let info = `${data['message']}`;
       showModal(info);
       return 0;
     };

@@ -136,7 +136,7 @@ function changeStatus(parcel_id, val){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        let info = `<br> ${data['message']} <br>`;
+        let info = `${data['message']}`;
         showModal(info);
         getAllParcels(); 
     })
@@ -164,6 +164,13 @@ function changePresentLocation(parcel_id, val){
     .catch((err) => console.log(err)) 
 }
 
+function logOut(){
+    localStorage.removeItem("access_token");
+    let info = `Logging out`;
+    showModal(info);
+    window.location.replace("../../templates/admin/admin_sign_in.html");
+}
+
 function showModal(info){
     let modal = document.getElementById('myModal');
     let modalBody = document.getElementById('modal-body');
@@ -187,12 +194,6 @@ function showModal(info){
     }
 }
 
-function logOut(){
-    localStorage.removeItem("access_token");
-    let info = `Logging out`;
-    showModal(info);
-    window.location.replace("../../templates/admin/admin_sign_in.html");
-}
 
 
 
