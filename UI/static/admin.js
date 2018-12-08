@@ -67,7 +67,6 @@ function getAllParcels(){
                     <td>${parcel.price}</td>
                     <td contenteditable="true" 
                     onblur="changeStatus(${parcel.parcel_id}, event.target.innerText)">${parcel.status}</td>
-                    <td class="edit">Edit</td>
                 </tr>
             `;
         })
@@ -124,7 +123,6 @@ function getAllUsers(){
 
 function changeStatus(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
-    //let st = document.getElementById("status"+parcel_id).value;
     fetch(url, {
         method: 'PUT',
         headers: {
@@ -145,19 +143,18 @@ function changeStatus(parcel_id, val){
 
 function changePresentLocation(parcel_id, val){
     let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/presentLocation';
-    //let presentLocation = document.getElementById('present_location').value;
     fetch(url, {
         method: 'PUT',
         headers: {
         'Content-type': 'application/json',
         'Authorization': auth
         }, 
-        body: JSON.stringify({present_location: val})
+        body: JSON.stringify({location: val})
     })
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        let info = `<br> ${data['message']} <br>`;
+        let info = `${data['message']}`;
         showModal(info);
         getAllParcels();   
     })
