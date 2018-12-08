@@ -64,6 +64,7 @@ a:hover {
 
 .home-image {
 	height: 50%;
+	margin: 0px;
 }
 
 .home-info {
@@ -168,9 +169,11 @@ overflow: auto
 
 div#pop-up-info {
 position: absolute;
-left: 50%;
+left: 40%;
 top: 17%;
-margin-left: -200px;
+/*margin-left: -150px;*/
+margin-left: auto;
+margin-right: auto;
 }
 
 .parcel-details {
@@ -420,9 +423,3 @@ h4 > a:hover {
   animation-duration: 0.4s
 }
 
-/* Add Animation 
-@keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
-}
-*/

@@ -12,7 +12,7 @@
 	<div class="sidenav">
 		<p onclick=" getAllParcels()">Parcels</p>
 		<p onclick="getAllUsers()">Users</p>
-		<p onclick="signOut">Log Out</p>
+		<p onclick="logOut()">Log Out</p>
 	</div>	  
 	
 	<div class="admin-parcels" style="flex-grow: 8">
@@ -21,6 +21,20 @@
 				<table class="parcel-table" id="parcels_output">
 				</table>	
 			</div>
+			
+	<!-- Modal content -->
+	<div id="myModal" class="modal">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<span class="close">&times;</span>
+	  </div>
+	  <div class="modal-body" id="modal-body">
+		<p>Update</p>
+	  </div>
+	  <div class="modal-footer">
+	  </div>
+	</div>
+	</div>
 	
 </body>
 

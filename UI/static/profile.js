@@ -122,12 +122,12 @@ function getOneParcel(parcel_id){
 
         output = `
             <div class="parcel-details">
-            <p>Date created: ${parcel.date_created}</p>
-            <p>Description: ${parcel.description}</p>
-            <p>Pickup location: ${parcel.pickup_location}</p>
-            <p>Destination: ${parcel.destination}</p>
-            <p>Price: ....${parcel.price}</p>
-            <p>Status: ${parcel.status}</p>
+            <p><strong>Date created </strong>: ${parcel.date_created}</p>
+            <p><strong>Description</strong>: ${parcel.description}</p>
+            <p><strong>Pickup location</strong>: ${parcel.pickup_location}</p>
+            <p><strong>Destination</strong>: ${parcel.destination}</p>
+            <p><strong>Price</strong>: ....${parcel.price}</p>
+            <p><strong>Status</strong>: ${parcel.status}</p>
             <div>`;
         
         document.getElementById('pop-up-info').innerHTML = output;
@@ -149,7 +149,8 @@ function changeDest(parcel_id,val){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
-        alert(data['message']);  
+        let info = `<br> ${data['message']} <br>`;
+        showModal(info);
         getUserParcels(); 
     })
     .catch((err) => console.log(err)) 
@@ -168,6 +169,8 @@ function cancelParcel(parcel_id){
     .then((res) => res.json())
     .then(function(data){
         console.log(data);
+        let info = `<br> ${data['message']} <br>`;
+        showModal(info);
         getUserParcels();   
     })
     .catch((err) => console.log(err)) 
@@ -193,24 +196,24 @@ function showUserInfo(){
 
 function checkIfLoggedIn(){
     if(localStorage.getItem("access_token") == null){
-        alert("Not logged in");
+        let info = `Not logged in`;
+        showModal(info);
         return 0;
     }
 }
 
 function logOut(){
     localStorage.removeItem("access_token");
-    alert("Logged out");
-    window.location.replace("../../templates/user/index.html");
+    let info = `Logging out`;
+    showModal(info);
+    window.location.replace("../../templates/user/login.html");
 }
 
-//Function To Display Popup
 function showParcelPopUp(parcel_id) {
     document.getElementById('parcel-pop-up').style.display = "block";
     getOneParcel(parcel_id);
 }
 
-//Function to Hide Popup
 function hideParcelPopUp(){
 document.getElementById('parcel-pop-up').style.display = "none";
 }
