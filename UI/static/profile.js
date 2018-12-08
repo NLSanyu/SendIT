@@ -61,7 +61,6 @@ function getUserParcels(){
                 <th>Destination</th>
                 <th>Price</th>
                 <th>Status</th>
-                <th>Cancel</th>
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
@@ -74,7 +73,6 @@ function getUserParcels(){
                     onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
                     <td>${parcel.price}</td>
                     <td>${parcel.status}</td>
-                    <td><i class="fas fa-times" onclick="cancelParcel(${parcel.parcel_id})"></i></td>
                     <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
                 </tr> 
             `;
@@ -128,6 +126,7 @@ function getOneParcel(parcel_id){
             <p><strong>Destination</strong>: ${parcel.destination}</p>
             <p><strong>Price</strong>: ....${parcel.price}</p>
             <p><strong>Status</strong>: ${parcel.status}</p>
+            <button class="submit-button" id="cancel-btn" onclick="cancelParcel(${parcel.parcel_id})">Cancel parcel</button> 
             <div>`;
         
         document.getElementById('pop-up-info').innerHTML = output;
@@ -178,10 +177,6 @@ function cancelParcel(parcel_id){
 
 function showUserInfo(){
     token = localStorage.getItem("acess_token");
-    if(token == null || token == undefined){
-        let info = `<br> Unauthorized <br>`;
-        showModal(info);
-    }
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
