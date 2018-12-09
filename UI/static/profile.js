@@ -11,7 +11,7 @@ function createParcel(){
     let pickupLocation = document.getElementById("pickup").value;
     let destination = document.getElementById("dest").value;
   
-    fetch('http://127.0.0.1:5000/api/v1/parcels', {
+    fetch('https://nls-sendit.herokuapp.com/api/v1/parcels', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -35,7 +35,7 @@ function getUserParcels(){
     showParcels += 1;
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
-    let url = 'http://127.0.0.1:5000/api/v1/users/' + user_id + '/parcels';
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/users/' + user_id + '/parcels';
     fetch(url, {
       method: 'GET',
       headers: {
@@ -100,7 +100,7 @@ function getUserParcels(){
 
 function getOneParcel(parcel_id){
     auth = `Bearer ` + localStorage.getItem("access_token");
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id;
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
     fetch(url, {
       method: 'GET',
       headers: {
@@ -139,7 +139,7 @@ function getOneParcel(parcel_id){
 
 
 function changeDest(parcel_id, val){
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/destination';
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
         headers: {
@@ -160,7 +160,7 @@ function changeDest(parcel_id, val){
 
 
 function cancelParcel(parcel_id){
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/cancel';
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/cancel';
     fetch(url, {
         method: 'PUT',
         headers: {

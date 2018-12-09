@@ -2,7 +2,7 @@ function logIn(){
     let username = document.getElementById("uname2").value;
     let password = document.getElementById("password2").value;
   
-    fetch('http://127.0.0.1:5000/api/v1/auth/login', {
+    fetch('https://nls-sendit.herokuapp.com/api/v1/auth/login', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -27,7 +27,7 @@ function logIn(){
 function getAllParcels(){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
-    fetch('http://127.0.0.1:5000/api/v1/parcels', {
+    fetch('https://nls-sendit.herokuapp.com/api/v1/parcels', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -78,7 +78,7 @@ function getAllParcels(){
 function getAllUsers(){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
-    fetch('http://127.0.0.1:5000/api/v1/users', {
+    fetch('https://nls-sendit.herokuapp.com/api/v1/users', {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
@@ -122,7 +122,7 @@ function getAllUsers(){
 }
 
 function changeStatus(parcel_id, val){
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/status';
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/status';
     fetch(url, {
         method: 'PUT',
         headers: {
@@ -142,7 +142,7 @@ function changeStatus(parcel_id, val){
 }
 
 function changePresentLocation(parcel_id, val){
-    let url = 'http://127.0.0.1:5000/api/v1/parcels/' + parcel_id + '/presentLocation';
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/presentLocation';
     fetch(url, {
         method: 'PUT',
         headers: {

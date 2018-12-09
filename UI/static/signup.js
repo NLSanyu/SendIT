@@ -9,8 +9,13 @@ function signUp(){
     let info = `Password not the same`;
     showModal(info);
   }
+<<<<<<< HEAD
   else {
   fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+=======
+
+  fetch('https://nls-sendit.herokuapp.com/api/v1/auth/signup', {
+>>>>>>> 6549b6ccab644cd817ccbaa412f5e91e4b458516
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -23,7 +28,6 @@ function signUp(){
     let info = `${data['message']}`;
     showModal(info);
     window.setTimeout(function(){ window.location.replace("../../templates/user/sign_in.html"); }, 3000);
-    ;
   })
   .catch((err) => console.log(err)) 
   }

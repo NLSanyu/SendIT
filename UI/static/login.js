@@ -4,7 +4,7 @@ function logIn(){
   let username = document.getElementById("uname2").value;
   let password = document.getElementById("password2").value;
 
-  fetch('http://127.0.0.1:5000/api/v1/auth/login', {
+  fetch('https://nls-sendit.herokuapp.com/api/v1/auth/login', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
