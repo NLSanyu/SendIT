@@ -4,7 +4,7 @@ var specific_parcel;
 var counter = {orders: 0, delivered: 0, in_transit: 0};
 var showParcels = 0;
 
-window.setTimeout(showGuide, 3000);
+window.setTimeout(showGuide, 4000);
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -74,7 +74,7 @@ function getUserParcels(){
                     <td>${parcel.pickup_location}</td>
                     <td contenteditable="true"
                     onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
-                    <td>${parcel.price}</td>
+                    <td>UGX 3000</td>
                     <td>${parcel.status}</td>
                     <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
                 </tr> 
@@ -127,7 +127,7 @@ function getOneParcel(parcel_id){
             <p><strong>Description</strong>: ${parcel.description}</p>
             <p><strong>Pickup location</strong>: ${parcel.pickup_location}</p>
             <p><strong>Destination</strong>: ${parcel.destination}</p>
-            <p><strong>Price</strong>: ....${parcel.price}</p>
+            <p><strong>Price</strong>: UGX 3000</p>
             <p><strong>Status</strong>: ${parcel.status}</p>
             <button class="submit-button" id="cancel-btn" onclick="cancelParcel(${parcel.parcel_id})">Cancel parcel</button> 
             <div>`;
@@ -198,7 +198,7 @@ function logOut(){
     localStorage.removeItem("access_token");
     let info = `Logging out`;
     showModal(info);
-    window.location.replace("../../templates/user/login.html");
+    window.location.replace("../../templates/user/sign_in.html");
 }
 
 function showParcelPopUp(parcel_id) {
@@ -213,6 +213,10 @@ document.getElementById('parcel-pop-up').style.display = "none";
 function showGuide() {
     let info = `Parcel columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
     showModal(info);
+}
+
+function openMapPage(){
+    window.open("../../templates/user/map.html", '_blank');
 }
 
 function showModal(info){

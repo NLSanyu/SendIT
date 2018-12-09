@@ -9,7 +9,6 @@
 body {
 	margin: 10px;
 	font-family: Helvetica, Arial, sans-serif;;
-	/*background-image: url("images/geometry2.png");*/
 }
 
 nav{
@@ -137,8 +136,19 @@ i {
 	margin-right: auto;
     padding: 10px 20px;
     text-align: center;
-    text-decoration: none;
     display: block;
+    font-size: 14px;
+}
+
+.create-btn {
+	background-color: var(--main-dark-color);
+    border: none;
+    color: white;
+	margin-left: auto;
+	margin-right: auto;
+    padding: 8px 10px;
+    text-align: center;
+    display: inline;
     font-size: 14px;
 }
 
@@ -183,7 +193,6 @@ div#pop-up-info {
 position: absolute;
 left: 40%;
 top: 17%;
-/*margin-left: -150px;*/
 margin-left: auto;
 margin-right: auto;
 }
@@ -196,7 +205,6 @@ margin-right: auto;
 }
 
 .parcel-table {
-	/*border: 1px solid var(--main-dark-color);*/
 	border-collapse: collapse;
 	padding: 10px;
 	margin-bottom: 10px;
@@ -265,8 +273,7 @@ margin-right: auto;
 
 .profile-details {
 	background-color: var(--main-light-color);
-	padding-top: 30px;
-	padding-left: 20px;
+	padding: 30px 20px 10px 20px;
 	margin: 5px;
 	margin-left: 5px;
 }
@@ -433,6 +440,23 @@ h4 > a:hover {
   border: 1px solid #888;
   width: 80%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+#map {
+	width: 100%;
+	height: 500px;
+}
+
+.map-buttons {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.map-buttons button {
+	float: left;
+	margin: 10px;
 }
 
 
