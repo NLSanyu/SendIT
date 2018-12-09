@@ -454,10 +454,14 @@ h4 > a:hover {
 	margin-bottom: 10px;
 }
 
-.map-buttons button {
+.map-buttons button, input[type=text] {
 	float: left;
 	margin: 10px;
 }
+
+
+
+
 
 
 

@@ -6,9 +6,10 @@ function signUp(){
   let confirmPassword = document.getElementById("confirm-password1").value;
 
   if(password != confirmPassword){
-      alert("Password not the same");
+    let info = `Password not the same`;
+    showModal(info);
   }
-
+  else {
   fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
     method: 'POST',
     headers: {
@@ -25,7 +26,7 @@ function signUp(){
     ;
   })
   .catch((err) => console.log(err)) 
-
+  }
 }
 
 function showModal(info){
