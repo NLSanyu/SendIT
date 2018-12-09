@@ -4,7 +4,7 @@ var specific_parcel;
 var counter = {orders: 0, delivered: 0, in_transit: 0};
 var showParcels = 0;
 
-window.setTimeout(showGuide, 3000);
+window.setTimeout(showGuide, 4000);
 
 function createParcel(){
     let description = document.getElementById("desc").value;
