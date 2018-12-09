@@ -32,7 +32,7 @@ function createParcel(){
 
 
 function getUserParcels(){
-    showParcels += 1;
+    counter['orders'] = 0; counter['delivered'] = 0; counter['in_transit'] = 0;
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
     let url = 'https://nls-sendit.herokuapp.com/api/v1/users/' + user_id + '/parcels';
@@ -80,12 +80,10 @@ function getUserParcels(){
                 </tr> 
             `;
 
-            if(showParcels <= 1){
-                counter['orders'] += 1;
-                switch(parcel.status){
-                    case "Delivered": counter['delivered'] += 1;
-                    case "In transit": counter['in_transit'] += 1;
-                }
+            counter['orders'] += 1;
+            switch(parcel.status){
+                case "Delivered": counter['delivered'] += 1;
+                case "In transit": counter['in_transit'] += 1;
             }
         })
         output += `</table>`;
