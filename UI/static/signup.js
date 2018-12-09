@@ -6,10 +6,11 @@ function signUp(){
   let confirmPassword = document.getElementById("confirm-password1").value;
 
   if(password != confirmPassword){
-      alert("Password not the same");
+    let info = `Password not the same`;
+    showModal(info);
   }
-
-  fetch('https://nls-sendit.herokuapp.com/api/v1/auth/signup', {
+  else {
+  fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
@@ -24,7 +25,7 @@ function signUp(){
     window.setTimeout(function(){ window.location.replace("../../templates/user/sign_in.html"); }, 3000);
   })
   .catch((err) => console.log(err)) 
-
+  }
 }
 
 function showModal(info){
