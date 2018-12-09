@@ -7,7 +7,6 @@ function signUp(){
 
   if(password != confirmPassword){
       alert("Password not the same");
-      return 0;
   }
 
   fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
@@ -20,10 +19,32 @@ function signUp(){
   .then((res) => res.json())
   .then((data) => {
     console.log(data);
-    alert(data['message']);
+    let info = `${data['message']}`;
+    showModal(info);
+    window.setTimeout(function(){ window.location.replace("../../templates/user/sign_in.html"); }, 3000);
+    ;
   })
   .catch((err) => console.log(err)) 
 
+}
+
+function showModal(info){
+  let modal = document.getElementById('myModal');
+  let modalBody = document.getElementById('modal-body');
+  modal.style.display = "block";
+  modalBody.innerHTML = info;
+
+  var span = document.getElementsByClassName("close")[0];
+
+  span.onclick = function() {
+      modal.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+      if (event.target == modal) {
+      modal.style.display = "none";
+      }
+  }
 }
 
 
