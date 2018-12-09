@@ -11,11 +11,16 @@
 	<div id="map"></div>
 	<script>createMap();</script>
 	<div class="map-buttons">
-		<input type="text" id="map-pickup">
-		<button type="button" class="submit-button">Set Pickup Location</button>
-		<input type="text"  id="map-dest" >
-		<button type="button" class="submit-button">Set Destination</button>
-		<button type="button" class="submit-button" id="map-confirm" onclick="enterLocations()">Confirm</button>
+		<table>
+		<tr>
+			<td><input type="text" id="map-pickup"></td>
+			<td><button type="button" class="submit-button">Set Pickup Location</button></td>
+			<td><input type="text" id="map-dest" ></td>
+			<td><button type="button" class="submit-button">Set Destination</button></td>
+			<td></td>
+			<td><button type="button" class="submit-button" id="map-confirm" onclick="enterLocations()">Confirm</button></td>
+		</tr>
+		</table>
 	</div>
 	  
 </body>
