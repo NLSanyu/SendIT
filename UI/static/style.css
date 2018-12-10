@@ -162,6 +162,10 @@ table tr td {
 	text-align center;
 }
 
+[contenteditable="true"] {
+	cursor: grab;
+}
+
 #cancel-btn {
 	border: 1px solid var(--main-semi-color);
 }
@@ -369,6 +373,7 @@ h4 > a:hover {
 	font-weight: bold;
     display: block;
 	box-shadow: 2px 2px 2px var(--main-semi-color);
+	cursor: grab;
 }
 
 .sidenav a {
@@ -449,6 +454,24 @@ h4 > a:hover {
 
 .map-buttons {
 	margin: 10px;
+}
+
+.loader {
+  display: none;
+  border: 8px solid var(--main-semi-dark-color);
+  border-top: 8px solid var(--main-dark-color);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 

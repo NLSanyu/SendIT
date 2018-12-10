@@ -1,4 +1,5 @@
 function logIn(){
+    document.getElementById("load").style.display = "block";
     let username = document.getElementById("uname2").value;
     let password = document.getElementById("password2").value;
   
