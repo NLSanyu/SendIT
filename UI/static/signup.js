@@ -1,4 +1,5 @@
 function signUp(){
+  document.getElementById("load").style.display = "block";
   let username = document.getElementById("uname1").value;
   let email = document.getElementById("email1").value;
   let phoneNumber = document.getElementById("phone1").value;
@@ -10,7 +11,7 @@ function signUp(){
     showModal(info);
   }
   else {
-  fetch('http://127.0.0.1:5000/api/v1/auth/signup', {
+  fetch('https://nls-sendit.herokuapp.com/api/v1/auth/signup', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json'
