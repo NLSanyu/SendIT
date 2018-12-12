@@ -1,31 +1,4 @@
-function logIn(){
-    document.getElementById("load").style.display = "block";
-    let username = document.getElementById("uname2").value;
-    let password = document.getElementById("password2").value;
-  
-    fetch('https://nls-sendit.herokuapp.com/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify({username: username, password: password})
-    })
-    .then((res) => res.json())
-    .then(function(data){
-      console.log(data);
-      token = data['access_token'];
-      user_info = data['user_info'];
-      if(token){
-        localStorage.setItem("access_token", token);
-        localStorage.setItem("user_info", JSON.stringify(user_info));
-        window.location.replace("../../templates/admin/admin_page.html");
-      }
-      
-    })
-    .catch((err) => console.log(err)) 
-  }
-
-function getAllParcels(){
+function getAllParcels(status){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
     fetch('https://nls-sendit.herokuapp.com/api/v1/parcels', {
@@ -55,21 +28,29 @@ function getAllParcels(){
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
-            output += `
-                <tr>
-                    <td>${parcel.parcel_id}</td>
-                    <td>${parcel.owner_id}</td>
-                    <td>${parcel.description}</td>
-                    <td>${parcel.date_created}</td>
-                    <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true"
-                    onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
-                    <td>${parcel.destination}</td>
-                    <td>${parcel.price}</td>
-                    <td contenteditable="true" 
-                    onblur="changeStatus(${parcel.parcel_id}, event.target.innerText)">${parcel.status}</td>
-                </tr>
-            `;
+            if(parcel.status == status || status == "All"){
+                output += `
+                    <tr>
+                        <td>${parcel.parcel_id}</td>
+                        <td>${parcel.owner_id}</td>
+                        <td>${parcel.description}</td>
+                        <td>${parcel.date_created}</td>
+                        <td>${parcel.pickup_location}</td>
+                        <td contenteditable="true"
+                        onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
+                        <td>${parcel.destination}</td>
+                        <td>UGX 3000</td>
+                        <td>
+                            <select onchange="changeStatus(${parcel.parcel_id}, event.target.value)">
+                                <option value="Current-status">${parcel.status}</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Transit">In Transit</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </td>
+                    </tr>`;
+            }
         })
         document.getElementById('parcels_output').innerHTML = output;
     })
@@ -98,7 +79,7 @@ function getAllUsers(){
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone number</th>
-                <th>Password hash</th>
+                <th>Password</th>
                 <th>Orders</th>
                 <th>Delivered</th>
                 <th>In transit</th>
@@ -137,7 +118,7 @@ function changeStatus(parcel_id, val){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getAllParcels(); 
+        getAllParcels("All"); 
     })
     .catch((err) => console.log(err)) 
 }
@@ -157,7 +138,7 @@ function changePresentLocation(parcel_id, val){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getAllParcels();   
+        getAllParcels("All");   
     })
     .catch((err) => console.log(err)) 
 }
@@ -166,7 +147,7 @@ function logOut(){
     localStorage.removeItem("access_token");
     let info = `Logging out`;
     showModal(info);
-    window.location.replace("../../templates/admin/admin_sign_in.html");
+    window.location.replace("../../templates/user/sign_in.html");
 }
 
 function showModal(info){
