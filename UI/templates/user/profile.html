@@ -25,6 +25,9 @@
 	<div class="flex-container-profile">
 		<div class="profile-details" style="flex-grow: 3">
 			<h3 class="profile-title">Profile</h3>
+			<div class="profile-image">
+				<img src="../../static/images/avi2.png" class="profile-image">
+			</div>
 			<h5 id="uname">Username</h5>
 			<h5 id="email">Email</h5>
 			<h5 id="phone_number">Phone number</h5>
@@ -39,12 +42,13 @@
 		<div class="parcels-details" style="flex-grow: 7">
 			<h3>Create a new parcel delivery order</h3>
 			<div class="create">
-				<form id="create-parcel-form" class="form"> 
+				<form class="form"> 
 						<table class="parcel-form-table">
 							<tr> 
 								<td>Description</td> 
 								<td>Pickup location</td> 
-								<td colspan="2">Destination</td> 
+								<td>Destination</td> 
+								<td></td>
 							</tr>  
 							<tr>
 								<td> <input type="text" id="desc"> </td> 							
