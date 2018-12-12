@@ -25,7 +25,7 @@ function logIn(){
     .catch((err) => console.log(err)) 
   }
 
-function getAllParcels(){
+function getAllParcels(status){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
     fetch('https://nls-sendit.herokuapp.com/api/v1/parcels', {
@@ -55,28 +55,29 @@ function getAllParcels(){
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
-            output += `
-                <tr>
-                    <td>${parcel.parcel_id}</td>
-                    <td>${parcel.owner_id}</td>
-                    <td>${parcel.description}</td>
-                    <td>${parcel.date_created}</td>
-                    <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true"
-                    onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
-                    <td>${parcel.destination}</td>
-                    <td>UGX 3000</td>
-                    <td>
-                        <select onchange="changeStatus(${parcel.parcel_id}, event.target.value)">
-                            <option value="Current-status">${parcel.status}</option>
-                            <option value="Pending">Pending</option>
-                            <option value="In Transit">In Transit</option>
-                            <option value="Delivered">Delivered</option>
-                            <option value="Cancelled">Cancelled</option>
-                        </select>
-                    </td>
-                </tr>
-            `;
+            if(parcel.status == status || status == "All"){
+                output += `
+                    <tr>
+                        <td>${parcel.parcel_id}</td>
+                        <td>${parcel.owner_id}</td>
+                        <td>${parcel.description}</td>
+                        <td>${parcel.date_created}</td>
+                        <td>${parcel.pickup_location}</td>
+                        <td contenteditable="true"
+                        onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
+                        <td>${parcel.destination}</td>
+                        <td>UGX 3000</td>
+                        <td>
+                            <select onchange="changeStatus(${parcel.parcel_id}, event.target.value)">
+                                <option value="Current-status">${parcel.status}</option>
+                                <option value="Pending">Pending</option>
+                                <option value="In Transit">In Transit</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                        </td>
+                    </tr>`;
+            }
         })
         document.getElementById('parcels_output').innerHTML = output;
     })
@@ -144,7 +145,7 @@ function changeStatus(parcel_id, val){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getAllParcels(); 
+        getAllParcels("All"); 
     })
     .catch((err) => console.log(err)) 
 }
@@ -164,7 +165,7 @@ function changePresentLocation(parcel_id, val){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getAllParcels();   
+        getAllParcels("All");   
     })
     .catch((err) => console.log(err)) 
 }

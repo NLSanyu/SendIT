@@ -11,13 +11,19 @@
 <body>
 	<p id="sendit-admin">SendIT - Admin</p>
 	<div class="sidenav">
-		<p onclick=" getAllParcels()">Parcels</p>
+		<p onclick=" getAllParcels(`All`)">Parcels</p>
 		<p onclick="getAllUsers()">Users</p>
 		<p onclick="logOut()">Log Out</p>
 	</div>	 
 	
 	<div class="admin-parcels" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
+			<div>
+				<button class="create-btn" onclick="getAllParcels(`Pending`)">Pending</button>
+				<button class="create-btn" onclick="getAllParcels(`In Transit`)">In Transit</button>
+				<button class="create-btn" onclick="getAllParcels(`Delivered`)">Delivered</button>
+				<button class="create-btn" onclick="getAllParcels(`Cancelled`)">Cancelled</button>	
+			</div>
 			<div>
 				<table class="parcel-table" id="parcels_output">
 				</table>	

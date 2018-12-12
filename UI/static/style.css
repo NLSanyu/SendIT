@@ -1,7 +1,7 @@
 :root {
     --main-light-color: #eee;
 	--main-semi-color: #ddd;
-	--main-semi-dark-color: #bbb;
+	--main-semi-dark-color: #ccc;
 	--main-dark-color: #003366;
     --light-blue-color: #add8e6;	
 }
@@ -159,7 +159,7 @@ i {
 }
 
 table tr td {
-	text-align center;
+	text-align: center;
 }
 
 [contenteditable="true"] {
@@ -211,6 +211,7 @@ margin-right: auto;
 .parcel-table {
 	border-collapse: collapse;
 	padding: 10px;
+	margin-top: 10px;
 	margin-bottom: 10px;
 }
 
