@@ -26,7 +26,12 @@ function logIn(){
     if(token){
       localStorage.setItem("access_token", token);
       localStorage.setItem("user_info", JSON.stringify(user_info));
-      window.location.replace("../../templates/user/profile.html");
+      if(user_info.username == "admin"){
+        window.location.replace("../../templates/admin/admin_page.html");
+      }
+      else {
+        window.location.replace("../../templates/user/profile.html")
+      }
     }
     
   })

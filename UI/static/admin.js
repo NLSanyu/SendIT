@@ -1,30 +1,3 @@
-function logIn(){
-    document.getElementById("load").style.display = "block";
-    let username = document.getElementById("uname2").value;
-    let password = document.getElementById("password2").value;
-  
-    fetch('https://nls-sendit.herokuapp.com/api/v1/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      }, 
-      body: JSON.stringify({username: username, password: password})
-    })
-    .then((res) => res.json())
-    .then(function(data){
-      console.log(data);
-      token = data['access_token'];
-      user_info = data['user_info'];
-      if(token){
-        localStorage.setItem("access_token", token);
-        localStorage.setItem("user_info", JSON.stringify(user_info));
-        window.location.replace("../../templates/admin/admin_page.html");
-      }
-      
-    })
-    .catch((err) => console.log(err)) 
-  }
-
 function getAllParcels(status){
     auth = `Bearer ` + localStorage.getItem("access_token");
 
@@ -174,7 +147,7 @@ function logOut(){
     localStorage.removeItem("access_token");
     let info = `Logging out`;
     showModal(info);
-    window.location.replace("../../templates/admin/admin_sign_in.html");
+    window.location.replace("../../templates/user/sign_in.html");
 }
 
 function showModal(info){

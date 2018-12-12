@@ -90,7 +90,11 @@ a:hover {
 
 .create-account a {
 	text-decoration: underline;
-	 color: var(--main-dark-color);
+	color: var(--main-dark-color);
+}
+
+p.create-account {
+	text-align: center;
 }
 
 .auth {
