@@ -23,7 +23,7 @@ function createParcel(){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getUserParcels();
+        getUserParcels("All");
     })
     .catch((err) => console.log(err)) 
   
@@ -31,6 +31,7 @@ function createParcel(){
 
 
 function getUserParcels(status){
+    counter["All"] = 0; counter["Pending"] = 0; counter["In Transit"] = 0; counter["Delivered"] = 0; counter["Cancelled"] = 0;
     showParcels += 1;
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
@@ -103,14 +104,14 @@ function getUserParcels(status){
 
         output += `</table>`;
         document.getElementById('parcels-div').innerHTML = output;
+        document.getElementById("All").innerHTML = "All orders: " + counter['All'];
+        document.getElementById("Delivered").innerHTML = "Delivered: " + counter['Delivered'];
+        document.getElementById("In Transit").innerHTML = "In transit: " + counter['In Transit'];
+        document.getElementById("Cancelled").innerHTML = "Cancelled: " + counter['Cancelled'];
+        document.getElementById("Pending").innerHTML = "Pending: " + counter['Pending'];
 
         if(showParcels == 1){
             window.setTimeout(showGuide, 3000);
-            document.getElementById("All").innerHTML = "All orders: " + counter['All'];
-            document.getElementById("Delivered").innerHTML = "Delivered: " + counter['Delivered'];
-            document.getElementById("In Transit").innerHTML = "In transit: " + counter['In Transit'];
-            document.getElementById("Cancelled").innerHTML = "Cancelled: " + counter['Cancelled'];
-            document.getElementById("Pending").innerHTML = "Pending: " + counter['Pending'];
         }
 
     })
