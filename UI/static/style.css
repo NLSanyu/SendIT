@@ -2,6 +2,7 @@
     --main-light-color: #eee;
 	--main-semi-color: #ddd;
 	--main-semi-dark-color: #ccc;
+	--main-semi-plus-dark-color: #bbb;
 	--main-dark-color: #003366;
     --light-blue-color: #add8e6;	
 }
@@ -349,7 +350,7 @@ h4 > a:hover {
 	padding: 15px;
     font-size: 25px;
 	text-align: center;
-	background-color: var(--main-semi-dark-color);
+	background-color: var(--main-semi-color);
 	border-radius: 10px;
 	font-weight: bold;
 }
@@ -358,7 +359,7 @@ h4 > a:hover {
 	position: fixed;
     height: 100%; 
     width: 180px;
-    background-color: var(--main-semi-dark-color);
+    background-color: var(--main-semi-color);
 	z-index: 1; 
     overflow-x: hidden;
     padding-top: 20px;
@@ -369,8 +370,8 @@ h4 > a:hover {
     font-size: 20px;
     color: black;
 	font-weight: bold;
-    display: block;
-	box-shadow: 2px 2px 2px var(--main-semi-color);
+	display: block;
+	box-shadow: 1px 1px 1px var(--main-semi-plus-dark-color);
 	cursor: grab;
 }
 

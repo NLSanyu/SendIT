@@ -24,7 +24,6 @@ function getAllParcels(status){
                 <th>Destination</th>
                 <th>Price</th>
                 <th>Status <i class="fas fa-edit"></i></th>
-                <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
             if(parcel.status == status || status == "All"){
@@ -58,6 +57,7 @@ function getAllParcels(status){
         for (const st of statuses){
             if(status == st){
                 document.getElementById(status).style.backgroundColor = "#003366";
+                document.getElementById(status).style.color = "white";
             }
             else {
                 document.getElementById(st).style.backgroundColor = "#aaa";
