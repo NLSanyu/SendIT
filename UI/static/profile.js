@@ -92,7 +92,6 @@ function getUserParcels(status){
         })
 
         const statuses = Object.keys(counter);
-        console.log(statuses);
         for (const st of statuses){
             if(status == st){
                 document.getElementById(status).style.backgroundColor = "#bbb";

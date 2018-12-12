@@ -13,7 +13,6 @@ function getAllParcels(status){
         console.log(data);
         console.log(data['message'])
         parcels = data['data'];
-        //check if data['data'] exists or is defined
         let output = `
             <tr>
                 <th>Id</th>
@@ -53,6 +52,18 @@ function getAllParcels(status){
             }
         })
         document.getElementById('parcels_output').innerHTML = output;
+
+        const statuses = ["Pending", "In Transit", "Delivered", "Cancelled"];
+        console.log(statuses);
+        for (const st of statuses){
+            if(status == st){
+                document.getElementById(status).style.backgroundColor = "#003366";
+            }
+            else {
+                document.getElementById(st).style.backgroundColor = "#aaa";
+                document.getElementById(st).style.color = "black";
+            } 
+        }
     })
     .catch((err) => console.log(err)) 
 }
