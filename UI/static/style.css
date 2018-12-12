@@ -9,7 +9,7 @@
 
 body {
 	margin: 10px;
-	font-family: Helvetica, Arial, sans-serif;;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 nav{
@@ -181,19 +181,19 @@ table tr td {
 #parcel-pop-up {
 width: 100%;
 height: 100%;
-opacity: .98;
+opacity: 1;
 top: 0;
 left: 0;
 display: none;
 position: fixed;
-background-color: #ccc;
+background-color: #bbb;
 overflow: auto
 }
 
 div#pop-up-info {
 position: absolute;
-left: 40%;
-top: 17%;
+left: 35%;
+top: 15%;
 margin-left: auto;
 margin-right: auto;
 }
@@ -394,13 +394,11 @@ h4 > a:hover {
   position: fixed;
   margin: auto;
   z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
+  left: 25%;
+  top: 2%; 
+  width: 50%; 
+  height: 70%; 
   overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
 }
 
 
