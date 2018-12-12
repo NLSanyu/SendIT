@@ -124,7 +124,7 @@ p.create-account {
 .create {
 	margin-top: 20px;
 	background-color: var(--main-light-color);
-	border-radius: 0px;
+	border-radius: 10px;
 	padding: 20px;
 }
 
