@@ -211,6 +211,7 @@ margin-right: auto;
 }
 
 .parcel-table th {
+	max-width: 120px;
 	border-bottom: 1px solid var(--main-dark-color);
 	color: black;
 	background-color: var(--main-semi-color);
@@ -220,6 +221,7 @@ margin-right: auto;
 }
 
 .parcel-table td {
+	max-width: 120px;
 	border-bottom: 1px solid var(--main-semi-color);
 	background-color: var(--main-light-color);
 	margin: 20px 15px;
@@ -276,9 +278,8 @@ img.profile-image {
 
 .profile-details {
 	background-color: var(--main-light-color);
-	padding: 30px 20px 10px 20px;
-	margin: 5px;
-	margin-left: 5px;
+	padding: 30px 20px 10px 30px;
+	margin: 5px 10px 5px 5px;
 }
 
 .parcels-order-info h5 {
