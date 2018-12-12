@@ -2,13 +2,14 @@
     --main-light-color: #eee;
 	--main-semi-color: #ddd;
 	--main-semi-dark-color: #ccc;
+	--main-semi-plus-dark-color: #bbb;
 	--main-dark-color: #003366;
     --light-blue-color: #add8e6;	
 }
 
 body {
 	margin: 10px;
-	font-family: Helvetica, Arial, sans-serif;;
+	font-family: Helvetica, Arial, sans-serif;
 }
 
 nav{
@@ -46,7 +47,6 @@ a:hover {
 
 #search-box {
 	display: inline;
-	width: 140px;
 	border-radius: 5px;
 	margin: 8px 4px 4px 4px;
 	padding: 2px;
@@ -54,6 +54,8 @@ a:hover {
 
 #search-icon {
 	display: inline;
+	color: white;
+	margin: 8px;
 }
 
 #sendit {
@@ -122,7 +124,7 @@ p.create-account {
 .create {
 	margin-top: 20px;
 	background-color: var(--main-light-color);
-	border-radius: 20px;
+	border-radius: 10px;
 	padding: 20px;
 }
 
@@ -179,19 +181,19 @@ table tr td {
 #parcel-pop-up {
 width: 100%;
 height: 100%;
-opacity: .98;
+opacity: 1;
 top: 0;
 left: 0;
 display: none;
 position: fixed;
-background-color: #ccc;
+background-color: #bbb;
 overflow: auto
 }
 
 div#pop-up-info {
 position: absolute;
-left: 40%;
-top: 17%;
+left: 35%;
+top: 15%;
 margin-left: auto;
 margin-right: auto;
 }
@@ -211,6 +213,7 @@ margin-right: auto;
 }
 
 .parcel-table th {
+	max-width: 120px;
 	border-bottom: 1px solid var(--main-dark-color);
 	color: black;
 	background-color: var(--main-semi-color);
@@ -220,6 +223,7 @@ margin-right: auto;
 }
 
 .parcel-table td {
+	max-width: 120px;
 	border-bottom: 1px solid var(--main-semi-color);
 	background-color: var(--main-light-color);
 	margin: 20px 15px;
@@ -276,9 +280,8 @@ img.profile-image {
 
 .profile-details {
 	background-color: var(--main-light-color);
-	padding: 30px 20px 10px 20px;
-	margin: 5px;
-	margin-left: 5px;
+	padding: 30px 20px 10px 30px;
+	margin: 5px 10px 5px 5px;
 }
 
 .parcels-order-info h5 {
@@ -293,16 +296,9 @@ img.profile-image {
 	margin: 5px 2px 0px 20px;
 }
 
-.create-parcel {
-	padding-left: 10px;
-	padding-right: 10px;
-	margin: 5px 2px 10px 2px;
-}
-
 .profile-button {
 	background-color: var(--main-light-color);
 	display: inline;
-	float: left;
 	margin: 0px 2px 10px 2px;
     border: none;
     color: white;
@@ -318,10 +314,8 @@ img.profile-image {
 	padding: 6px 8px 6px 16px;
     font-size: 16px;
     color: black;
-	margin-bottom: 10px;
 	border-radius: 3px;
     display: block;
-	width: 400px;
 	font-weight: bold;
 }
 
@@ -356,7 +350,7 @@ h4 > a:hover {
 	padding: 15px;
     font-size: 25px;
 	text-align: center;
-	background-color: var(--main-semi-dark-color);
+	background-color: var(--main-semi-color);
 	border-radius: 10px;
 	font-weight: bold;
 }
@@ -365,7 +359,7 @@ h4 > a:hover {
 	position: fixed;
     height: 100%; 
     width: 180px;
-    background-color: var(--main-semi-dark-color);
+    background-color: var(--main-semi-color);
 	z-index: 1; 
     overflow-x: hidden;
     padding-top: 20px;
@@ -376,8 +370,8 @@ h4 > a:hover {
     font-size: 20px;
     color: black;
 	font-weight: bold;
-    display: block;
-	box-shadow: 2px 2px 2px var(--main-semi-color);
+	display: block;
+	box-shadow: 1px 1px 1px var(--main-semi-plus-dark-color);
 	cursor: grab;
 }
 
@@ -400,13 +394,11 @@ h4 > a:hover {
   position: fixed;
   margin: auto;
   z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
+  left: 25%;
+  top: 2%; 
+  width: 50%; 
+  height: 70%; 
   overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4); 
 }
 
 

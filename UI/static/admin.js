@@ -13,7 +13,6 @@ function getAllParcels(status){
         console.log(data);
         console.log(data['message'])
         parcels = data['data'];
-        //check if data['data'] exists or is defined
         let output = `
             <tr>
                 <th>Id</th>
@@ -25,7 +24,6 @@ function getAllParcels(status){
                 <th>Destination</th>
                 <th>Price</th>
                 <th>Status <i class="fas fa-edit"></i></th>
-                <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
             if(parcel.status == status || status == "All"){
@@ -53,6 +51,19 @@ function getAllParcels(status){
             }
         })
         document.getElementById('parcels_output').innerHTML = output;
+
+        const statuses = ["Pending", "In Transit", "Delivered", "Cancelled"];
+        console.log(statuses);
+        for (const st of statuses){
+            if(status == st){
+                document.getElementById(status).style.backgroundColor = "#003366";
+                document.getElementById(status).style.color = "white";
+            }
+            else {
+                document.getElementById(st).style.backgroundColor = "#aaa";
+                document.getElementById(st).style.color = "black";
+            } 
+        }
     })
     .catch((err) => console.log(err)) 
 }

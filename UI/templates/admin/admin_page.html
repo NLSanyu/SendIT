@@ -19,10 +19,10 @@
 	<div class="admin-parcels" style="flex-grow: 8">
 			<!-- either parcel creation or list of parcels -->
 			<div>
-				<button class="create-btn" onclick="getAllParcels(`Pending`)">Pending</button>
-				<button class="create-btn" onclick="getAllParcels(`In Transit`)">In Transit</button>
-				<button class="create-btn" onclick="getAllParcels(`Delivered`)">Delivered</button>
-				<button class="create-btn" onclick="getAllParcels(`Cancelled`)">Cancelled</button>	
+				<button class="create-btn" id="Pending" onclick="getAllParcels(`Pending`)">Pending</button>
+				<button class="create-btn" id="In Transit" onclick="getAllParcels(`In Transit`)">In Transit</button>
+				<button class="create-btn" id="Delivered" onclick="getAllParcels(`Delivered`)">Delivered</button>
+				<button class="create-btn" id="Cancelled" onclick="getAllParcels(`Cancelled`)">Cancelled</button>	
 			</div>
 			<div>
 				<table class="parcel-table" id="parcels_output">
