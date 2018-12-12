@@ -1,7 +1,7 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
 var specific_parcel;
-var counter = {orders: 0, delivered: 0, in_transit: 0, cancelled: 0};
+var counter = {"All": 0, "Delivered": 0, "In Transit": 0, "Cancelled": 0};
 var showParcels = 0;
 
 window.setTimeout(showGuide, 4000);
@@ -32,7 +32,7 @@ function createParcel(){
 }
 
 
-function getUserParcels(){
+function getUserParcels(status){
     counter['orders'] = 0; counter['delivered'] = 0; counter['in_transit'] = 0; counter['cancelled'];
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
@@ -68,32 +68,33 @@ function getUserParcels(){
                 <th></th>
             </tr>`;
         parcels.forEach(function(parcel){
-            output += `
-                <tr>
-                    <td>${parcel.date_created}</td>
-                    <td>${parcel.description}</td>
-                    <td>${parcel.pickup_location}</td>
-                    <td contenteditable="true"
-                    onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
-                    <td>UGX 3000</td>
-                    <td>${parcel.status}</td>
-                    <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
-                </tr> 
-            `;
+            if(parcel.status == status || status == "All"){
+                output += `
+                    <tr>
+                        <td>${parcel.date_created}</td>
+                        <td>${parcel.description}</td>
+                        <td>${parcel.pickup_location}</td>
+                        <td contenteditable="true"
+                        onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
+                        <td>UGX 3000</td>
+                        <td>${parcel.status}</td>
+                        <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
+                    </tr> `;
+            }
 
-            counter['orders'] += 1;
+            counter['All'] += 1;
             switch(parcel.status){
-                case "Delivered": counter['delivered'] += 1;
-                case "In transit": counter['in_transit'] += 1;
-                case "Cancelled": counter['cancelled'] += 1; 
+                case "Delivered": counter['Delivered'] += 1;
+                case "In transit": counter['In Transit'] += 1;
+                case "Cancelled": counter['Cancelled'] += 1; 
             }
         })
         output += `</table>`;
         document.getElementById('parcels-div').innerHTML = output;
-        document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
-        document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
-        document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
-        document.getElementById("cancelled").innerHTML = "Cancelled: " + counter['cancelled'];
+        // document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
+        // document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
+        // document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
+        // document.getElementById("cancelled").innerHTML = "Cancelled: " + counter['cancelled'];
 
     })
     .catch((err) => console.log(err)) 

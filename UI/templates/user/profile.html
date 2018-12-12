@@ -33,10 +33,12 @@
 			<h5 id="phone_number">Phone number</h5>
 			<br>
 			<h3>Orders</h3>
-			<h5 id="orders">All orders: 0</h5>
-			<h5 id="delivered">Delivered: 0</h5>
-			<h5 id="in_transit">In transit: 0</h5>
-			<h5 id="cancelled">Cancelled: 0</h5>
+			<div class="parcels-order-info">
+				<h5 id="orders" onclick="getUserParcels(`All`)">All orders</h5>
+				<h5 id="delivered" onclick="getUserParcels(`Delivered`)">Delivered</h5>
+				<h5 id="in_transit" onclick="getUserParcels(`In Transit`)">In transit</h5>
+				<h5 id="cancelled" onclick="getUserParcels(`Cancelled`)">Cancelled</h5>
+			</div>
 		</div>
 		
 		<div class="parcels-details" style="flex-grow: 7">
