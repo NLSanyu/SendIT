@@ -1,7 +1,7 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
 var specific_parcel;
-var counter = {orders: 0, delivered: 0, in_transit: 0};
+var counter = {orders: 0, delivered: 0, in_transit: 0, cancelled: 0};
 var showParcels = 0;
 
 window.setTimeout(showGuide, 4000);
@@ -10,6 +10,7 @@ function createParcel(){
     let description = document.getElementById("desc").value;
     let pickupLocation = document.getElementById("pickup").value;
     let destination = document.getElementById("dest").value;
+    document.getElementById("create-parcel-form").reset();
   
     fetch('https://nls-sendit.herokuapp.com/api/v1/parcels', {
       method: 'POST',
@@ -32,7 +33,7 @@ function createParcel(){
 
 
 function getUserParcels(){
-    counter['orders'] = 0; counter['delivered'] = 0; counter['in_transit'] = 0;
+    counter['orders'] = 0; counter['delivered'] = 0; counter['in_transit'] = 0; counter['cancelled'];
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
     let url = 'https://nls-sendit.herokuapp.com/api/v1/users/' + user_id + '/parcels';
@@ -84,6 +85,7 @@ function getUserParcels(){
             switch(parcel.status){
                 case "Delivered": counter['delivered'] += 1;
                 case "In transit": counter['in_transit'] += 1;
+                case "Cancelled": counter['cancelled'] += 1; 
             }
         })
         output += `</table>`;
@@ -91,6 +93,7 @@ function getUserParcels(){
         document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
         document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
         document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
+        document.getElementById("cancelled").innerHTML = "Cancelled: " + counter['cancelled'];
 
     })
     .catch((err) => console.log(err)) 

@@ -65,9 +65,16 @@ function getAllParcels(){
                     <td contenteditable="true"
                     onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
                     <td>${parcel.destination}</td>
-                    <td>${parcel.price}</td>
-                    <td contenteditable="true" 
-                    onblur="changeStatus(${parcel.parcel_id}, event.target.innerText)">${parcel.status}</td>
+                    <td>UGX 3000</td>
+                    <td>
+                        <select onchange="changeStatus(${parcel.parcel_id}, event.target.value)">
+                            <option value="Current-status">${parcel.status}</option>
+                            <option value="Pending">Pending</option>
+                            <option value="In Transit">In Transit</option>
+                            <option value="Delivered">Delivered</option>
+                            <option value="Cancelled">Cancelled</option>
+                        </select>
+                    </td>
                 </tr>
             `;
         })
@@ -98,7 +105,7 @@ function getAllUsers(){
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone number</th>
-                <th>Password hash</th>
+                <th>Password</th>
                 <th>Orders</th>
                 <th>Delivered</th>
                 <th>In transit</th>
