@@ -1,10 +1,8 @@
 var auth = `Bearer ` + localStorage.getItem("access_token");
 var user = JSON.parse(localStorage.getItem('user_info'));
 var specific_parcel;
-var counter = {"All": 0, "Delivered": 0, "In Transit": 0, "Cancelled": 0};
+var counter = {"All": 0, "Delivered": 0, "In Transit": 0, "Cancelled": 0, "Pending": 0};
 var showParcels = 0;
-
-window.setTimeout(showGuide, 4000);
 
 function createParcel(){
     let description = document.getElementById("desc").value;
@@ -33,7 +31,7 @@ function createParcel(){
 
 
 function getUserParcels(status){
-    counter['orders'] = 0; counter['delivered'] = 0; counter['in_transit'] = 0; counter['cancelled'];
+    showParcels += 1;
     auth = `Bearer ` + localStorage.getItem("access_token");
     user_id = user.user_id;
     let url = 'https://nls-sendit.herokuapp.com/api/v1/users/' + user_id + '/parcels';
@@ -86,15 +84,34 @@ function getUserParcels(status){
             switch(parcel.status){
                 case "Delivered": counter['Delivered'] += 1;
                 case "In transit": counter['In Transit'] += 1;
-                case "Cancelled": counter['Cancelled'] += 1; 
+                case "Cancelled": counter['Cancelled'] += 1;
+                case "Pending": counter['Pending'] += 1; 
             }
+            
         })
+
+        const statuses = Object.keys(counter);
+        console.log(statuses);
+        for (const st of statuses){
+            if(status == st){
+                document.getElementById(status).style.backgroundColor = "#bbb";
+            }
+            else {
+                document.getElementById(st).style.backgroundColor = "#ddd";
+            } 
+        }
+
         output += `</table>`;
         document.getElementById('parcels-div').innerHTML = output;
-        // document.getElementById("orders").innerHTML = "All orders: " + counter['orders'];
-        // document.getElementById("delivered").innerHTML = "Delivered: " + counter['delivered'];
-        // document.getElementById("in_transit").innerHTML = "In transit: " + counter['in_transit'];
-        // document.getElementById("cancelled").innerHTML = "Cancelled: " + counter['cancelled'];
+
+        if(showParcels == 1){
+            window.setTimeout(showGuide, 3000);
+            document.getElementById("All").innerHTML = "All orders: " + counter['All'];
+            document.getElementById("Delivered").innerHTML = "Delivered: " + counter['Delivered'];
+            document.getElementById("In Transit").innerHTML = "In transit: " + counter['In Transit'];
+            document.getElementById("Cancelled").innerHTML = "Cancelled: " + counter['Cancelled'];
+            document.getElementById("Pending").innerHTML = "Pending: " + counter['Pending'];
+        }
 
     })
     .catch((err) => console.log(err)) 
@@ -185,7 +202,7 @@ function showUserInfo(){
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
-    getUserParcels();
+    getUserParcels("All");
 }
 
 function checkIfLoggedIn(){
@@ -213,7 +230,7 @@ document.getElementById('parcel-pop-up').style.display = "none";
 }
 
 function showGuide() {
-    let info = `Parcel columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
+    let info = `Columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
     showModal(info);
 }
 
@@ -228,6 +245,8 @@ function showModal(info){
     modalBody.innerHTML = info;
 
     var span = document.getElementsByClassName("close")[0];
+
+    setTimeout(function(){ modal.style.display = "none"; }, 3000);
 
     span.onclick = function() {
         modal.style.display = "none";

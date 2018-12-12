@@ -34,17 +34,18 @@
 			<br>
 			<h3>Orders</h3>
 			<div class="parcels-order-info">
-				<h5 id="orders" onclick="getUserParcels(`All`)">All orders</h5>
-				<h5 id="delivered" onclick="getUserParcels(`Delivered`)">Delivered</h5>
-				<h5 id="in_transit" onclick="getUserParcels(`In Transit`)">In transit</h5>
-				<h5 id="cancelled" onclick="getUserParcels(`Cancelled`)">Cancelled</h5>
+				<h5 id="All" onclick="getUserParcels(`All`)">All orders</h5>
+				<h5 id="Pending" onclick="getUserParcels(`Pending`)">Cancelled</h5>
+				<h5 id="In Transit" onclick="getUserParcels(`In Transit`)">In transit</h5>
+				<h5 id="Delivered" onclick="getUserParcels(`Delivered`)">Delivered</h5>
+				<h5 id="Cancelled" onclick="getUserParcels(`Cancelled`)">Cancelled</h5>
 			</div>
 		</div>
 		
 		<div class="parcels-details" style="flex-grow: 7">
 			<h3>Create a new parcel delivery order</h3>
 			<div class="create">
-				<form class="form"> 
+				<form class="form" id="create-parcel-form"> 
 						<table class="parcel-form-table">
 							<tr> 
 								<td>Description</td> 
