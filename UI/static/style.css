@@ -281,7 +281,8 @@ img.profile-image {
 .profile-details {
 	background-color: var(--main-light-color);
 	padding: 30px 20px 10px 30px;
-	margin: 5px 10px 5px 5px;
+	margin: 5px 10px 5px 25px;
+	min-width: 210px;
 }
 
 .parcels-order-info h5 {
@@ -293,7 +294,7 @@ img.profile-image {
 .parcels-details {
 	padding-left: 10px;
 	padding-right: 10px;
-	margin: 5px 2px 0px 20px;
+	margin: 5px 2px 0px 40px;
 }
 
 .profile-button {
@@ -449,8 +450,12 @@ h4 > a:hover {
 	height: 550px;
 }
 
-.map-buttons {
-	margin: 10px;
+.map-inputs {
+	margin: 20px;
+}
+
+#map-confirm {
+	margin-left: 30px;
 }
 
 .loader {

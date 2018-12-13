@@ -40,6 +40,11 @@ function addMarker(location) {
   markers.push(marker);
 }
 
+function searchPlaces(place){
+    var input = document.getElementById(place);
+    new google.maps.places.Autocomplete(input);
+}
+
 
 
 
