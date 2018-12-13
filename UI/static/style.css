@@ -450,8 +450,12 @@ h4 > a:hover {
 	height: 550px;
 }
 
-.map-buttons {
-	margin: 10px;
+.map-inputs {
+	margin: 20px;
+}
+
+#map-confirm {
+	margin-left: 30px;
 }
 
 .loader {
