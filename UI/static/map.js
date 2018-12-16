@@ -2,7 +2,18 @@ var map;
 var marker;
 var markers = [];
 
-function createMap() {
+function createMap(which) {
+  switch(which) {
+    case 1:
+      document.getElementById('map').style.width = "50%";
+      document.getElementById('map').style.height = "550px";
+      break;
+    case 2:
+      document.getElementById('map').style.width = "90%";
+      document.getElementById('map').style.height = "450px";
+      break; 
+  }
+  
 
   var position = {lat: 0.3476, lng: 32.5825};
 	var mapProperties = {
