@@ -164,7 +164,11 @@ i {
 .create-form label, .create-form input[type=text] {
 	width: 90%;
 	margin: 15px;
+}
 
+.create-form button {
+	margin-left: 15px;
+	margin-right: 5px;
 }
 
 .confirm p, .confirm button {
@@ -202,7 +206,7 @@ table tr td {
 	left: 0;
 	display: none;
 	position: fixed;
-	background-color: var(--main-light-color);
+	background-color: #fff;
 	overflow: auto;
 	z-index: 1;
 }
@@ -212,7 +216,6 @@ div#pop-up-info {
 	background-color: var(--main-semi-color);
 	padding: 20px;
 	width: 50%;
-	height: 100%;
 	left: 25%;
 	top: 10%;
 	margin-left: auto;
@@ -292,11 +295,12 @@ img.profile-image {
 }
 
 .profile-details {
-	flex-grow: 4;
+	flex-grow: 3;
 	background-color: var(--main-light-color);
 	padding: 30px 20px 10px 30px;
 	margin: 5px 10px 5px 25px;
 	min-width: 210px;
+	max-width: 300px;
 }
 
 .parcels-order-info h5 {
@@ -312,18 +316,10 @@ img.profile-image {
 }
 
 .parcels-details {
-	flex-grow: 5;
+	flex-grow: 7;
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 5px 2px 0px 40px;
-}
-
-.flex-container-parcel {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: stretch;
-	margin: 10px;
 }
 
 .one-parcel {
