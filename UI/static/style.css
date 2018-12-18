@@ -171,9 +171,17 @@ i {
 	margin-right: 5px;
 }
 
-.confirm p, .confirm button {
-	margin-left: auto;
-	margin-right: auto;
+.confirm {	
+	margin: 5px;
+	padding: 5px;
+	background-color: var(--main-dark-color);
+	color: white;
+}
+
+.discard {
+	margin: 5px;
+	padding: 5px;
+	background-color: var(--main-semi-dark-color);
 }
 
 .form-table {

@@ -77,7 +77,7 @@ function getUserParcels(status){
                         <td>${parcel.description}</td>
                         <td>${parcel.pickup_location}</td>
                         <td contenteditable="true"
-                        onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
+                        onblur="showConfirmModal('Destination', ${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
                         <td>UGX 3000</td>
                         <td>${parcel.status}</td>
                         <td class="view" onclick="showOneParcel(${parcel.parcel_id})">View</td>
@@ -145,7 +145,7 @@ function getOneParcel(){
             <h4>Price: </h4>UGX 3000
             <h4>Status: </h4>${parcel.status}
             <br>
-            <button class="submit-button" id="cancel-btn" onclick="cancelParcel(${parcel.parcel_id})">Cancel parcel</button>`;
+            <button class="submit-button" id="cancel-btn" onclick="showConfirmModal('cancel parcel', ${parcel.parcel_id})">Cancel parcel</button>`;
         
         document.getElementById('one-parcel').innerHTML = output;
     })
@@ -184,7 +184,6 @@ function searchForParcel() {
 }
 
 function changeDest(parcel_id, val){
-    //showParcelPopUp();
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/destination';
     fetch(url, {
         method: 'PUT',
@@ -206,7 +205,6 @@ function changeDest(parcel_id, val){
 
 
 function cancelParcel(parcel_id){
-    //showParcelPopUp();
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/cancel';
     fetch(url, {
         method: 'PUT',
@@ -299,6 +297,45 @@ function hideParcelPopUp(){
     document.getElementById('parcel-pop-up').style.display = "none";
 }
 
+function showConfirmModal(which, parcel_id, val) {
+    let modal = document.getElementById("myModal");
+    let modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = "";
+    let message = document.createElement("p");
+    let confirm = document.createElement("button");
+    let discard = document.createElement("button");
+    confirm.innerText = "Confirm";
+    discard.innerText = "Discard";
+    message.innerText = "Confirm " + which;
+    confirm.classList.add("confirm");
+    discard.classList.add("discard");
+    discard.onclick = function() {
+        modalBody.removeChild(message);
+        modalBody.removeChild(discard);
+        modalBody.removeChild(confirm);
+        modal.style.display = "none";
+    }
+    modalBody.appendChild(message);
+    modalBody.appendChild(discard);
+    modalBody.appendChild(confirm);
+    modal.style.display = "block";
+
+    switch(which) {
+        case "Destination":
+            confirm.onclick = function() {
+                changeDest(parcel_id, val);
+            }
+            break;
+
+        case "cancel parcel": 
+            confirm.onclick = function() {
+                cancelParcel(parcel_id);
+            }
+            break;
+    }
+    
+}
+
 function showGuide() {
     let info = `Columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
     showModal(info);
@@ -321,10 +358,11 @@ function showModal(info){
 
     var span = document.getElementsByClassName("close")[0];
 
-    setTimeout(function(){ modal.style.display = "none"; }, 3000);
+    setTimeout(function(){ modal.style.display = "none"; modalBody.innerHTML = ""; }, 3000);
 
     span.onclick = function() {
         modal.style.display = "none";
+        modalBody.innerHTML = "";
     }
   
     window.onclick = function(event) {
@@ -333,6 +371,8 @@ function showModal(info){
         }
     }
 }
+
+
 
 
 
