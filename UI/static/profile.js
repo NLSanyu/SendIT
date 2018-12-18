@@ -56,8 +56,10 @@ function getUserParcels(status){
         }
         parcels = data['data'];
         let output = `
+            <h3>My parcel delivery orders</h3>
             <table class="parcel-table">
             <tr>
+                <th>Id</th>
                 <th>Date created</th>
                 <th>Description</th>
                 <th>Pickup location</th>
@@ -70,14 +72,15 @@ function getUserParcels(status){
             if(parcel.status == status || status == "All"){
                 output += `
                     <tr>
+                        <td>${parcel.parcel_id}</td>
                         <td>${parcel.date_created}</td>
                         <td>${parcel.description}</td>
                         <td>${parcel.pickup_location}</td>
                         <td contenteditable="true"
-                        onblur="changeDest(${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
+                        onblur="showConfirmModal('Destination', ${parcel.parcel_id}, event.target.innerText)">${parcel.destination}</td>
                         <td>UGX 3000</td>
                         <td>${parcel.status}</td>
-                        <td class="view" onclick="showParcelPopUp(${parcel.parcel_id})">View</td>
+                        <td class="view" onclick="showOneParcel(${parcel.parcel_id})">View</td>
                     </tr> `;
             }
 
@@ -102,14 +105,14 @@ function getUserParcels(status){
         }
 
         output += `</table>`;
-        document.getElementById('parcels-div').innerHTML = output;
+        document.getElementById('all-parcels').innerHTML = output;
         document.getElementById("All").innerHTML = "All orders: " + counter['All'];
         document.getElementById("Delivered").innerHTML = "Delivered: " + counter['Delivered'];
         document.getElementById("In Transit").innerHTML = "In transit: " + counter['In Transit'];
         document.getElementById("Cancelled").innerHTML = "Cancelled: " + counter['Cancelled'];
         document.getElementById("Pending").innerHTML = "Pending: " + counter['Pending'];
 
-        if(showParcels == 1){
+        if(showParcels < 1){
             window.setTimeout(showGuide, 3000);
         }
 
@@ -117,7 +120,42 @@ function getUserParcels(status){
     .catch((err) => console.log(err)) 
 }
 
-function getOneParcel(parcel_id){
+function getOneParcel(){
+    auth = `Bearer ` + localStorage.getItem("access_token");
+    parcel_id = localStorage.getItem("parcel_id");
+    console.log(parcel_id);
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        parcel = data['data'][0];
+        output = `
+            <h4>Id: ${parcel.parcel_id}</h4>
+            <h4>Date created: </h4>${parcel.date_created}
+            <h4>Description: </h4>${parcel.description}
+            <h4>Pickup location: </h4>${parcel.pickup_location}
+            <h4>Destination: </h4>${parcel.destination}
+            <h4>Price: </h4>UGX 3000
+            <h4>Status: </h4>${parcel.status}
+            <br>
+            <button class="submit-button" id="cancel-btn" onclick="showConfirmModal('cancel parcel', ${parcel.parcel_id})">Cancel parcel</button>`;
+        
+        document.getElementById('one-parcel').innerHTML = output;
+    })
+    .catch((err) => console.log(err)) 
+}
+
+function searchForParcel() {
+    parcel_id = document.getElementById("search-box").value;
+    document.getElementById("search-box").value="";
+
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
     fetch(url, {
@@ -130,32 +168,20 @@ function getOneParcel(parcel_id){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-        if(data['message'] === 'parcel non-existent'){
-            document.getElementById('parcels-div').innerHTML = "<br><p>This parcel does not exist</p>";
-            return 0;
+        if(data['message'] == 'no parcel with this id'){
+            showModal("No parcel with this id");
         }
-        if(data['msg'] === 'Token has expired'){
-            document.getElementById('parcels-div').innerHTML = "<br><p>Token expired</p>";
-            return 0;
+        else {
+            if(data['msg'] == 'Token has expired'){
+               showModal(data['msg']);
+            }
+            else {
+                localStorage.setItem("parcel_id", parcel_id);
+                window.open("../../templates/user/parcel.html", '_blank');
+            }
         }
-        parcel = data['data'][0];
-
-        output = `
-            <div class="parcel-details">
-            <p><strong>Date created </strong>: ${parcel.date_created}</p>
-            <p><strong>Description</strong>: ${parcel.description}</p>
-            <p><strong>Pickup location</strong>: ${parcel.pickup_location}</p>
-            <p><strong>Destination</strong>: ${parcel.destination}</p>
-            <p><strong>Price</strong>: UGX 3000</p>
-            <p><strong>Status</strong>: ${parcel.status}</p>
-            <button class="submit-button" id="cancel-btn" onclick="cancelParcel(${parcel.parcel_id})">Cancel parcel</button> 
-            <div>`;
-        
-        document.getElementById('pop-up-info').innerHTML = output;
-    })
-    .catch((err) => console.log(err)) 
+    });
 }
-
 
 function changeDest(parcel_id, val){
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/destination';
@@ -172,7 +198,7 @@ function changeDest(parcel_id, val){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getUserParcels(); 
+        getUserParcels("All"); 
     })
     .catch((err) => console.log(err)) 
 }
@@ -192,9 +218,14 @@ function cancelParcel(parcel_id){
         console.log(data);
         let info = `${data['message']}`;
         showModal(info);
-        getUserParcels();   
+        getUserParcels("All");   
     })
     .catch((err) => console.log(err)) 
+}
+
+function showOneParcel(parcel_id) {
+    localStorage.setItem("parcel_id", parcel_id);
+    window.open("../../templates/user/parcel.html", '_blank')
 }
 
 function showUserInfo(){
@@ -203,6 +234,34 @@ function showUserInfo(){
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
     getUserParcels("All");
+}
+
+function showCreateForm() {
+    let pickup = "pickup";
+    let dest = "dest";
+    document.getElementById('parcel-pop-up').style.display = "block";
+    output = `<div class="create-form-div">
+              <form class="create-form" id="create-parcel-form"> 
+                <label for="desc">Description:</label><br>
+                <input type="text" id="desc"><br>
+                <label for="pickup">Pickup Location:</label><br>
+                <input type="text" id="pickup" onclick="searchPlaces('${pickup}')"><br>
+                <label for="dest">Destination:</label><br>
+                <input type="text" id="dest" oninput="searchPlaces('${dest}')"><br><br>
+                <button type="button" class="create-btn" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
+                <button type="button" class="create-btn" id="open-maps-btn" onclick="createMap(2)">Use Google Maps</button> 
+              </form>
+              </div>`;
+
+    let popUp = document.getElementById("pop-up-info");
+    popUp.innerHTML = output;
+    var div = document.createElement("div");
+    div.id = "map";
+    div.style.marginLeft = "auto";
+    div.style.marginRight = "auto";
+    div.style.marginTop = "15px";
+    popUp.appendChild(div);
+
 }
 
 function checkIfLoggedIn(){
@@ -220,18 +279,71 @@ function logOut(){
     window.location.replace("../../templates/user/sign_in.html");
 }
 
-function showParcelPopUp(parcel_id) {
+function showParcelPopUp() {
+    let confirm = 0;
     document.getElementById('parcel-pop-up').style.display = "block";
-    getOneParcel(parcel_id);
+    let popUp = document.getElementById('pop-up-info');
+    let output = `<div class="confirm">
+                <p>Confirm</p>
+                <button type="button" class="create-btn" onclick="confirm = 1">Confirm</button>
+                <button type="button" class="create-btn" onclick="hideParcelPopUp()">Discard</button>
+                <div>`;
+    if(confirm == 1){console.log("confirm");}
+    popUp.innerHTML = output;
+
 }
 
 function hideParcelPopUp(){
-document.getElementById('parcel-pop-up').style.display = "none";
+    document.getElementById('parcel-pop-up').style.display = "none";
+}
+
+function showConfirmModal(which, parcel_id, val) {
+    let modal = document.getElementById("myModal");
+    let modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = "";
+    let message = document.createElement("p");
+    let confirm = document.createElement("button");
+    let discard = document.createElement("button");
+    confirm.innerText = "Confirm";
+    discard.innerText = "Discard";
+    message.innerText = "Confirm " + which;
+    confirm.classList.add("confirm");
+    discard.classList.add("discard");
+    discard.onclick = function() {
+        modalBody.removeChild(message);
+        modalBody.removeChild(discard);
+        modalBody.removeChild(confirm);
+        modal.style.display = "none";
+    }
+    modalBody.appendChild(message);
+    modalBody.appendChild(discard);
+    modalBody.appendChild(confirm);
+    modal.style.display = "block";
+
+    switch(which) {
+        case "Destination":
+            confirm.onclick = function() {
+                changeDest(parcel_id, val);
+            }
+            break;
+
+        case "cancel parcel": 
+            confirm.onclick = function() {
+                cancelParcel(parcel_id);
+            }
+            break;
+    }
+    
 }
 
 function showGuide() {
     let info = `Columns with an edit icon (<i class="fas fa-edit"></i>) can be edited`;
     showModal(info);
+}
+
+function searchPlaces(place){
+    var input = document.getElementById(place);
+    new google.maps.places.Autocomplete(input);
 }
 
 function openMapPage(){
@@ -246,10 +358,11 @@ function showModal(info){
 
     var span = document.getElementsByClassName("close")[0];
 
-    setTimeout(function(){ modal.style.display = "none"; }, 3000);
+    setTimeout(function(){ modal.style.display = "none"; modalBody.innerHTML = ""; }, 3000);
 
     span.onclick = function() {
         modal.style.display = "none";
+        modalBody.innerHTML = "";
     }
   
     window.onclick = function(event) {
@@ -258,6 +371,8 @@ function showModal(info){
         }
     }
 }
+
+
 
 
 
