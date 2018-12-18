@@ -312,7 +312,7 @@ img.profile-image {
 .parcels-order-info h4 {
 	padding: 5px;
 	cursor: grab;
-	background: var(--main-semi-dark-color);
+	background: var(--main-semi-color);
 }
 
 .parcels-details {
@@ -320,6 +320,12 @@ img.profile-image {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 5px 2px 0px 40px;
+}
+
+.flex-container-parcel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .one-parcel {

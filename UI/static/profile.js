@@ -59,6 +59,7 @@ function getUserParcels(status){
             <h3>My parcel delivery orders</h3>
             <table class="parcel-table">
             <tr>
+                <th>Id</th>
                 <th>Date created</th>
                 <th>Description</th>
                 <th>Pickup location</th>
@@ -71,6 +72,7 @@ function getUserParcels(status){
             if(parcel.status == status || status == "All"){
                 output += `
                     <tr>
+                        <td>${parcel.parcel_id}</td>
                         <td>${parcel.date_created}</td>
                         <td>${parcel.description}</td>
                         <td>${parcel.pickup_location}</td>
@@ -121,6 +123,7 @@ function getUserParcels(status){
 function getOneParcel(){
     auth = `Bearer ` + localStorage.getItem("access_token");
     parcel_id = localStorage.getItem("parcel_id");
+    console.log(parcel_id);
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
     fetch(url, {
       method: 'GET',
@@ -132,21 +135,9 @@ function getOneParcel(){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-        if(data['message'] === 'no parcel with this id'){
-            output = data['message'];
-            document.getElementById('one-parcel').innerHTML = output;
-            return 0;
-        }
-
-        if(data['msg'] === 'Token has expired'){
-            output = data['message'];
-            document.getElementById('one-parcel').innerHTML = output;
-            return 0;
-        }
-
         parcel = data['data'][0];
-
         output = `
+            <h4>Id: ${parcel.parcel_id}</h4>
             <h4>Date created: </h4>${parcel.date_created}
             <h4>Description: </h4>${parcel.description}
             <h4>Pickup location: </h4>${parcel.pickup_location}
@@ -161,6 +152,36 @@ function getOneParcel(){
     .catch((err) => console.log(err)) 
 }
 
+function searchForParcel() {
+    parcel_id = document.getElementById("search-box").value;
+    document.getElementById("search-box").value="";
+
+    auth = `Bearer ` + localStorage.getItem("access_token");
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+      }
+    })
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+        if(data['message'] == 'no parcel with this id'){
+            showModal("No parcel with this id");
+        }
+        else {
+            if(data['msg'] == 'Token has expired'){
+               showModal(data['msg']);
+            }
+            else {
+                localStorage.setItem("parcel_id", parcel_id);
+                window.open("../../templates/user/parcel.html", '_blank');
+            }
+        }
+    });
+}
 
 function changeDest(parcel_id, val){
     //showParcelPopUp();
@@ -205,13 +226,6 @@ function cancelParcel(parcel_id){
 }
 
 function showOneParcel(parcel_id) {
-    localStorage.setItem("parcel_id", parcel_id);
-    window.open("../../templates/user/parcel.html", '_blank')
-}
-
-function searchForParcel() {
-    parcel_id = document.getElementById("search-box").value;
-    document.getElementById("search-box").value="";
     localStorage.setItem("parcel_id", parcel_id);
     window.open("../../templates/user/parcel.html", '_blank')
 }

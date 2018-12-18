@@ -10,7 +10,7 @@ function createMap(which) {
       break;
     case 2:
       document.getElementById('map').style.width = "90%";
-      document.getElementById('map').style.height = "450px";
+      document.getElementById('map').style.height = "550px";
       break; 
   }
   
