@@ -154,9 +154,7 @@ function getOneParcel(){
 }
 
 function searchForParcel() {
-    parcel_id = document.getElementById("search-box").innerText;
-    document.getElementById("search-box").value="";
-
+    parcel_id = document.getElementById("search-box").value;
     auth = `Bearer ` + localStorage.getItem("access_token");
     let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id;
     fetch(url, {
