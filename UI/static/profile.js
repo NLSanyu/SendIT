@@ -142,6 +142,7 @@ function getOneParcel(){
             <h4>Description: </h4>${parcel.description}
             <h4>Pickup location: </h4>${parcel.pickup_location}
             <h4>Destination: </h4>${parcel.destination}
+            <h4>Present location: </h4>${parcel.present_location}
             <h4>Price: </h4>UGX 3000
             <h4>Status: </h4>${parcel.status}
             <br>
@@ -153,7 +154,7 @@ function getOneParcel(){
 }
 
 function searchForParcel() {
-    parcel_id = document.getElementById("search-box").value;
+    parcel_id = document.getElementById("search-box").innerText;
     document.getElementById("search-box").value="";
 
     auth = `Bearer ` + localStorage.getItem("access_token");
@@ -249,7 +250,7 @@ function showCreateForm() {
                 <label for="dest">Destination:</label><br>
                 <input type="text" id="dest" oninput="searchPlaces('${dest}')"><br><br>
                 <button type="button" class="create-btn" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
-                <button type="button" class="create-btn" id="open-maps-btn" onclick="createMap(2)">Use Google Maps</button> 
+                <button type="button" class="create-btn" id="open-maps-btn" onclick="createMap()">Use Google Maps</button> 
               </form>
               </div>`;
 
