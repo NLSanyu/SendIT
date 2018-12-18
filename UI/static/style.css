@@ -111,21 +111,14 @@ p.create-account {
 
 .auth td, input {
    padding: 10px;
+   margin: 5px;
 }
 
 .auth h1, p {
   margin: 5px;
   padding: 5px;
-  align: center;
   padding-top: 15px;
   padding-left: 20px;
-}
-
-.create {
-	margin-top: 20px;
-	background-color: var(--main-light-color);
-	border-radius: 10px;
-	padding: 20px;
 }
 
 i {
@@ -156,6 +149,41 @@ i {
     font-size: 14px;
 }
 
+.create-form-div {
+	background-color: var(--main-semi-color);
+	padding: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.create-form {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.create-form label, .create-form input[type=text] {
+	width: 90%;
+	margin: 15px;
+}
+
+.create-form button {
+	margin-left: 15px;
+	margin-right: 5px;
+}
+
+.confirm {	
+	margin: 5px;
+	padding: 5px;
+	background-color: var(--main-dark-color);
+	color: white;
+}
+
+.discard {
+	margin: 5px;
+	padding: 5px;
+	background-color: var(--main-semi-dark-color);
+}
+
 .form-table {
 	margin-left: auto;
 	margin-right: auto;
@@ -179,23 +207,27 @@ table tr td {
 }
 
 #parcel-pop-up {
-width: 100%;
-height: 100%;
-opacity: 1;
-top: 0;
-left: 0;
-display: none;
-position: fixed;
-background-color: #bbb;
-overflow: auto
+	width: 100%;
+	height: 100%;
+	opacity: 0.99;
+	top: 0;
+	left: 0;
+	display: none;
+	position: fixed;
+	background-color: #fff;
+	overflow: auto;
+	z-index: 1;
 }
 
 div#pop-up-info {
-position: absolute;
-left: 35%;
-top: 15%;
-margin-left: auto;
-margin-right: auto;
+	position: absolute;
+	background-color: var(--main-semi-color);
+	padding: 20px;
+	width: 50%;
+	left: 25%;
+	top: 10%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .parcel-details {
@@ -231,14 +263,6 @@ margin-right: auto;
 	text-align: center;
 }
 
-.parcel-form-table td {
-	text-align: left;
-	margin-left: 10px;
-	padding: 5px;
-	background-color: var(--main-light-color);
-	border-radius: 5px;
-}
-
 .view {
 	color: var(--main-dark-color);
 	text-decoration: underline;
@@ -259,7 +283,7 @@ margin-right: auto;
 
 .flex-container-profile {
 	display: flex;
-	fllex-direction: row;
+	flex-direction: row;
 	justify-content: center;
 	align-items: stretch;
 	margin: 10px;
@@ -279,10 +303,12 @@ img.profile-image {
 }
 
 .profile-details {
+	flex-grow: 3;
 	background-color: var(--main-light-color);
 	padding: 30px 20px 10px 30px;
 	margin: 5px 10px 5px 25px;
 	min-width: 210px;
+	max-width: 300px;
 }
 
 .parcels-order-info h5 {
@@ -291,10 +317,34 @@ img.profile-image {
 	background: var(--main-semi-dark-color);
 }
 
+.parcels-order-info h4 {
+	padding: 5px;
+	cursor: grab;
+	background: var(--main-semi-color);
+}
+
 .parcels-details {
+	flex-grow: 7;
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 5px 2px 0px 40px;
+}
+
+.flex-container-parcel {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.one-parcel {
+	background-color: var(--main-semi-color);
+	padding: 15px;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+.one-parcel-map {
+	margin: 10px;
 }
 
 .profile-button {
@@ -474,6 +524,30 @@ h4 > a:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+@media only screen and (max-width: 768px) {
+
+	.flex-container-profile {
+		margin: 5px;
+		padding: 10px;
+		width: 100%
+	}
+	
+	.profile-details {
+		width: 100%;
+		background-color: var(--main-light-color);
+		padding: 10px;
+		margin: 5px;
+	}
+	
+	.parcels-details {
+		width: 100%;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin: 5px;
+	}	
+
 }
 
 

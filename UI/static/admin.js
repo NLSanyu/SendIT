@@ -35,11 +35,11 @@ function getAllParcels(status){
                         <td>${parcel.date_created}</td>
                         <td>${parcel.pickup_location}</td>
                         <td contenteditable="true"
-                        onblur="changePresentLocation(${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
+                        onblur="showConfirmModal('present location', ${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
                         <td>${parcel.destination}</td>
                         <td>UGX 3000</td>
                         <td>
-                            <select onchange="changeStatus(${parcel.parcel_id}, event.target.value)">
+                            <select onchange="showConfirmModal('status', ${parcel.parcel_id}, event.target.value)">
                                 <option value="Current-status">${parcel.status}</option>
                                 <option value="Pending">Pending</option>
                                 <option value="In Transit">In Transit</option>
@@ -53,7 +53,6 @@ function getAllParcels(status){
         document.getElementById('parcels_output').innerHTML = output;
 
         const statuses = ["Pending", "In Transit", "Delivered", "Cancelled"];
-        console.log(statuses);
         for (const st of statuses){
             if(status == st){
                 document.getElementById(status).style.backgroundColor = "#003366";
@@ -161,6 +160,45 @@ function logOut(){
     window.location.replace("../../templates/user/sign_in.html");
 }
 
+function showConfirmModal(which, parcel_id, val) {
+    let modal = document.getElementById("myModal");
+    let modalBody = document.getElementById("modal-body");
+    modalBody.innerHTML = "";
+    let message = document.createElement("p");
+    let confirm = document.createElement("button");
+    let discard = document.createElement("button");
+    confirm.innerText = "Confirm";
+    discard.innerText = "Discard";
+    message.innerText = "Confirm " + which;
+    confirm.classList.add("confirm");
+    discard.classList.add("discard");
+    discard.onclick = function() {
+        modalBody.removeChild(message);
+        modalBody.removeChild(discard);
+        modalBody.removeChild(confirm);
+        modal.style.display = "none";
+    }
+    modalBody.appendChild(message);
+    modalBody.appendChild(discard);
+    modalBody.appendChild(confirm);
+    modal.style.display = "block";
+
+    switch(which) {
+        case "present location":
+            confirm.onclick = function() {
+                changePresentLocation(parcel_id, val);
+            }
+            break;
+
+        case "status": 
+            confirm.onclick = function() {
+                changeStatus(parcel_id, val);
+            }
+            break;
+    }
+    
+}
+
 function showModal(info){
     let modal = document.getElementById('myModal');
     let modalBody = document.getElementById('modal-body');
@@ -169,8 +207,11 @@ function showModal(info){
 
     var span = document.getElementsByClassName("close")[0];
 
+    setTimeout(function(){ modal.style.display = "none"; modalBody.innerHTML = ""; }, 3000);
+
     span.onclick = function() {
         modal.style.display = "none";
+        modalBody.innerHTML = "";
     }
   
     window.onclick = function(event) {

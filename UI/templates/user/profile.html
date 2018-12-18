@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
   <script src="../../static/profile.js"></script>
+  <script src="../../static/map.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHGX0Fav5vxKwJ4vJLI1TTKSmMEgDG54U&libraries=places&callback=createMap"></script>
   <title>SendIT - Profile</title>
  </head>
 <body onload="showUserInfo()">
@@ -16,14 +18,14 @@
 			<a href="index.html">Home</a>
 			<a href="sign_in.html" onclick="logOut()">Log Out</a>
 			<div class="nav-right"> 
-				<input type="search" id="search-box" placeholder="Search for a parcel">
-				<i class="fas fa-search" id="search-icon"></i>
+				<input type="search" id="search-box" placeholder="Search for a parcel by id">
+				<i class="fas fa-search" id="search-icon" onclick="searchForParcel()"></i>
 			<div>
 		</nav>	
 	</div>
 
 	<div class="flex-container-profile">
-		<div class="profile-details" style="flex-grow: 4">
+		<div class="profile-details">
 			<h3 class="profile-title">Profile</h3>
 			<div class="profile-image">
 				<img src="../../static/images/avi2.png" class="profile-image">
@@ -34,6 +36,7 @@
 			<br>
 			<h3>Orders</h3>
 			<div class="parcels-order-info">
+				<h4 id="New" onclick="showCreateForm()">Create new order</h4>
 				<h5 id="All" onclick="getUserParcels(`All`)">All orders</h5>
 				<h5 id="Pending" onclick="getUserParcels(`Pending`)">Pending</h5>
 				<h5 id="In Transit" onclick="getUserParcels(`In Transit`)">In transit</h5>
@@ -42,48 +45,15 @@
 			</div>
 		</div>
 		
-		<div class="parcels-details" style="flex-grow: 5">
-			<h3>Create a new parcel delivery order</h3>
-			<div class="create">
-				<form class="form" id="create-parcel-form"> 
-						<table class="parcel-form-table">
-							<tr> 
-								<td>Description</td> 
-								<td>Pickup location</td> 
-								<td>Destination</td> 
-								<td></td>
-							</tr>  
-							<tr>
-								<td> <input type="text" id="desc"> </td> 							
-								<td> <input type="text" id="pickup"> </td>
-								<td> <input type="text" id="dest"> </td>
-								<td>
-									<button type="button" class="create-btn" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<button type="button" class="create-btn" id="open-maps-btn" onclick="openMapPage()">Use Google Maps</button> 
-								</td>
-							</tr>
-						</table>
-						
-					</form>
-			</div>
-			<br>
-			<h3>My parcel delivery orders</h3>
-			<div class="parcels-table" id="parcels-div">
-	
-			</div>
-			
+		<div class="parcels-details" id="all-parcels">
 		</div>
-		
+					
 	</div>
 	
 	<div id="parcel-pop-up">
 		<div id="pop-up-info">
 		</div>
-		<button class="submit-button" id="close" onclick="hideParcelPopUp()">Close</button> 
+		<button class="submit-button" class="close" id="close" onclick="hideParcelPopUp()">Close</button> 
 	</div>
 	
 	<!-- Modal content -->
@@ -91,7 +61,7 @@
 	<div class="modal-content">
 	  <div class="modal-header">
 		<br>
-		<span class="close">&times;</span>
+		<span class="close" onclick="hideModal()">&times;</span>
 	  </div>
 	  <div class="modal-body" id="modal-body">
 	  </div>
