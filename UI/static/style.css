@@ -156,9 +156,15 @@ i {
 	margin-right: auto;
 }
 
+.create-form {
+	margin-left: auto;
+	margin-right: auto;
+}
+
 .create-form label, .create-form input[type=text] {
-	width: 100%;
-	margin: 5px;
+	width: 90%;
+	margin: 15px;
+
 }
 
 .confirm p, .confirm button {

@@ -228,18 +228,18 @@ function showCreateForm() {
     let pickup = "pickup";
     let dest = "dest";
     document.getElementById('parcel-pop-up').style.display = "block";
-    output = `<form class="create-form" id="create-parcel-form"> 
-                <div class="create-form-div">
+    output = `<div class="create-form-div">
+              <form class="create-form" id="create-parcel-form"> 
                 <label for="desc">Description:</label><br>
                 <input type="text" id="desc"><br>
                 <label for="pickup">Pickup Location:</label><br>
-                <input type="text" id="pickup" oninput="searchPlaces(${pickup})"><br>
+                <input type="text" id="pickup" onclick="searchPlaces('${pickup}')"><br>
                 <label for="dest">Destination:</label><br>
-                <input type="text" id="dest" oninput="searchPlaces(${dest})"><br><br>
+                <input type="text" id="dest" oninput="searchPlaces('${dest}')"><br><br>
                 <button type="button" class="create-btn" id="create_parcel_btn" onclick="createParcel()">Create parcel</button> 
                 <button type="button" class="create-btn" id="open-maps-btn" onclick="createMap(2)">Use Google Maps</button> 
-                </div>
-             </form>`;
+              </form>
+              </div>`;
 
     let popUp = document.getElementById("pop-up-info");
     popUp.innerHTML = output;
@@ -291,7 +291,6 @@ function showGuide() {
 }
 
 function searchPlaces(place){
-    alert("Search");
     var input = document.getElementById(place);
     new google.maps.places.Autocomplete(input);
 }
