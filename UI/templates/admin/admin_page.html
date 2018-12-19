@@ -2,83 +2,48 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
-  <script src="../../static/script.js"></script>
+  <script src="../../static/admin.js"></script>
   <title>SendIT - Admin</title>
 </head>
 <body>
-	<p id="sendit">SendIT - Admin</p>
+	<p id="sendit-admin">SendIT - Admin</p>
 	<div class="sidenav">
-		<p onclick=" adminViewParcels()">Parcels</p>
-		<a href="admin_sign_in.html" onclick="signOut">Sign Out</a>
-	</div>	  
+		<p onclick=" getAllParcels(`All`)">Parcels</p>
+		<p onclick="getAllUsers()">Users</p>
+		<p onclick="logOut()">Log Out</p>
+	</div>	 
 	
-	<div class="admin-parcels" style="flex-grow: 8">
-			<!-- either parcel creation or list of parcels -->
+	<div class="admin-parcels">
 			<div>
-				<h3>Parcels</h3>
-				<table class="parcel-table">
-					<tr>
-						<th>Parcel id</th>
-						<th>Description</th>
-						<th>Date created</th>
-						<th>Pickup location</th>
-						<th>Present location</th>
-						<th>Destination</th>
-						<th>Price</th>
-						<th>Status</th>
-					</tr>
-					
-					<tr>
-						<td>parcel000</td>
-						<td>Brown box</td>
-						<td>8/10/18</td>
-						<td>Plot 1, 6th Street Industrial Area</td>
-						<td contenteditable="true">Plot 1, 6th Street Industrial Area</td>
-						<td>Plot 2 Connor Street</td>
-						<td>shs 4,000</td>
-						<td>In Transit</td>
-					</tr>
-					
-					<tr>
-						<td>parcel001</td>
-						<td>White A4 size envelope</td>
-						<td>12/10/18</td>
-						<td>Plot 40 Ntinda Road</td>
-						<td contenteditable="true">Plot 40 Ntinda Road</td>
-						<td>Office 103, 7th Floor,  Musana House</td>
-						<td>shs 5,000</td>
-						<td>New</td>
-					</tr>
-					
-					<tr>
-						<td>parcel002</td>
-						<td>Blue dry-cleaners plastic bag</td>
-						<td>12/10/18</td>
-						<td>Fine Dry Cleaners, Plot 15, Jinja Road</td>
-						<td contenteditable="true">Fine Dry Cleaners, Plot 15, Jinja Road</td>
-						<td>Rays Hotel Kampala</td>
-						<td>shs 3,000</td>
-						<td>New</td>
-					</tr>
-					
-					<tr>
-						<td>parcel003</td>
-						<td>Grey suitcase</td>
-						<td>13/10/18</td>
-						<td>Shop no.25, Kampala Arcade</td>
-						<td contenteditable="true">Shop no.8, Mukwano Arcade</td>
-						<td>Shop no.8, Mukwano Arcade</td>
-						<td>shs 2,000</td>
-						<td>In Transit</td>
-					</tr>
-				
-				</table>
-				
-				
-				
+				<button class="sort-btn" id="Pending" onclick="getAllParcels(`Pending`)">Pending</button>
+				<button class="sort-btn" id="In Transit" onclick="getAllParcels(`In Transit`)">In Transit</button>
+				<button class="sort-btn" id="Delivered" onclick="getAllParcels(`Delivered`)">Delivered</button>
+				<button class="sort-btn" id="Cancelled" onclick="getAllParcels(`Cancelled`)">Cancelled</button>	
 			</div>
+			<div>
+				<table class="parcel-table" id="parcels_output">
+				</table>	
+			</div>
+	
+	</div>
+	<!-- Modal content -->
+	<div id="myModal" class="modal">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<br>
+		<span class="close">&times;</span>
+	  </div>
+	  <div class="modal-body" id="modal-body">
+		<p>Update</p>
+	  </div>
+	  <div class="modal-footer">
+	  <br>
+	  </div>
+	</div>
+	</div>
 	
 </body>
 

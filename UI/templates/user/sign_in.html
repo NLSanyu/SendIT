@@ -2,9 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../static/style.css" type="text/css">
-  <script src="../../static/script.js"></script>
-  <title>SendIT - Sign In</title>
+  <script src="../../static/login.js"></script>
+  <title>SendIT - Log In</title>
  </head>
 <body>
 
@@ -12,36 +13,53 @@
 		<p id="sendit">SendIT</p>
 		<nav>
 			<a href="index.html">Home</a>
-			<a href="sign_in.html">Sign In</a>
-			<a class="nav-right" href="../admin/admin_sign_in.html">Administrator</a>
+			<a href="sign_in.html">Log In</a>
 		</nav>	
 	</div>
 	
-	<div class="form">
-		<h1>Sign In</h1>
-		<form name="sign_in_form" action="profile.html" target="_self" onsubmit="signIn()"> 
+	<div class="auth">
+		<h1>Log In</h1>
+		<form name="sign_in_form"> 
 			<table class="form-table">
 				<tr> 
-					<td>Email</td> 
+					<td>Username</td> 
 					<td class="colon">:</td> 
-					<td> <input name="email" type="text" required> </td> 
+					<td> <input name="username" id="uname2" type="text" required> </td> 
 				</tr>  
 				<tr> 
 					<td>Password</td> 
 					<td class="colon">:</td> 
-					<td> <input name="password" type="password" required></td> 
+					<td> <input name="password" id="password2" type="password" required></td> 
 				</tr> 
 			</table>
 			
-			<input name="submit_button" type="submit" value="Sign In" class="submit-button">
+			<button type="button" class="submit-button" id="log_in_btn" onclick="logIn()">Log In</button> 
+
 					
 		</form>
 	
 		<br>
 		<p class="create-account">Don't have an account? Sign up <a href="sign_up.html">here</a></p>
-		<!-- <p>Sign in as administrator <a href="sign_in.html">here</a></p> -->
 		<br>
+		
+		<div class="loader" id="load"></div>
 	 
+	</div>
+	
+	<!-- Modal content -->
+	<div id="myModal" class="modal">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<br>
+		<span class="close">&times;</span>
+	  </div>
+	  <div class="modal-body" id="modal-body">
+		<p>Update</p>
+	  </div>
+	  <div class="modal-footer">
+	  <br>
+	  </div>
+	</div>
 	</div>
   
 </body>
