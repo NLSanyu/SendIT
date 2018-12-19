@@ -231,7 +231,7 @@ function showOneParcel(parcel_id) {
 function showUserInfo(){
     token = localStorage.getItem("acess_token");
     document.getElementById("fullname").innerHTML = user.full_name;
-    document.getElementById("uname").innerHTML = user.username;
+    document.getElementById("uname").innerHTML = "@" + user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
     getUserParcels("All");

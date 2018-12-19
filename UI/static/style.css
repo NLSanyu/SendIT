@@ -198,6 +198,10 @@ table tr td {
 	cursor: grab;
 }
 
+[contenteditable="true"]:hover {
+	border: 2px dashed var(--light-blue-color);
+}
+
 #cancel-btn {
 	border: 1px solid var(--main-semi-color);
 }
