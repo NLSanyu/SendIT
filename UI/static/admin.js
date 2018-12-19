@@ -22,7 +22,8 @@ function getAllParcels(status){
                 <th>Pickup location</th>
                 <th>Present location <i class="fas fa-edit"></i></th>
                 <th>Destination</th>
-                <th>Price</th>
+                <th>Weight <i class="fas fa-edit"></i></th>
+                <th>Price <i class="fas fa-edit"></i></th>
                 <th>Status <i class="fas fa-edit"></i></th>
             </tr>`;
         parcels.forEach(function(parcel){
@@ -37,7 +38,10 @@ function getAllParcels(status){
                         <td contenteditable="true"
                         onblur="showConfirmModal('present location', ${parcel.parcel_id}, event.target.innerText)">${parcel.present_location}</td>
                         <td>${parcel.destination}</td>
-                        <td>UGX 3000</td>
+                        <td contenteditable="true"
+                        onblur="showConfirmModal('weight', ${parcel.parcel_id}, event.target.innerText)">${parcel.weight}</td>
+                        <td contenteditable="true"
+                        onblur="showConfirmModal('price', ${parcel.parcel_id}, event.target.innerText)">${parcel.price}</td>
                         <td>
                             <select onchange="showConfirmModal('status', ${parcel.parcel_id}, event.target.value)">
                                 <option value="Current-status">${parcel.status}</option>
@@ -153,12 +157,46 @@ function changePresentLocation(parcel_id, val){
     .catch((err) => console.log(err)) 
 }
 
-function logOut(){
-    localStorage.removeItem("access_token");
-    let info = `Logging out`;
-    showModal(info);
-    window.location.replace("../../templates/user/sign_in.html");
+function editPrice(parcel_id, val){
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/price';
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+        }, 
+        body: JSON.stringify({price: val})
+    })
+    .then((res) => res.json())
+    .then(function(data){
+        console.log(data);
+        let info = `${data['message']}`;
+        showModal(info);
+        getAllParcels("All"); 
+    })
+    .catch((err) => console.log(err)) 
 }
+
+function editWeight(parcel_id, val){
+    let url = 'https://nls-sendit.herokuapp.com/api/v1/parcels/' + parcel_id + '/weight';
+    fetch(url, {
+        method: 'PUT',
+        headers: {
+        'Content-type': 'application/json',
+        'Authorization': auth
+        }, 
+        body: JSON.stringify({weight: val})
+    })
+    .then((res) => res.json())
+    .then(function(data){
+        console.log(data);
+        let info = `${data['message']}`;
+        showModal(info);
+        getAllParcels("All"); 
+    })
+    .catch((err) => console.log(err)) 
+}
+
 
 function showConfirmModal(which, parcel_id, val) {
     let modal = document.getElementById("myModal");
@@ -195,8 +233,27 @@ function showConfirmModal(which, parcel_id, val) {
                 changeStatus(parcel_id, val);
             }
             break;
+
+        case "weight": 
+        confirm.onclick = function() {
+            editWeight(parcel_id, val);
+        }
+        break;
+
+        case "price": 
+        confirm.onclick = function() {
+            editPrice(parcel_id, val);
+        }
+        break;
     }
     
+}
+
+function logOut(){
+    localStorage.removeItem("access_token");
+    let info = `Logging out`;
+    showModal(info);
+    window.location.replace("../../templates/user/sign_in.html");
 }
 
 function showModal(info){
