@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../static/style.css" type="text/css">
+  <script src="../../static/signup.js"></script>
+  <title>SendIT - Sign Up</title>
+</head>
+<body>
+
+	<div class=header>
+		<p id="sendit">SendIT</p>
+		<nav>
+			<a href="index.html">Home</a>
+			<a href="sign_in.html">Log In</a>
+		</nav>	
+	</div>
+	
+	<div class="auth">
+		<h1>Sign Up</h1>
+		<form name="sign_up_form" id="sign_up_form"> 
+			<table class="form-table">
+				<tr> 
+					<td>Full name</td> 
+					<td class="colon">:</td> 
+					<td> <input name="fullname" id="fullname1" type="text"> </td> 
+				</tr> 
+				<tr> 
+					<td>Username</td> 
+					<td class="colon">:</td> 
+					<td> <input name="username" id="uname1" type="text" required> </td> 
+				</tr>  
+				<tr> 
+					<td>Email</td> 
+					<td class="colon">:</td> 
+					<td> <input name="email" id="email1" type="text" required> </td> 
+				</tr>  
+				<tr> 
+					<td>Phone number</td> 
+					<td class="colon">:</td> 
+					<td> <input name="phone_number" id="phone1" type="text"> </td> 
+				</tr>  
+				<tr> 
+					<td>Password</td> 
+					<td class="colon">:</td> 
+					<td> <input name="password" id="password1" type="password" required> </td> 
+				</tr>
+				<tr> 
+					<td>Confirm password</td> 
+					<td class="colon">:</td> 
+					<td> <input name="password" id="confirm-password1" type="password" required> </td> 
+				</tr>
+			</table>
+			<button type="button" class="submit-button" id="sign_up_btn" onclick="signUp()">Sign Up</button> 
+						
+		</form>
+		
+		<div class="loader" id="load"></div>
+	</div>
+	
+	<!-- Modal content -->
+	<div id="myModal" class="modal">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<br>
+		<span class="close">&times;</span>
+	  </div>
+	  <div class="modal-body" id="modal-body">
+		<p>Update</p>
+	  </div>
+	  <div class="modal-footer">
+	  <br>
+	  </div>
+	</div>
+	</div>
+  
+</body>
+
+</html>
