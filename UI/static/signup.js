@@ -1,5 +1,6 @@
 function signUp(){
   document.getElementById("load").style.display = "block";
+  let fullName = document.getElementById("fullname1").value;
   let username = document.getElementById("uname1").value;
   let email = document.getElementById("email1").value;
   let phoneNumber = document.getElementById("phone1").value;
@@ -16,7 +17,7 @@ function signUp(){
     headers: {
       'Content-type': 'application/json'
     }, 
-    body: JSON.stringify({username: username, email: email, phone_number: phoneNumber, password: password})
+    body: JSON.stringify({full_name: fullName, username: username, email: email, phone_number: phoneNumber, password: password})
   })
   .then((res) => res.json())
   .then((data) => {

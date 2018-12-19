@@ -143,7 +143,8 @@ function getOneParcel(){
             <h4>Pickup location: </h4>${parcel.pickup_location}
             <h4>Destination: </h4>${parcel.destination}
             <h4>Present location: </h4>${parcel.present_location}
-            <h4>Price: </h4>UGX 3000
+            <h4>Price: </h4>${parcel.price}
+            <h4>Weight (kgs): </h4>${parcel.weight}
             <h4>Status: </h4>${parcel.status}
             <br>
             <button class="submit-button" id="cancel-btn" onclick="showConfirmModal('cancel parcel', ${parcel.parcel_id})">Cancel parcel</button>`;
@@ -229,6 +230,7 @@ function showOneParcel(parcel_id) {
 
 function showUserInfo(){
     token = localStorage.getItem("acess_token");
+    document.getElementById("fullname").innerHTML = user.full_name;
     document.getElementById("uname").innerHTML = user.username;
     document.getElementById("email").innerHTML = user.email;
     document.getElementById("phone_number").innerHTML = user.phone_number;
