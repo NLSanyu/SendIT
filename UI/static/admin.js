@@ -90,25 +90,21 @@ function getAllUsers(){
         let output = `
             <tr>
                 <th>Id</th>
+                <th>Full name</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone number</th>
                 <th>Password</th>
-                <th>Orders</th>
-                <th>Delivered</th>
-                <th>In transit</th>
             </tr>`;
         users.forEach(function(user){
             output += `
                 <tr>
                     <td>${user.user_id}</td>
-                    <td>${user.username}</td>
+                    <td>${user.full_name}</td>
+                    <td>@${user.username}</td>
                     <td>${user.email}</td>
                     <td>${user.phone_number}</td>
                     <td>${user.password_hash}</td>
-                    <td>${user.orders}</td>
-                    <td>${user.delivered}</td>
-                    <td>${user.in_transit}</td>
                 </tr>
             `;
         })
